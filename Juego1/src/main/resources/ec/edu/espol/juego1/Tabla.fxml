@@ -1,11 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.TablaController">
-    
+<AnchorPane id="AnchorPane" fx:id="lblPerdidos" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.TablaController">
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="200.0" layoutY="100.0">
+         <image>
+            <Image url="@../../../../../images/tablero.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="176.0" fitWidth="178.0" layoutX="211.0" layoutY="113.0">
+         <image>
+            <Image url="@../../../../../images/tablero.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblEstado" layoutX="268.0" layoutY="68.0" prefHeight="17.0" prefWidth="65.0" text="3 EN RAYA" />
+      <Label fx:id="f1" layoutX="214.0" layoutY="116.0" prefHeight="53.0" prefWidth="54.0" text="Label" />
+      <Label fx:id="f2" layoutX="273.0" layoutY="116.0" prefHeight="53.0" prefWidth="54.0" text="Label" />
+      <Label fx:id="f3" layoutX="333.0" layoutY="116.0" prefHeight="53.0" prefWidth="54.0" text="Label" />
+      <Label fx:id="f4" layoutX="214.0" layoutY="175.0" prefHeight="53.0" prefWidth="54.0" text="Label" />
+      <Label fx:id="f5" layoutX="273.0" layoutY="175.0" prefHeight="53.0" prefWidth="54.0" text="Label" />
+      <Label fx:id="f6" layoutX="333.0" layoutY="174.0" prefHeight="53.0" prefWidth="54.0" text="Label" />
+      <Label fx:id="f7" layoutX="214.0" layoutY="228.0" prefHeight="53.0" prefWidth="54.0" text="Label" />
+      <Label fx:id="f8" layoutX="273.0" layoutY="228.0" prefHeight="53.0" prefWidth="54.0" text="Label" />
+      <Label fx:id="f9" layoutX="333.0" layoutY="228.0" prefHeight="53.0" prefWidth="54.0" text="Label" />
+      <Label fx:id="Tablero" layoutX="482.0" layoutY="92.0" text="Label" />
+      <Label fx:id="lblGanados" layoutX="133.0" layoutY="335.0" text="G" />
+     
+      <Label fx:id="lblEmpatados" layoutX="419.0" layoutY="335.0" text="E" />
+      <Label layoutX="62.0" layoutY="335.0" prefHeight="17.0" prefWidth="71.0" text="GANADOS:" />
+      <Label layoutX="200.0" layoutY="335.0" prefHeight="17.0" prefWidth="65.0" text="PERDIDOS:" />
+      <Label layoutX="316.0" layoutY="335.0" prefHeight="17.0" prefWidth="84.0" text="EMPATADOS:" />
+      <Label fx:id="lblIcono" layoutX="496.0" layoutY="335.0" text="ICONO" />
+      <Label layoutX="62.0" layoutY="359.0" prefHeight="17.0" prefWidth="71.0" text="GANADOS:" />
+      <Label fx:id="lblGanados2" layoutX="133.0" layoutY="359.0" text="G" />
+      <Label layoutX="200.0" layoutY="359.0" prefHeight="17.0" prefWidth="65.0" text="PERDIDOS:" />
+      <Label fx:id="lblPerdidos2" layoutX="270.0" layoutY="359.0" text="P" />
+      <Label layoutX="316.0" layoutY="359.0" prefHeight="17.0" prefWidth="84.0" text="EMPATADOS:" />
+      <Label fx:id="lblEmpatados2" layoutX="419.0" layoutY="359.0" text="E" />
+      <Label fx:id="lblIcono2" layoutX="496.0" layoutY="359.0" text="ICONO" />
+      <Label fx:id="lblPlayer" layoutX="22.0" layoutY="335.0" text="P1" />
+      <Label fx:id="lblPlayer2" layoutX="22.0" layoutY="359.0" text="P2" />
+      <MenuButton layoutX="23.0" layoutY="29.0" mnemonicParsing="false" text="Menu">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1">
+               <graphic>
+                  <Button fx:id="mnuIniciar" mnemonicParsing="false" text="Iniciar Juego" />
+               </graphic>
+            </MenuItem>
+          <MenuItem mnemonicParsing="false" text="Action 2">
+               <graphic>
+                  <Button fx:id="mnuSuspender" mnemonicParsing="false" text="Detener Juego" />
+               </graphic>
+            </MenuItem>
+        </items>
+      </MenuButton>
+      <Button layoutX="106.0" layoutY="29.0" mnemonicParsing="false" text="Configurar" />
+      <Button fx:id="mnuEstadisticas" layoutX="200.0" layoutY="29.0" mnemonicParsing="false" text="Estadistica" />
+      <Label fx:id="Fondo" layoutX="482.0" layoutY="134.0" text="Label" />
+      <Label fx:id="blPerdidos" layoutX="270.0" layoutY="335.0" text="P" />
+     
+   </children>
 </AnchorPane>
