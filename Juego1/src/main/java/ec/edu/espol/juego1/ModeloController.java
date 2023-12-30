@@ -81,7 +81,7 @@ public class ModeloController implements Initializable {
     /** Crea un nuevo Modelo */
     public ModeloController( TablaController tabla ) {
         /*Iniciamos componentes visuales.*/
-        initComponents();
+        //initComponents();
         ///setVisible(true);
         //mensaje = new JOptionPane();
         

@@ -89,6 +89,7 @@ public class TablaController implements Initializable,Runnable{
      * Initializes the controller class.
      */
      /*Turno de jugador.*/
+    Estadisticas estadisticas = new Estadisticas();
     int turno = 0;
     int turnoGeneral = 0;
     
@@ -179,16 +180,16 @@ public class TablaController implements Initializable,Runnable{
         
         if( indice == -1 ) return;
         
-        switch ( indice ){//TRABAJAR
-            case 0: this.f1.setIcon( jugador2.obtenFicha() ); break;
-            case 1: this.f2.setIcon( jugador2.obtenFicha() ); break;
-            case 2: this.f3.setIcon( jugador2.obtenFicha() ); break;
-            case 3: this.f4.setIcon( jugador2.obtenFicha() ); break;
-            case 4: this.f5.setIcon( jugador2.obtenFicha() ); break;
-            case 5: this.f6.setIcon( jugador2.obtenFicha() ); break;
-            case 6: this.f7.setIcon( jugador2.obtenFicha() ); break;
-            case 7: this.f8.setIcon( jugador2.obtenFicha() ); break;
-            case 8: this.f9.setIcon( jugador2.obtenFicha() ); break;        
+        switch ( indice ){//editado el seticon por el setgrafic
+            case 0: this.f1.setGraphic( jugador2.obtenFicha() ); break;
+            case 1: this.f2.setGraphic( jugador2.obtenFicha() ); break;
+            case 2: this.f3.setGraphic( jugador2.obtenFicha() ); break;
+            case 3: this.f4.setGraphic( jugador2.obtenFicha() ); break;
+            case 4: this.f5.setGraphic( jugador2.obtenFicha() ); break;
+            case 5: this.f6.setGraphic( jugador2.obtenFicha() ); break;
+            case 6: this.f7.setGraphic( jugador2.obtenFicha() ); break;
+            case 7: this.f8.setGraphic( jugador2.obtenFicha() ); break;
+            case 8: this.f9.setGraphic( jugador2.obtenFicha() ); break;        
         }
         
         this.tablero[indice] = 2;
@@ -209,9 +210,9 @@ public class TablaController implements Initializable,Runnable{
         
         /*Elegimos la ficha según el turno*/
         if ( turno == JUGADOR1 )
-            ficha.setIcon( jugador1.obtenFicha() );
+            ficha.setGraphic(jugador1.obtenFicha() );//editado el seticon
         else
-            ficha.setIcon( jugador2.obtenFicha() );
+            ficha.setGraphic( jugador2.obtenFicha() );//editado el seticon
         
         /*Guardamos la representación en el tablero*/
         tablero[casilla] = turno;
@@ -270,8 +271,8 @@ public class TablaController implements Initializable,Runnable{
         /*Icono del formulario.*/
         //this.setIconImage( Image );
         
-        /*Hacemos visible el formulario.*/
-        this.setVisible(true);//TRABAJAR
+        /*Hacemos visible el formulario.*/   //aun no se como arreglar esto 
+        //this.setVisible(true);//TRABAJAR descubir de donde sale esto
         
         
         /*Referenciamos todas las etiquetas.*/
@@ -285,39 +286,40 @@ public class TablaController implements Initializable,Runnable{
         
         /*Cursor para los componentes.*/
         for ( int i = 0; i < 9; i ++ )
-            fichas[i].setCursor( new Cursor( Cursor.HAND_CURSOR ) ); //TRABAJAR LOCAL?
-        
+        fichas[i].setCursor(javafx.scene.Cursor.HAND);
     }
     
      /*Método que recupera la información del jugador y la usa en el panel de usuario.*/
     public void mostrarInformacion(){ //TRABAJARLOCAL!!
         
         /*Establecemos el título.*/
-        panelJ1.setTitle( jugador1.nombre );
-        panelJ2.setTitle( jugador2.nombre );
+        lblPlayer.setText(jugador1.nombre );
+        lblPlayer2.setText( jugador2.nombre );
         
         /*Establecemos las estadísticas del jugador.*/
         this.lblGanados.setText("Ganados: " + jugador1.GANADOS );
-        this.lblPerdidos.setText("Perdidos: " + jugador1.PERDIDOS );
+        this.blPerdidos.setText("Perdidos: " + jugador1.PERDIDOS );
         this.lblEmpatados.setText("Empatados: " + jugador1.EMPATADOS );
-        this.lblIcono.setIcon( jugador1.obtenFicha() );
+        this.lblIcono.setGraphic(jugador1.obtenFicha() );
         
         this.lblGanados2.setText("Ganados: " + jugador2.GANADOS );
         this.lblPerdidos2.setText("Perdidos: " + jugador2.PERDIDOS );
         this.lblEmpatados2.setText("Empatados: " + jugador2.EMPATADOS );
-        this.lblIcono2.setIcon( jugador2.obtenFicha() );
+        this.lblIcono2.setGraphic(jugador2.obtenFicha() );
         
-        this.panelJ1.setVisible(true);
+        this.lblPlayer.setVisible(true); //es la ventada del jugaddor pero por ahora solo vamos a ocultara o mostrarel nombre
         if( this.modelo.tipo_juego != HOMBREvsCOMPUTADORA)
-            this.panelJ2.setVisible(true);
+            this.lblPlayer2.setVisible(true);
     }
     
     /*Método que muestra las estadisticas.*/
     public void mostrarEstadisticas(){ //TRABAJARLOCAL!!
+        /*
         this.estadisticas.guardarJugador( new Jugador("","") );
         String esta = this.estadisticas.leerDatos();
         this.txtEsta.setText(esta);
         this.panelEstadisticas.setVisible(true);
+        */
     }
     
      public void mensaje(String mensaje){
@@ -334,16 +336,16 @@ public class TablaController implements Initializable,Runnable{
         /*Si es turno del primer jugador..*/
         if ( turno == JUGADOR1 ){
             /*Seleccionamos su ventana.*/
-            try{this.panelJ1.setSelected(true);
-            this.panelJ2.setSelected(false);}
-            catch(Exception ex){}
+           // try{this.panelJ1.setSelected(true);
+           // this.panelJ2.setSelected(false);}
+           // catch(Exception ex){}
             
             mensaje("Turno de " + jugador1.nombre );
             
         } else {
-            try{this.panelJ1.setSelected(false);
-            this.panelJ2.setSelected(true);}
-            catch(Exception ex){}
+           // try{this.panelJ1.setSelected(false);
+            //this.panelJ2.setSelected(true);}
+           // catch(Exception ex){}
             
             mensaje("Turno de " + jugador2.nombre );
         }
@@ -358,19 +360,19 @@ public class TablaController implements Initializable,Runnable{
     }
     
     /*Método que inicia el juego una vez obtenido el modelo.*/
-    public void iniciarJuego(){  //TRABAJARLOCAL
+    public void iniciarJuego(){  //TRABAJARLOCAL ------------ARREGLAR LO DE LA FICHA PREDETERMINADA-------------
         /*Creamos los jugadores según el tipo de juego.*/
         if ( modelo.tipo_juego == HOMBREvsHOMBRE ){
-            this.jugador1 = new Jugador( modelo.nombre1, config.fichas[0] );
-            this.jugador2 = new Jugador( modelo.nombre2, config.fichas[1] );
+            //this.jugador1 = new Jugador( modelo.nombre1, config.fichas[0] );  //cambiar a pasarle la ficha directamente sin tener la opcion de lelegir la imagen
+            //this.jugador2 = new Jugador( modelo.nombre2, config.fichas[1] ); //x2
             
             /*Mostramos su información, asignamos los nombres de jugador al panel.*/
             mostrarInformacion();
         } else {
             /*Jugadores*/
-            this.jugador1 = new Jugador( modelo.nombre1, config.fichas[0] );
-            this.jugador2 = new Jugador ( "Computadora", config.fichas[1] );
-            this.panelJ2.setVisible(false);
+           // this.jugador1 = new Jugador( modelo.nombre1, configfichas[0] );
+           // this.jugador2 = new Jugador ( "Computadora", config.fichas[1] );
+            this.lblPlayer2.setVisible(false);//verificar
             
             /*Creamos la instancia para la computadora.*/
             computadora = new ComputadoraIA();
@@ -388,9 +390,9 @@ public class TablaController implements Initializable,Runnable{
         terminado = false;
         
         /*Deshabilitamos el menú nuevo juego.*/
-        this.mnuIniciar.setEnabled(false);
-        this.mnuSuspender.setEnabled(true);
-        this.panelEstadisticas.setVisible(false);
+        this.mnuIniciar.setDisable(false);
+        this.mnuSuspender.setDisable(true);
+       // this.panelEstadisticas.setVisible(false);
         
         /*Movemos el foco.*/
         cambiarFoco();
@@ -405,12 +407,12 @@ public class TablaController implements Initializable,Runnable{
         
         /*Borramos los iconos.*/
         for ( int i = 0; i < 9; i ++ )
-            fichas[i].setIcon(null);
+            fichas[i].setGraphic(null);
         
-        /*Quitamos selecciones.*/
-        try{this.panelJ1.setSelected(false);
-        this.panelJ2.setSelected(true);}
-        catch(Exception ex){}
+        /*Quitamos selecciones.*/  //aun no se como arreglar esto 
+//        try{this.panelJ1.setSelected(false);
+//        this.panelJ2.setSelected(true);}
+//        catch(Exception ex){}
         
         /*Cambiamos el turno General.*/
         if ( this.modelo.tipo_juego == HOMBREvsCOMPUTADORA )
@@ -443,10 +445,10 @@ public class TablaController implements Initializable,Runnable{
         for ( int i = 0; i < 9; i ++ )
             fichas[i].setGraphic(null);// cambio realizado a setgraphic
         
-        /*Quitamos selecciones.*/
-        try{this.panelJ1.setSelected(false);
-        this.panelJ2.setSelected(true);}
-        catch(Exception ex){}
+        /*Quitamos selecciones.*/ //aun no se como arreglar esto 
+//        try{this.panelJ1.setSelected(false);
+//        this.panelJ2.setSelected(true);}
+//        catch(Exception ex){}
         
         /*Reinciamos el turno.*/
         turno = 1;
@@ -463,8 +465,8 @@ public class TablaController implements Initializable,Runnable{
         this.lblEstado.setText("Juega al gato!");
         
         /*Quitamos los paneles.*/
-        this.panelJ1.setVisible(false);
-        this.panelJ2.setVisible(false);
+        this.lblPlayer.setVisible(false);
+        this.lblPlayer2.setVisible(false);
         
         
         
@@ -500,6 +502,7 @@ public class TablaController implements Initializable,Runnable{
             f9MouseClicked();  
         });
         Tablero.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/tablero.png"))));
+        
         Fondo.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/fondo.png"))));
         
         lblEmpatados2.setText("Empatados: 0");
