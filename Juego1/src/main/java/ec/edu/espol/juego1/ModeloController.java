@@ -71,13 +71,24 @@ public class ModeloController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    private TablaController tabla;
     public final int HOMBREvsHOMBRE = 1;
     public final int HOMBREvsCOMPUTADORA = 2;
     public final int COMPUTADORAvsCOMPUTADORA = 3;
     public String nombre1, nombre2;
     public int tipo_juego = 0;
     
-    
+    /** Crea un nuevo Modelo */
+    public ModeloController( TablaController tabla ) {
+        /*Iniciamos componentes visuales.*/
+        initComponents();
+        ///setVisible(true);
+        //mensaje = new JOptionPane();
+        
+        /*Asignamos el gato.*/
+        this.tabla = tabla;
+        
+    }
     
     /*Método que recoje los datos.*/
     public boolean recojer(){
