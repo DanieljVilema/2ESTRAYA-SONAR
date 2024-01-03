@@ -89,6 +89,7 @@ public class TablaController implements Initializable,Runnable{
      * Initializes the controller class.
      */
      /*Turno de jugador.*/
+    ConfigurarController config = new ConfigurarController();
     Estadisticas estadisticas = new Estadisticas();
     int turno = 0;
     int turnoGeneral = 0;
@@ -99,15 +100,15 @@ public class TablaController implements Initializable,Runnable{
     /*Tablero en componentes.*/
     Label fichas[]; //PREGUNTAR ESTO
     
-    public TablaController() {
-
-        /*LLenamos nuestro tablero de 0, vacío.*/
-        Arrays.fill(tablero,0);
-           
-        /*Iniciamos los componentes de nuestra ventana*/
-       initComponents(); 
-       iniciarComponentes();    
-    }
+//    public TablaController() {
+//
+//        /*LLenamos nuestro tablero de 0, vacío.*/
+//        Arrays.fill(tablero,0);
+//           
+//        /*Iniciamos los componentes de nuestra ventana*/
+//       initComponents(); 
+//       iniciarComponentes();    
+//    }
     
     public void run(){
         
@@ -357,14 +358,15 @@ public class TablaController implements Initializable,Runnable{
     public void recojerModelo(){
         /*Iniciamos los componentes del juego.*/
         iniciarJuego();
+        
     }
     
     /*Método que inicia el juego una vez obtenido el modelo.*/
     public void iniciarJuego(){  //TRABAJARLOCAL ------------ARREGLAR LO DE LA FICHA PREDETERMINADA-------------
         /*Creamos los jugadores según el tipo de juego.*/
         if ( modelo.tipo_juego == HOMBREvsHOMBRE ){
-            //this.jugador1 = new Jugador( modelo.nombre1, config.fichas[0] );  //cambiar a pasarle la ficha directamente sin tener la opcion de lelegir la imagen
-            //this.jugador2 = new Jugador( modelo.nombre2, config.fichas[1] ); //x2
+            this.jugador1 = new Jugador( modelo.nombre1,new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png"))) );  //cambiar a pasarle la ficha directamente sin tener la opcion de lelegir la imagen
+            this.jugador2 = new Jugador( modelo.nombre2, new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png"))) ); //x2
             
             /*Mostramos su información, asignamos los nombres de jugador al panel.*/
             mostrarInformacion();
@@ -544,8 +546,10 @@ public class TablaController implements Initializable,Runnable{
     
     private void mnuIniciarActionPerformed() {                                           
         /*Creamos el nuevo modelo de juego para nuestro Gato.*/
-        modelo = new ModeloController(this);
+        modelo = new ModeloController();
+        modelo.asignacion(this);
     } 
+    
     
     private void f9MouseClicked() {                                
         movimiento(f9);
@@ -584,9 +588,16 @@ public class TablaController implements Initializable,Runnable{
     }   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        initComponents();
-        iniciarComponentes();   //No se aun
+//        // TODO
+//        initComponents();
+//        iniciarComponentes();   //No se aun
+        
+        /*LLenamos nuestro tablero de 0, vacío.*/
+        Arrays.fill(tablero,0);
+           
+        /*Iniciamos los componentes de nuestra ventana*/
+       initComponents(); 
+       iniciarComponentes();  
     }    
     
 }

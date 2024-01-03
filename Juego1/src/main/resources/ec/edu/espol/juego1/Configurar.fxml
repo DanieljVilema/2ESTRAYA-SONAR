@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="ec.edu.espol.juego1.ConfigurarController">
+   <children>
+      <Label fx:id="lblInstrucciones" layoutX="133.0" layoutY="69.0" text="Seleccione fichas:" />
+      <ComboBox fx:id="cmbElegir" layoutX="302.0" layoutY="65.0" prefWidth="150.0" />
+      <Label fx:id="lblFicha1" layoutX="151.0" layoutY="217.0" text="Label" />
+      <Label fx:id="lblFicha2" layoutX="424.0" layoutY="217.0" text="Label" />
+      <Button fx:id="jButton1" layoutX="274.0" layoutY="299.0" mnemonicParsing="false" text="Button" />
+   </children>
+</AnchorPane>
