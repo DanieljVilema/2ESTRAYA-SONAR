@@ -505,7 +505,7 @@ public class TablaController implements Initializable,Runnable{
         });
         Tablero.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/tablero.png"))));
         
-        Fondo.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/fondo.png"))));
+        
         
         lblEmpatados2.setText("Empatados: 0");
 
