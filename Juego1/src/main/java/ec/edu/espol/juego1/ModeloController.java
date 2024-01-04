@@ -4,12 +4,15 @@
  */
 package ec.edu.espol.juego1;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -196,8 +199,12 @@ public class ModeloController implements Initializable {
           btnAceptar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                // Lógica a ejecutar cuando se hace clic en el botón
-                btnAceptarActionPerformed();  
+                try {
+                    // Lógica a ejecutar cuando se hace clic en el botón
+                    btnAceptarActionPerformed();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
                 
             }
         });
@@ -219,16 +226,19 @@ public class ModeloController implements Initializable {
     private void btnCancelarActionPerformed() {                                            
        // this.dispose();SE CIERRA LA VENTANA
     } 
-    private void btnAceptarActionPerformed() {                                           
+    private void btnAceptarActionPerformed() throws IOException {                                           
         /*Recojemos los datos de los campos.*/
         System.out.println("4");
-        if( recojer()&&quienempieza() ){
-            System.out.println("funciona bien");
-            /*Los enviamos al gato.*/
-            enviarModelo();
-            /*Cerramos esta ventana.*/
-            //dispose();  CAMBIAR A METODO PARA CAMBIAR LA VENTANA E IR AL JUEGO
-        }
+//        if( recojer()&&quienempieza() ){
+//            System.out.println("funciona bien");
+//            /*Los enviamos al gato.*/
+//            enviarModelo();
+//            /*Cerramos esta ventana.*/
+//            //dispose();  CAMBIAR A METODO PARA CAMBIAR LA VENTANA E IR AL JUEGO
+//        }
+        FXMLLoader loader = App.loadFXML("Tabla");
+            Scene sc = new Scene(loader.load(),700,500);
+            App.setScene(sc);
     }  
    
     private void hvshActionPerformed() {   

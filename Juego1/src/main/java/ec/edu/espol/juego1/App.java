@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import static javafx.application.Application.launch;
 
 /**
  * JavaFX App
@@ -14,21 +15,32 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static Stage st;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Tabla"), 640, 480);
+        st = stage;
+        scene = new Scene(loadFXML("Tabla").load(),700,500);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
 
     static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+        scene.setRoot(loadFXML(fxml).load());
+    }
+    
+    public static void setScene(Scene sc) throws IOException {
+        st.setScene(sc);
+    }
+    
+    public static Stage getStage(){
+        return st;
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static FXMLLoader loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+        return fxmlLoader;
     }
 
     public static void main(String[] args) {

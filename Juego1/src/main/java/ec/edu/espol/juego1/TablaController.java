@@ -4,13 +4,16 @@
  */
 package ec.edu.espol.juego1;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -625,7 +628,13 @@ f9.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/ci
 
         lblEmpatados.setText("Empatados: 0");
         
-         mnuIniciar.setOnAction(event -> mnuIniciarActionPerformed());
+         mnuIniciar.setOnAction(event -> {
+            try {
+                mnuIniciarActionPerformed();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
          
          mnuSuspender.setOnAction(event -> mnuSuspenderActionPerformed());
          
@@ -652,11 +661,14 @@ f9.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/ci
         System.out.println("susoender");
     } 
     
-    private void mnuIniciarActionPerformed() {                                           
+    private void mnuIniciarActionPerformed() throws IOException {                                           
         /*Creamos el nuevo modelo de juego para nuestro Gato.*/
         modelo = new ModeloController();
         modelo.asignacion(this);
         System.out.println("iniciar");
+         FXMLLoader loader = App.loadFXML("Modelo");
+            Scene sc = new Scene(loader.load(),700,500);
+            App.setScene(sc);
     } 
     
     
