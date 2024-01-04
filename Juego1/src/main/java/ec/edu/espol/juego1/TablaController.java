@@ -13,6 +13,8 @@ import javafx.scene.Cursor;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -76,11 +78,11 @@ public class TablaController implements Initializable,Runnable{
     @FXML
     private Label lblPlayer2;
     @FXML
-    private Button mnuIniciar;
+    private MenuItem mnuIniciar;
     @FXML
-    private Button mnuSuspender;
+    private MenuItem mnuSuspender;
     @FXML
-    private Button mnuEstadisticas;
+    private MenuItem mnuEstadisticas;
     @FXML
     private Label Fondo;
     @FXML
@@ -99,6 +101,10 @@ public class TablaController implements Initializable,Runnable{
 
     /*Tablero en componentes.*/
     Label fichas[]; //PREGUNTAR ESTO
+    @FXML
+    private MenuButton mnuJuego;
+    @FXML
+    private Button btnconfigurar;
     
 //    public TablaController() {
 //
@@ -503,7 +509,7 @@ public class TablaController implements Initializable,Runnable{
         f9.setOnMouseClicked((MouseEvent event) -> {
             f9MouseClicked();  
         });
-        Tablero.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/tablero.png"))));
+        //Tablero.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/tablero.png"))));
         
         
         
@@ -519,35 +525,38 @@ public class TablaController implements Initializable,Runnable{
 
         lblEmpatados.setText("Empatados: 0");
         
-        mnuIniciar.setOnMouseClicked((MouseEvent event) -> {
-           mnuIniciarActionPerformed();  
-        });
-        mnuSuspender.setOnMouseClicked((MouseEvent event) -> {
-           mnuSuspenderActionPerformed();  
-        });
-        mnuEstadisticas.setOnMouseClicked((MouseEvent event) -> {
-          mnuEstadisticasActionPerformed(); 
-        });
+         mnuIniciar.setOnAction(event -> mnuIniciarActionPerformed());
+         
+         mnuSuspender.setOnAction(event -> mnuSuspenderActionPerformed());
+         
+         mnuEstadisticas.setOnAction(event -> mnuEstadisticasActionPerformed());
+         
+         btnconfigurar.setOnAction(event -> configurarActionPerformed());
     }
-    
+    private void configurarActionPerformed() {   
+        System.out.println("Configurar");
+    } 
     private void mnuEstadisticasActionPerformed() {                                                
         this.mostrarEstadisticas();
+        System.out.println("Estadisticas");
     } 
     
     private void mnuSuspenderActionPerformed() {       //TRABAJAR                                       
         /*Guardamos records.*/
-        estadisticas.guardarJugador(jugador2);
-        estadisticas.refrescar();
-        estadisticas.guardarJugador(jugador1);
+//        estadisticas.guardarJugador(jugador2);
+//        estadisticas.refrescar();
+//        estadisticas.guardarJugador(jugador1);
         
         /*Suspendemos.*/
         suspenderJuego();
+        System.out.println("susoender");
     } 
     
     private void mnuIniciarActionPerformed() {                                           
         /*Creamos el nuevo modelo de juego para nuestro Gato.*/
         modelo = new ModeloController();
         modelo.asignacion(this);
+        System.out.println("iniciar");
     } 
     
     
