@@ -7,6 +7,7 @@ package ec.edu.espol.juego1;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
@@ -481,34 +482,133 @@ public class TablaController implements Initializable,Runnable{
     }
     
     private void initComponents() {
-        
-        f1.setOnMouseClicked((MouseEvent event) -> {
-            f1MouseClicked();  
+        f1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+//                // Agregar una imagen al label cuando se hace clic
+//                Image image = new Image("ruta_de_tu_imagen.png");
+//                ImageView imageView = new ImageView(image);
+f1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                //f1MouseClicked(); 
+            }
         });
-        f2.setOnMouseClicked((MouseEvent event) -> {
-            f2MouseClicked();  
+        f2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+//                // Agregar una imagen al label cuando se hace clic
+//                Image image = new Image("ruta_de_tu_imagen.png");
+//                ImageView imageView = new ImageView(image);
+f2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                //f1MouseClicked(); 
+            }
         });
-        f3.setOnMouseClicked((MouseEvent event) -> {
-            f3MouseClicked();  
+        f3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+//                // Agregar una imagen al label cuando se hace clic
+//                Image image = new Image("ruta_de_tu_imagen.png");
+//                ImageView imageView = new ImageView(image);
+f3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                //f1MouseClicked(); 
+            }
         });
-        f4.setOnMouseClicked((MouseEvent event) -> {
-            f4MouseClicked(); 
+        f1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+//                // Agregar una imagen al label cuando se hace clic
+//                Image image = new Image("ruta_de_tu_imagen.png");
+//                ImageView imageView = new ImageView(image);
+f1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                //f1MouseClicked(); 
+            }
         });
-        f5.setOnMouseClicked((MouseEvent event) -> {
-            f5MouseClicked();  
+        f4.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+//                // Agregar una imagen al label cuando se hace clic
+//                Image image = new Image("ruta_de_tu_imagen.png");
+//                ImageView imageView = new ImageView(image);
+f4.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                //f1MouseClicked(); 
+            }
         });
-        f6.setOnMouseClicked((MouseEvent event) -> {
-            f6MouseClicked();  
+        f5.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+//                // Agregar una imagen al label cuando se hace clic
+//                Image image = new Image("ruta_de_tu_imagen.png");
+//                ImageView imageView = new ImageView(image);
+f5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                //f1MouseClicked(); 
+            }
         });
-        f7.setOnMouseClicked((MouseEvent event) -> {
-            f7MouseClicked();  
+        f6.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+//                // Agregar una imagen al label cuando se hace clic
+//                Image image = new Image("ruta_de_tu_imagen.png");
+//                ImageView imageView = new ImageView(image);
+f6.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                //f1MouseClicked(); 
+            }
         });
-        f8.setOnMouseClicked((MouseEvent event) -> {
-            f8MouseClicked();  
+        f7.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+//                // Agregar una imagen al label cuando se hace clic
+//                Image image = new Image("ruta_de_tu_imagen.png");
+//                ImageView imageView = new ImageView(image);
+f7.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                //f1MouseClicked(); 
+            }
         });
-        f9.setOnMouseClicked((MouseEvent event) -> {
-            f9MouseClicked();  
+        f8.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+//                // Agregar una imagen al label cuando se hace clic
+//                Image image = new Image("ruta_de_tu_imagen.png");
+//                ImageView imageView = new ImageView(image);
+f8.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                //f1MouseClicked(); 
+            }
         });
+        f9.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+//                // Agregar una imagen al label cuando se hace clic
+//                Image image = new Image("ruta_de_tu_imagen.png");
+//                ImageView imageView = new ImageView(image);
+f9.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                //f1MouseClicked(); 
+            }
+        });
+//        f1.setOnMouseClicked((MouseEvent event) -> {
+//            f1MouseClicked();  
+//        });
+//        f2.setOnMouseClicked((MouseEvent event) -> {
+//            f2MouseClicked();  
+//        });
+//        f3.setOnMouseClicked((MouseEvent event) -> {
+//            f3MouseClicked();  
+//        });
+//        f4.setOnMouseClicked((MouseEvent event) -> {
+//            f4MouseClicked(); 
+//        });
+//        f5.setOnMouseClicked((MouseEvent event) -> {
+//            f5MouseClicked();  
+//        });
+//        f6.setOnMouseClicked((MouseEvent event) -> {
+//            f6MouseClicked();  
+//        });
+//        f7.setOnMouseClicked((MouseEvent event) -> {
+//            f7MouseClicked();  
+//        });
+//        f8.setOnMouseClicked((MouseEvent event) -> {
+//            f8MouseClicked();  
+//        });
+//        f9.setOnMouseClicked((MouseEvent event) -> {
+//            f9MouseClicked();  
+//        });
         //Tablero.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/tablero.png"))));
         
         
