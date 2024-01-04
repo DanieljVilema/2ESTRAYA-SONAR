@@ -7,12 +7,15 @@ package ec.edu.espol.juego1;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -76,11 +79,11 @@ public class TablaController implements Initializable,Runnable{
     @FXML
     private Label lblPlayer2;
     @FXML
-    private Button mnuIniciar;
+    private MenuItem mnuIniciar;
     @FXML
-    private Button mnuSuspender;
+    private MenuItem mnuSuspender;
     @FXML
-    private Button mnuEstadisticas;
+    private MenuItem mnuEstadisticas;
     @FXML
     private Label Fondo;
     @FXML
@@ -99,6 +102,10 @@ public class TablaController implements Initializable,Runnable{
 
     /*Tablero en componentes.*/
     Label fichas[]; //PREGUNTAR ESTO
+    @FXML
+    private MenuButton mnuJuego;
+    @FXML
+    private Button btnconfigurar;
     
 //    public TablaController() {
 //
@@ -475,37 +482,99 @@ public class TablaController implements Initializable,Runnable{
     }
     
     private void initComponents() {
+        f1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {            
+f1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                
+            }
+        });
+        f2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {            
+f2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                
+            }
+        });
+        f3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {            
+f3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                
+            }
+        });
+        f4.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {            
+f4.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                
+            }
+        });
+        f5.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {            
+f5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                
+            }
+        });
+        f6.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {            
+f6.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                
+            }
+        });
+        f7.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {            
+f7.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                
+            }
+        });
+        f8.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {            
+f8.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                
+            }
+        });
+        f9.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {            
+f9.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                
+            }
+        });
+//        f1.setOnMouseClicked((MouseEvent event) -> {
+//            f1MouseClicked();  
+//        });
+//        f2.setOnMouseClicked((MouseEvent event) -> {
+//            f2MouseClicked();  
+//        });
+//        f3.setOnMouseClicked((MouseEvent event) -> {
+//            f3MouseClicked();  
+//        });
+//        f4.setOnMouseClicked((MouseEvent event) -> {
+//            f4MouseClicked(); 
+//        });
+//        f5.setOnMouseClicked((MouseEvent event) -> {
+//            f5MouseClicked();  
+//        });
+//        f6.setOnMouseClicked((MouseEvent event) -> {
+//            f6MouseClicked();  
+//        });
+//        f7.setOnMouseClicked((MouseEvent event) -> {
+//            f7MouseClicked();  
+//        });
+//        f8.setOnMouseClicked((MouseEvent event) -> {
+//            f8MouseClicked();  
+//        });
+//        f9.setOnMouseClicked((MouseEvent event) -> {
+//            f9MouseClicked();  
+//        });
+        //Tablero.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/tablero.png"))));
         
-        f1.setOnMouseClicked((MouseEvent event) -> {
-            f1MouseClicked();  
-        });
-        f2.setOnMouseClicked((MouseEvent event) -> {
-            f2MouseClicked();  
-        });
-        f3.setOnMouseClicked((MouseEvent event) -> {
-            f3MouseClicked();  
-        });
-        f4.setOnMouseClicked((MouseEvent event) -> {
-            f4MouseClicked(); 
-        });
-        f5.setOnMouseClicked((MouseEvent event) -> {
-            f5MouseClicked();  
-        });
-        f6.setOnMouseClicked((MouseEvent event) -> {
-            f6MouseClicked();  
-        });
-        f7.setOnMouseClicked((MouseEvent event) -> {
-            f7MouseClicked();  
-        });
-        f8.setOnMouseClicked((MouseEvent event) -> {
-            f8MouseClicked();  
-        });
-        f9.setOnMouseClicked((MouseEvent event) -> {
-            f9MouseClicked();  
-        });
-        Tablero.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/tablero.png"))));
         
-        Fondo.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/fondo.png"))));
         
         lblEmpatados2.setText("Empatados: 0");
 
@@ -519,35 +588,46 @@ public class TablaController implements Initializable,Runnable{
 
         lblEmpatados.setText("Empatados: 0");
         
-        mnuIniciar.setOnMouseClicked((MouseEvent event) -> {
-           mnuIniciarActionPerformed();  
-        });
-        mnuSuspender.setOnMouseClicked((MouseEvent event) -> {
-           mnuSuspenderActionPerformed();  
-        });
-        mnuEstadisticas.setOnMouseClicked((MouseEvent event) -> {
-          mnuEstadisticasActionPerformed(); 
-        });
+         mnuIniciar.setOnAction(event -> mnuIniciarActionPerformed());
+         
+         mnuSuspender.setOnAction(event -> mnuSuspenderActionPerformed());
+         
+         mnuEstadisticas.setOnAction(event -> mnuEstadisticasActionPerformed());
+         
+         btnconfigurar.setOnAction(event -> configurarActionPerformed());
+        
+        
+        
+        
     }
+    
+   
+   
+    private void configurarActionPerformed() {   
+        System.out.println("Configurar");
+    } 
     
     private void mnuEstadisticasActionPerformed() {                                                
         this.mostrarEstadisticas();
+        System.out.println("mostrara estadisticas");
     } 
     
     private void mnuSuspenderActionPerformed() {       //TRABAJAR                                       
         /*Guardamos records.*/
-        estadisticas.guardarJugador(jugador2);
-        estadisticas.refrescar();
-        estadisticas.guardarJugador(jugador1);
-        
+//        estadisticas.guardarJugador(jugador2);
+//        estadisticas.refrescar();
+//        estadisticas.guardarJugador(jugador1);
+//        
         /*Suspendemos.*/
         suspenderJuego();
+        System.out.println("suspender");
     } 
     
     private void mnuIniciarActionPerformed() {                                           
         /*Creamos el nuevo modelo de juego para nuestro Gato.*/
         modelo = new ModeloController();
         modelo.asignacion(this);
+        System.out.println("iniciar");
     } 
     
     
@@ -598,6 +678,16 @@ public class TablaController implements Initializable,Runnable{
         /*Iniciamos los componentes de nuestra ventana*/
        initComponents(); 
        iniciarComponentes();  
+//       f2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+//       f1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+//       f3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+//       f4.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+//       f5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+//       f6.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+//       f7.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+//       f8.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+//       f9.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+       
     }    
     
 }
