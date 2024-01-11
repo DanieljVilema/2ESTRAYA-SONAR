@@ -46,23 +46,23 @@ public class TablaController implements Initializable,Runnable{
     @FXML
     private Label lblEstado;
     @FXML
-    private Label f1;
+    private ImageView f1;
     @FXML
-    private Label f2;
+    private ImageView f2;
     @FXML
-    private Label f3;
+    private ImageView f3;
     @FXML
-    private Label f4;
+    private ImageView f4;
     @FXML
-    private Label f5;
+    private ImageView f5;
     @FXML
-    private Label f6;
+    private ImageView f6;
     @FXML
-    private Label f7;
+    private ImageView f7;
     @FXML
-    private Label f8;
+    private ImageView f8;
     @FXML
-    private Label f9;
+    private ImageView f9;
     @FXML
     private Label Tablero;
     @FXML
@@ -99,7 +99,7 @@ public class TablaController implements Initializable,Runnable{
      /*Turno de jugador.*/
     ConfigurarController config = new ConfigurarController();
     Estadisticas estadisticas = new Estadisticas();
-     Label[] fichas = new Label[9];
+    ImageView[] fichas = new ImageView[9];
     int turno = 0;
     int turnoGeneral = 0;
     
@@ -142,7 +142,7 @@ public class TablaController implements Initializable,Runnable{
     public void run(){
         
     }
-     public void movimiento( Label ficha ){
+     public void movimiento( ImageView ficha ){
         /*Colocamos la ficha.*/
         if ( jugando ){
             
@@ -211,15 +211,15 @@ public class TablaController implements Initializable,Runnable{
         if( indice == -1 ) return;
         
         switch ( indice ){//editado el seticon por el setgrafic
-            case 0: this.f1.setGraphic( jugador2.obtenFicha() ); break;
-            case 1: this.f2.setGraphic( jugador2.obtenFicha() ); break;
-            case 2: this.f3.setGraphic( jugador2.obtenFicha() ); break;
-            case 3: this.f4.setGraphic( jugador2.obtenFicha() ); break;
-            case 4: this.f5.setGraphic( jugador2.obtenFicha() ); break;
-            case 5: this.f6.setGraphic( jugador2.obtenFicha() ); break;
-            case 6: this.f7.setGraphic( jugador2.obtenFicha() ); break;
-            case 7: this.f8.setGraphic( jugador2.obtenFicha() ); break;
-            case 8: this.f9.setGraphic( jugador2.obtenFicha() ); break;        
+            case 0: this.f1.setImage(jugador2.obtenFicha().getImage()); break;
+            case 1: this.f2.setImage(jugador2.obtenFicha().getImage()); break;
+            case 2: this.f3.setImage(jugador2.obtenFicha().getImage()); break;
+            case 3: this.f4.setImage(jugador2.obtenFicha().getImage()); break;
+            case 4: this.f5.setImage(jugador2.obtenFicha().getImage()); break;
+            case 5: this.f6.setImage(jugador2.obtenFicha().getImage()); break;
+            case 6: this.f7.setImage(jugador2.obtenFicha().getImage()); break;
+            case 7: this.f8.setImage(jugador2.obtenFicha().getImage()); break;
+            case 8: this.f9.setImage(jugador2.obtenFicha().getImage()); break;       
         }
         
         this.tablero[indice] = 2;
@@ -229,7 +229,7 @@ public class TablaController implements Initializable,Runnable{
     } 
      
     /*Método que "pone una ficha" en el tablero.*/
-    public void ponerFicha( Label ficha ){
+    public void ponerFicha( ImageView ficha ){
 
         /*Obtenemos la casilla.*/
         int casilla = Integer.parseInt(""+ficha.getId().charAt(1)) - 1;// VERIFICAR ESE CAMBIO
@@ -240,9 +240,9 @@ public class TablaController implements Initializable,Runnable{
         
         /*Elegimos la ficha según el turno*/
         if ( turno == JUGADOR1 )
-            ficha.setGraphic(jugador1.obtenFicha() );//editado el seticon
+            ficha.setImage(jugador1.obtenFicha().getImage());//editado el seticon
         else
-            ficha.setGraphic( jugador2.obtenFicha() );//editado el seticon
+            ficha.setImage(jugador2.obtenFicha().getImage());//editado el seticon
         
         /*Guardamos la representación en el tablero*/
         tablero[casilla] = turno;
@@ -306,7 +306,7 @@ public class TablaController implements Initializable,Runnable{
         
         
         /*Referenciamos todas las etiquetas.*/
-        fichas = new Label[9];
+        fichas = new ImageView[9];
         fichas[0] = f1; fichas[1] = f2; fichas[2] = f3;
         fichas[3] = f4; fichas[4] = f5; fichas[5] = f6;
         fichas[6] = f7; fichas[7] = f8; fichas[8] = f9;
@@ -444,7 +444,7 @@ public class TablaController implements Initializable,Runnable{
         
         /*Borramos los iconos.*/
         for ( int i = 0; i < 9; i ++ )
-            fichas[i].setGraphic(null);
+            fichas[i].setImage(null);
         
         /*Quitamos selecciones.*/  //aun no se como arreglar esto 
 //        try{this.panelJ1.setSelected(false);
@@ -480,7 +480,7 @@ public class TablaController implements Initializable,Runnable{
         
         /*Borramos los iconos.*/
         for ( int i = 0; i < 9; i ++ )
-            fichas[i].setGraphic(null);// cambio realizado a setgraphic
+            fichas[i].setImage(null);// cambio realizado a setgraphic
         
         /*Quitamos selecciones.*/ //aun no se como arreglar esto 
 //        try{this.panelJ1.setSelected(false);
