@@ -333,46 +333,32 @@ public class TablaController implements Initializable,Runnable{
         */
     }
     
-     public void mensaje(String mensaje){
+    public void mensaje(String mensaje){
         this.lblEstado.setText(mensaje);
     }
     
-     
-      public void cambiarFoco(){ //TRABAJARLOCAL!!
-        
+    public void cambiarFoco(){       
         /*Si estamos jugando.*/
         if ( !jugando )
             return;
-        
+    
         /*Si es turno del primer jugador..*/
         if ( turno == JUGADOR1 ){
-            /*Seleccionamos su ventana.*/
-           // try{this.panelJ1.setSelected(true);
-           // this.panelJ2.setSelected(false);}
-           // catch(Exception ex){}
-            
-            mensaje("Turno de " + jugador1.nombre );
-            
+            mensaje("Turno de " + jugador1.nombre );           
         } else {
-           // try{this.panelJ1.setSelected(false);
-            //this.panelJ2.setSelected(true);}
-           // catch(Exception ex){}
-            
-            mensaje("Turno de " + jugador2.nombre );
-        }
-        
-            
+           mensaje("Turno de " + jugador2.nombre );
+        }       
     }
       
-       /*Método que recoje el modelo y nos avisa que está listo.*/
-    public void recojerModelo(){
-        /*Iniciamos los componentes del juego.*/
-        iniciarJuego();
-        
-    }
+//       /*Método que recoje el modelo y nos avisa que está listo.*/
+//    public void recojerModelo(){
+//        /*Iniciamos los componentes del juego.*/
+//        iniciarJuego();
+//        
+//    }
     
     /*Método que inicia el juego una vez obtenido el modelo.*/
-    public void iniciarJuego(){  //TRABAJARLOCAL ------------ARREGLAR LO DE LA FICHA PREDETERMINADA-------------
+    public void iniciarJuego(){  // ------------ FICHA PREDETERMINADA-------------
         /*Creamos los jugadores según el tipo de juego.*/
         System.out.println("estoo sale "+modelo.tipo_juego);
         System.out.println(HOMBREvsHOMBRE);
@@ -388,7 +374,7 @@ public class TablaController implements Initializable,Runnable{
             /*Jugadores*/
             this.jugador1 = new Jugador( modelo.nombre1, new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
             this.jugador2 = new Jugador ( "Computadora", new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png"))) );
-            this.lblPlayer2.setVisible(false);//verificar
+            this.lblPlayer2.setVisible(true);//verificar
             
             /*Creamos la instancia para la computadora.*/
             computadora = new ComputadoraIA();
@@ -407,13 +393,14 @@ public class TablaController implements Initializable,Runnable{
         
         /*Deshabilitamos el menú nuevo juego.*/
         this.mnuIniciar.setDisable(false);
-        this.mnuSuspender.setDisable(true);
+        this.mnuSuspender.setDisable(false);
        // this.panelEstadisticas.setVisible(false);
         
         /*Movemos el foco.*/
         cambiarFoco();
         
     }
+    
     public void mostrarInformacion(){ 
         
         /*Establecemos el título.*/
@@ -446,11 +433,7 @@ public class TablaController implements Initializable,Runnable{
         for ( int i = 0; i < 9; i ++ )
             fichas[i].setImage(null);
         
-        /*Quitamos selecciones.*/  //aun no se como arreglar esto 
-//        try{this.panelJ1.setSelected(false);
-//        this.panelJ2.setSelected(true);}
-//        catch(Exception ex){}
-        
+       
         /*Cambiamos el turno General.*/
         if ( this.modelo.tipo_juego == HOMBREvsCOMPUTADORA )
             turnoGeneral = JUGADOR1;
@@ -473,7 +456,7 @@ public class TablaController implements Initializable,Runnable{
     }
     
     /*Método que suspende un juego.*/
-    public void suspenderJuego(){ ///TRABAJAR LOCAL!!
+    public void suspenderJuego(){ 
                 
         //Llenamos el tablero con 0s*/
         Arrays.fill(tablero,0);
@@ -481,11 +464,6 @@ public class TablaController implements Initializable,Runnable{
         /*Borramos los iconos.*/
         for ( int i = 0; i < 9; i ++ )
             fichas[i].setImage(null);// cambio realizado a setgraphic
-        
-        /*Quitamos selecciones.*/ //aun no se como arreglar esto 
-//        try{this.panelJ1.setSelected(false);
-//        this.panelJ2.setSelected(true);}
-//        catch(Exception ex){}
         
         /*Reinciamos el turno.*/
         turno = 1;
@@ -497,13 +475,13 @@ public class TablaController implements Initializable,Runnable{
         jugador2 = null;
         
         /*Habilitamos los menús.*/
-        this.mnuIniciar.setDisable(true); //cambio realizado disable
-        this.mnuSuspender.setDisable(false);//cambio realizado disable
+        this.mnuIniciar.setDisable(false); //verificar para que funciona
+        this.mnuSuspender.setDisable(false);//verificar para que funciona
         this.lblEstado.setText("Juega al gato!");
         
         /*Quitamos los paneles.*/
-        this.lblPlayer.setVisible(false);
-        this.lblPlayer2.setVisible(false);
+        this.lblPlayer.setVisible(false);//verificar para que funciona
+        this.lblPlayer2.setVisible(false);//verificar para que funciona
         
         
         
@@ -512,126 +490,57 @@ public class TablaController implements Initializable,Runnable{
     private void initComponents() {
         f1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {
-//                // Agregar una imagen al label cuando se hace clic
-//                Image image = new Image("ruta_de_tu_imagen.png");
-//                ImageView imageView = new ImageView(image);
-//f1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
-                f1MouseClicked(); 
+            public void handle(MouseEvent event) { f1MouseClicked(); 
             }
         });
         f2.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-//                // Agregar una imagen al label cuando se hace clic
-//                Image image = new Image("ruta_de_tu_imagen.png");
-//                ImageView imageView = new ImageView(image);
-//f2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
                 f2MouseClicked(); 
             }
         });
         f3.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-//                // Agregar una imagen al label cuando se hace clic
-//                Image image = new Image("ruta_de_tu_imagen.png");
-//                ImageView imageView = new ImageView(image);
-//f3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
                 f3MouseClicked(); 
             }
         });
         f4.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-//                // Agregar una imagen al label cuando se hace clic
-//                Image image = new Image("ruta_de_tu_imagen.png");
-//                ImageView imageView = new ImageView(image);
-//f1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
                 f4MouseClicked(); 
             }
         });
         
         f5.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {
-//                // Agregar una imagen al label cuando se hace clic
-//                Image image = new Image("ruta_de_tu_imagen.png");
-//                ImageView imageView = new ImageView(image);
-//f5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
-                f5MouseClicked(); 
+            public void handle(MouseEvent event) {f5MouseClicked(); 
             }
         });
         f6.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-//                // Agregar una imagen al label cuando se hace clic
-//                Image image = new Image("ruta_de_tu_imagen.png");
-//                ImageView imageView = new ImageView(image);
-//f6.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
                 f6MouseClicked(); 
             }
         });
         f7.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-//                // Agregar una imagen al label cuando se hace clic
-//                Image image = new Image("ruta_de_tu_imagen.png");
-//                ImageView imageView = new ImageView(image);
-//f7.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
                 f7MouseClicked(); 
             }
         });
         f8.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-//                // Agregar una imagen al label cuando se hace clic
-//                Image image = new Image("ruta_de_tu_imagen.png");
-//                ImageView imageView = new ImageView(image);
-//f8.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
                 f8MouseClicked(); 
             }
         });
         f9.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-//                // Agregar una imagen al label cuando se hace clic
-//                Image image = new Image("ruta_de_tu_imagen.png");
-//                ImageView imageView = new ImageView(image);
-//f9.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
                 f9MouseClicked(); 
             }
-        });
-//        f1.setOnMouseClicked((MouseEvent event) -> {
-//            f1MouseClicked();  
-//        });
-//        f2.setOnMouseClicked((MouseEvent event) -> {
-//            f2MouseClicked();  
-//        });
-//        f3.setOnMouseClicked((MouseEvent event) -> {
-//            f3MouseClicked();  
-//        });
-//        f4.setOnMouseClicked((MouseEvent event) -> {
-//            f4MouseClicked(); 
-//        });
-//        f5.setOnMouseClicked((MouseEvent event) -> {
-//            f5MouseClicked();  
-//        });
-//        f6.setOnMouseClicked((MouseEvent event) -> {
-//            f6MouseClicked();  
-//        });
-//        f7.setOnMouseClicked((MouseEvent event) -> {
-//            f7MouseClicked();  
-//        });
-//        f8.setOnMouseClicked((MouseEvent event) -> {
-//            f8MouseClicked();  
-//        });
-//        f9.setOnMouseClicked((MouseEvent event) -> {
-//            f9MouseClicked();  
-//        });
-        //Tablero.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/tablero.png"))));
-        
-        
-        
+        });        
         lblEmpatados2.setText("Empatados: 0");
 
         lblPerdidos2.setText("Perdidos: 0");
@@ -658,10 +567,11 @@ public class TablaController implements Initializable,Runnable{
          
          btnconfigurar.setOnAction(event -> configurarActionPerformed());
     }
-    private void configurarActionPerformed() {   
+    
+    private void configurarActionPerformed() {   /// NO TRABAJADO NO ES MUY IMPORTANTE 
         System.out.println("Configurar");
     } 
-    private void mnuEstadisticasActionPerformed() {                                                
+    private void mnuEstadisticasActionPerformed() {       //NO TRABAJADO SE ES MUY IMPORTANTE                                          
         this.mostrarEstadisticas();
         System.out.println("Estadisticas");
     } 
@@ -675,6 +585,7 @@ public class TablaController implements Initializable,Runnable{
         /*Suspendemos.*/
         suspenderJuego();
         System.out.println("susoender");
+         //poner codigo para cerrar esta ventana
     } 
     
    private void mnuIniciarActionPerformed() throws IOException {                                           
