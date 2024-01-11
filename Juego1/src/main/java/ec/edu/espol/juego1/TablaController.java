@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
@@ -23,6 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -97,6 +99,7 @@ public class TablaController implements Initializable,Runnable{
      /*Turno de jugador.*/
     ConfigurarController config = new ConfigurarController();
     Estadisticas estadisticas = new Estadisticas();
+     Label[] fichas = new Label[9];
     int turno = 0;
     int turnoGeneral = 0;
     
@@ -104,22 +107,38 @@ public class TablaController implements Initializable,Runnable{
     int[] tablero = new int[9];
 
     /*Tablero en componentes.*/
-    Label fichas[]; //PREGUNTAR ESTO
+   // Label fichas[]; //PREGUNTAR ESTO
     @FXML
     private MenuButton mnuJuego;
     @FXML
     private Button btnconfigurar;
     
-//    public TablaController() {
-//
-//        /*LLenamos nuestro tablero de 0, vacío.*/
-//        Arrays.fill(tablero,0);
-//           
-//        /*Iniciamos los componentes de nuestra ventana*/
-//       initComponents(); 
-//       iniciarComponentes();    
-//    }
     
+    
+   public TablaController() {
+    
+}
+   
+   public ModeloController getModeloController() {
+        return modelo;
+    }
+    
+    public void setModeloController(ModeloController modeloController) {
+        this.modelo = modeloController;
+        System.out.println("ModeloController recibido en TablaController");
+    }
+    public void someMethod() {
+        if (modelo != null) {
+            int tipo_juego = modelo.tipo_juego;
+            String nombre1 = modelo.nombre1;         
+            String nombre2 = modelo.nombre2;
+
+            // Realiza acciones con los datos
+            System.out.println("Datos de ModeloController en TablaController: " + tipo_juego + ", " + nombre1 + ", " + nombre2);
+        } else {
+            System.out.println("ModeloController no ha sido establecido en TablaController");
+        }
+    }
     public void run(){
         
     }
@@ -293,35 +312,16 @@ public class TablaController implements Initializable,Runnable{
         fichas[6] = f7; fichas[7] = f8; fichas[8] = f9;
         
         /*Mostramos el panel con estadisticas.*/
-        this.mostrarEstadisticas(); //TRABAJAR
+        //this.mostrarEstadisticas();
         
         /*Cursor para los componentes.*/
         for ( int i = 0; i < 9; i ++ )
-        fichas[i].setCursor(javafx.scene.Cursor.HAND);
+       
+        fichas[i].setCursor(Cursor.HAND);//trabajr
     }
     
      /*Método que recupera la información del jugador y la usa en el panel de usuario.*/
-    public void mostrarInformacion(){ //TRABAJARLOCAL!!
-        
-        /*Establecemos el título.*/
-        lblPlayer.setText(jugador1.nombre );
-        lblPlayer2.setText( jugador2.nombre );
-        
-        /*Establecemos las estadísticas del jugador.*/
-        this.lblGanados.setText("Ganados: " + jugador1.GANADOS );
-        this.blPerdidos.setText("Perdidos: " + jugador1.PERDIDOS );
-        this.lblEmpatados.setText("Empatados: " + jugador1.EMPATADOS );
-        this.lblIcono.setGraphic(jugador1.obtenFicha() );
-        
-        this.lblGanados2.setText("Ganados: " + jugador2.GANADOS );
-        this.lblPerdidos2.setText("Perdidos: " + jugador2.PERDIDOS );
-        this.lblEmpatados2.setText("Empatados: " + jugador2.EMPATADOS );
-        this.lblIcono2.setGraphic(jugador2.obtenFicha() );
-        
-        this.lblPlayer.setVisible(true); //es la ventada del jugaddor pero por ahora solo vamos a ocultara o mostrarel nombre
-        if( this.modelo.tipo_juego != HOMBREvsCOMPUTADORA)
-            this.lblPlayer2.setVisible(true);
-    }
+    
     
     /*Método que muestra las estadisticas.*/
     public void mostrarEstadisticas(){ //TRABAJARLOCAL!!
@@ -374,16 +374,20 @@ public class TablaController implements Initializable,Runnable{
     /*Método que inicia el juego una vez obtenido el modelo.*/
     public void iniciarJuego(){  //TRABAJARLOCAL ------------ARREGLAR LO DE LA FICHA PREDETERMINADA-------------
         /*Creamos los jugadores según el tipo de juego.*/
+        System.out.println("estoo sale "+modelo.tipo_juego);
+        System.out.println(HOMBREvsHOMBRE);
         if ( modelo.tipo_juego == HOMBREvsHOMBRE ){
+            System.out.println(" pasa el primer filtro");
             this.jugador1 = new Jugador( modelo.nombre1,new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png"))) );  //cambiar a pasarle la ficha directamente sin tener la opcion de lelegir la imagen
-            this.jugador2 = new Jugador( modelo.nombre2, new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png"))) ); //x2
+            this.jugador2 = new Jugador( modelo.nombre2, new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png"))) ); //x2
             
             /*Mostramos su información, asignamos los nombres de jugador al panel.*/
+           
             mostrarInformacion();
         } else {
             /*Jugadores*/
-           // this.jugador1 = new Jugador( modelo.nombre1, configfichas[0] );
-           // this.jugador2 = new Jugador ( "Computadora", config.fichas[1] );
+            this.jugador1 = new Jugador( modelo.nombre1, new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+            this.jugador2 = new Jugador ( "Computadora", new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png"))) );
             this.lblPlayer2.setVisible(false);//verificar
             
             /*Creamos la instancia para la computadora.*/
@@ -410,7 +414,28 @@ public class TablaController implements Initializable,Runnable{
         cambiarFoco();
         
     }
-    
+    public void mostrarInformacion(){ 
+        
+        /*Establecemos el título.*/
+        lblPlayer.setText(jugador1.nombre );
+        lblPlayer2.setText( jugador2.nombre );
+        
+        /*Establecemos las estadísticas del jugador.*/
+        this.lblGanados.setText("Ganados: " + jugador1.GANADOS );
+        this.blPerdidos.setText("Perdidos: " + jugador1.PERDIDOS );
+        this.lblEmpatados.setText("Empatados: " + jugador1.EMPATADOS );
+        this.lblIcono.setGraphic(jugador1.obtenFicha() );
+        
+        this.lblGanados2.setText("Ganados: " + jugador2.GANADOS );
+        this.lblPerdidos2.setText("Perdidos: " + jugador2.PERDIDOS );
+        this.lblEmpatados2.setText("Empatados: " + jugador2.EMPATADOS );
+        this.lblIcono2.setGraphic(jugador2.obtenFicha() );
+        
+        this.lblPlayer.setVisible(true); //es la ventada del jugaddor pero por ahora solo vamos a ocultara o mostrarel nombre
+        this.lblPlayer.setVisible(true);
+       // if( this.modelo.tipo_juego != HOMBREvsCOMPUTADORA)
+           // this.lblPlayer2.setVisible(true);// ververver
+    }
     /*Método que inicia un nuevo juego.*/
     public void reiniciarJuego(){  //NO SE VE MUY IMPORTANTE PERO HAY QUE TRABAJARLO SI ES QUE SIRVE
         
@@ -491,8 +516,8 @@ public class TablaController implements Initializable,Runnable{
 //                // Agregar una imagen al label cuando se hace clic
 //                Image image = new Image("ruta_de_tu_imagen.png");
 //                ImageView imageView = new ImageView(image);
-f1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
-                //f1MouseClicked(); 
+//f1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                f1MouseClicked(); 
             }
         });
         f2.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -501,8 +526,8 @@ f1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/ci
 //                // Agregar una imagen al label cuando se hace clic
 //                Image image = new Image("ruta_de_tu_imagen.png");
 //                ImageView imageView = new ImageView(image);
-f2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
-                //f1MouseClicked(); 
+//f2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                f2MouseClicked(); 
             }
         });
         f3.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -511,18 +536,8 @@ f2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/ci
 //                // Agregar una imagen al label cuando se hace clic
 //                Image image = new Image("ruta_de_tu_imagen.png");
 //                ImageView imageView = new ImageView(image);
-f3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
-                //f1MouseClicked(); 
-            }
-        });
-        f1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-//                // Agregar una imagen al label cuando se hace clic
-//                Image image = new Image("ruta_de_tu_imagen.png");
-//                ImageView imageView = new ImageView(image);
-f1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
-                //f1MouseClicked(); 
+//f3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                f3MouseClicked(); 
             }
         });
         f4.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -531,18 +546,19 @@ f1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/ci
 //                // Agregar una imagen al label cuando se hace clic
 //                Image image = new Image("ruta_de_tu_imagen.png");
 //                ImageView imageView = new ImageView(image);
-f4.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
-                //f1MouseClicked(); 
+//f1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                f4MouseClicked(); 
             }
         });
+        
         f5.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 //                // Agregar una imagen al label cuando se hace clic
 //                Image image = new Image("ruta_de_tu_imagen.png");
 //                ImageView imageView = new ImageView(image);
-f5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
-                //f1MouseClicked(); 
+//f5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                f5MouseClicked(); 
             }
         });
         f6.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -551,8 +567,8 @@ f5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/ci
 //                // Agregar una imagen al label cuando se hace clic
 //                Image image = new Image("ruta_de_tu_imagen.png");
 //                ImageView imageView = new ImageView(image);
-f6.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
-                //f1MouseClicked(); 
+//f6.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                f6MouseClicked(); 
             }
         });
         f7.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -561,8 +577,8 @@ f6.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/ci
 //                // Agregar una imagen al label cuando se hace clic
 //                Image image = new Image("ruta_de_tu_imagen.png");
 //                ImageView imageView = new ImageView(image);
-f7.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
-                //f1MouseClicked(); 
+//f7.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                f7MouseClicked(); 
             }
         });
         f8.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -571,8 +587,8 @@ f7.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/ci
 //                // Agregar una imagen al label cuando se hace clic
 //                Image image = new Image("ruta_de_tu_imagen.png");
 //                ImageView imageView = new ImageView(image);
-f8.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
-                //f1MouseClicked(); 
+//f8.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                f8MouseClicked(); 
             }
         });
         f9.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -581,8 +597,8 @@ f8.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/ci
 //                // Agregar una imagen al label cuando se hace clic
 //                Image image = new Image("ruta_de_tu_imagen.png");
 //                ImageView imageView = new ImageView(image);
-f9.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
-                //f1MouseClicked(); 
+//f9.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
+                f9MouseClicked(); 
             }
         });
 //        f1.setOnMouseClicked((MouseEvent event) -> {
@@ -661,16 +677,30 @@ f9.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/ci
         System.out.println("susoender");
     } 
     
-    private void mnuIniciarActionPerformed() throws IOException {                                           
-        /*Creamos el nuevo modelo de juego para nuestro Gato.*/
-        modelo = new ModeloController();
-        modelo.asignacion(this);
-        System.out.println("iniciar");
-         FXMLLoader loader = App.loadFXML("Modelo");
-            Scene sc = new Scene(loader.load(),700,500);
-            App.setScene(sc);
-    } 
-    
+   private void mnuIniciarActionPerformed() throws IOException {                                           
+    // Crear el ModeloController y configurar bidireccionalmente la relación
+    ModeloController n = new ModeloController();
+    n.setTablaController(this);
+
+    // Cargar el FXML y obtener el controlador asociado
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("Modelo.fxml"));
+    Parent root = loader.load();
+
+    // Configurar bidireccionalmente
+    this.setModeloController(modelo);
+
+    // Crear un nuevo Stage para la ventana del ModeloController
+    Stage modeloStage = new Stage();
+    Scene scene = new Scene(root, 700, 500);
+
+    // Configurar el Stage con la nueva Scene
+    modeloStage.setScene(scene);
+
+    // Mostrar la nueva ventana
+    modeloStage.show();
+}
+     
+       
     
     private void f9MouseClicked() {                                
         movimiento(f9);
@@ -707,18 +737,13 @@ f9.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/ci
     private void f1MouseClicked() {                                
         movimiento(f1);
     }   
-    @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        // TODO
-//        initComponents();
-//        iniciarComponentes();   //No se aun
-        
-        /*LLenamos nuestro tablero de 0, vacío.*/
-        Arrays.fill(tablero,0);
-           
-        /*Iniciamos los componentes de nuestra ventana*/
-       initComponents(); 
-       iniciarComponentes();  
-    }    
+    /*LLenamos nuestro tablero de 0, vacío.*/
+    Arrays.fill(tablero, 0);
+
+    /*Iniciamos los componentes de nuestra ventana*/
+    iniciarComponentes();
+    initComponents();
+}
     
 }

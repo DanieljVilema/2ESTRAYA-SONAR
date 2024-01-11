@@ -5,6 +5,7 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 
 <AnchorPane id="AnchorPane" fx:id="lblPerdidos" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.TablaController">
    <children>
@@ -46,6 +47,10 @@
       
       <Label fx:id="Fondo" layoutX="482.0" layoutY="134.0" text="Label" />
       <Label fx:id="blPerdidos" layoutX="270.0" layoutY="335.0" text="P" />
+      <Line endX="188.0" layoutX="187.0" layoutY="200.0" startX="-100.0" />
+      <Line endX="-100.0" endY="-200.0" layoutX="279.0" layoutY="307.0" startX="-100.0" startY="65.0" />
+      <Line endX="-100.0" endY="-200.0" layoutX="377.0" layoutY="307.0" startX="-100.0" startY="65.0" />
+      <Line endX="185.0" layoutX="187.0" layoutY="281.0" startX="-100.0" />
      
    </children>
 </AnchorPane>

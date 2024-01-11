@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -22,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -83,19 +85,19 @@ public class ModeloController implements Initializable {
     public int tipo_juego = 0;
     
     /** Crea un nuevo Modelo */
-//    public ModeloController( TablaController tabla ) {
-//        /*Iniciamos componentes visuales.*/
-//        //initComponents();
-//        ///setVisible(true);
-//        //mensaje = new JOptionPane();
-//        
-//        /*Asignamos el gato.*/
-//        this.tabla = tabla;
-//        
-//    }
-    public void asignacion(TablaController tabla ){
-        this.tabla = tabla;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+         initComponents();
+    }  
+    
+    public ModeloController() {
+        // Inicializaciones o lógica del constructor, si es necesario
     }
+    public void setTablaController(TablaController TablaController) {
+        this.tabla = TablaController;
+        System.out.println("TABLAController recibido en MODELOController");
+    }
+  
     /*Método que recoje los datos.*/
     public boolean recojer(){
 
@@ -171,10 +173,7 @@ public class ModeloController implements Initializable {
         }
         return true;
     }
-    /*Método que envía los datos ( modelo ) al gato.*/
-    public void enviarModelo(){
-        tabla.recojerModelo();
-    } 
+    
     
     private void initComponents() {
  
@@ -224,21 +223,25 @@ public class ModeloController implements Initializable {
          opcionTres.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/rating_star.png")))); 
     }
     private void btnCancelarActionPerformed() {                                            
-       // this.dispose();SE CIERRA LA VENTANA
+       Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
     } 
     private void btnAceptarActionPerformed() throws IOException {                                           
         /*Recojemos los datos de los campos.*/
         System.out.println("4");
-//        if( recojer()&&quienempieza() ){
-//            System.out.println("funciona bien");
+      if( recojer() ){
+          System.out.println("funciona bien");
 //            /*Los enviamos al gato.*/
-//            enviarModelo();
+         enviarModelo();
 //            /*Cerramos esta ventana.*/
-//            //dispose();  CAMBIAR A METODO PARA CAMBIAR LA VENTANA E IR AL JUEGO
-//        }
-        FXMLLoader loader = App.loadFXML("Tabla");
-            Scene sc = new Scene(loader.load(),700,500);
-            App.setScene(sc);
+
+ }
+//      Stage stage = (Stage) btnAceptar.getScene().getWindow();
+//        stage.close();
+//        FXMLLoader loader = App.loadFXML("Tabla");
+//            Scene sc = new Scene(loader.load(),700,500);
+//            App.setScene(sc);
+ System.out.println("BUTON ENVIAR MODELO");
     }  
    
     private void hvshActionPerformed() {   
@@ -274,15 +277,43 @@ public class ModeloController implements Initializable {
         inip1.setDisable(true);
         inipc1.setDisable(false);
     }  
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-          /** Crea un nuevo Modelo */
-    
-        asignacion( tabla );
-        
-    
-         initComponents();
-    }    
-    
+      
+    /*Método que envía los datos ( modelo ) al gato.*/
+   public void enviarModelo() {
+    // Crear una instancia de TablaController y establecer el modelo
+    TablaController tablaController = new TablaController();
+    tablaController.setModeloController(this);
+
+    // Abrir la ventana de TablaController
+    abrirVentana(tablaController);
+
+    // Cierra la ventana (Stage) asociada a este controlador
+    Stage stage = (Stage) btnAceptar.getScene().getWindow();
+    stage.close();
+}
+
+// Método para abrir la ventana de TablaController
+private void abrirVentana(TablaController tablaController) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Tabla.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+
+        // Configurar el controlador de la tabla
+        TablaController controller = loader.getController();
+        controller.setModeloController(tablaController.getModeloController());
+        controller.someMethod(); // O cualquier otra lógica que necesites
+        controller.iniciarJuego();
+
+        // Mostrar la ventana
+        stage.show();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+public ModeloController getModeloController() {
+    return this;
+}
 }
