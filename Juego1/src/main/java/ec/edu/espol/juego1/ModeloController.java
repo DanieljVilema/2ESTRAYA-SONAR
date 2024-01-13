@@ -143,8 +143,8 @@ public class ModeloController implements Initializable {
                   HOMBREvsCOMPUTADORA;
         this.nombre1 = this.txtJugador1.getText();
         this.nombre2 = this.txtJugador2.getText();
-        //this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
-        //this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png")));
+        this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
+        this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png")));
         return true;
     }
     
@@ -231,15 +231,7 @@ public class ModeloController implements Initializable {
        Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
     } 
-    private void confichaActionPerformed() throws IOException{
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("Configurar.fxml"));
-        Parent root = loader.load();
-
-        Stage stageConfiguracion = new Stage();
-        stageConfiguracion.setScene(new Scene(root));
-        stageConfiguracion.show();
-        
-    }
+    
     private void btnAceptarActionPerformed() throws IOException {                                           
         /*Recojemos los datos de los campos.*/
         System.out.println("4");
@@ -300,28 +292,28 @@ public class ModeloController implements Initializable {
 }
 
 // Método para abrir la ventana de TablaController
-private void abrirVentana(TablaController tablaController) {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Tabla.fxml"));
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+    private void abrirVentana(TablaController tablaController) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Tabla.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
 
-        // Configurar el controlador de la tabla
-        TablaController controller = loader.getController();
-        controller.setModeloController(tablaController.getModeloController());
-        
-        controller.someMethod(); // O cualquier otra lógica que necesites
-        controller.iniciarJuego();
+            // Configurar el controlador de la tabla
+            TablaController controller = loader.getController();
+            controller.setModeloController(tablaController.getModeloController());
 
-        // Mostrar la ventana
-        stage.show();
-    } catch (IOException e) {
-        e.printStackTrace();
+            controller.someMethod(); // O cualquier otra lógica que necesites
+            controller.iniciarJuego();
+
+            // Mostrar la ventana
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-}
 
-public ModeloController getModeloController() {
-    return this;
-}
+    public ModeloController getModeloController() {
+        return this;
+    }
 }
