@@ -6,86 +6,48 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
 
 public class App extends Application {
-
+    
+    private static Stage stage;
     private static Scene scene;
-    private static Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws IOException {
-        primaryStage = stage;
-        scene = new Scene(loadFXML("Modelo").load(), 700, 500);
-        primaryStage.setResizable(false);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        scene = new Scene(loadFXML("Menu"), 615, 348);
+        stage.setScene(scene);
+        stage.show();
     }
 
     static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml).load());
+        scene.setRoot(loadFXML(fxml));
     }
 
-    public static void setScene(Scene sc) {
-        primaryStage.setScene(sc);
+    public static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml +".fxml"));
+        return fxmlLoader.load();
     }
-
-    public static Stage getPrimaryStage() {
-        return primaryStage;
-    }
-
-    public static FXMLLoader loadFXML(String fxml) {
-        return new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-    }
-
+    
     public static void main(String[] args) {
+        
         launch();
     }
+
+    
+    static void redimentionScenes(ActionEvent event, String fxml, int SizeX, int SizeY){
+        try {
+            Parent root = App.loadFXML(fxml);
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root, SizeX, SizeY);
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.resizableProperty().setValue(Boolean.FALSE);
+            stage.show();
+        } catch (IOException e){
+            System.out.println("File not found, Error al cargar pantalla");
+        }
+        
+    }
 }
-//import javafx.application.Application;
-//import javafx.fxml.FXMLLoader;
-//import javafx.scene.Parent;
-//import javafx.scene.Scene;
-//import javafx.stage.Stage;
-//
-//import java.io.IOException;
-//import static javafx.application.Application.launch;
-//
-///**
-// * JavaFX App
-// */
-//public class App extends Application {
-//
-//    private static Scene scene;
-//    private static Stage st;
-//
-//    @Override
-//    public void start(Stage stage) throws IOException {
-//        st = stage;
-//        scene = new Scene(loadFXML("Tabla").load(),700,500);
-//        stage.setResizable(false);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-//
-//    static void setRoot(String fxml) throws IOException {
-//        scene.setRoot(loadFXML(fxml).load());
-//    }
-//    
-//    public static void setScene(Scene sc) throws IOException {
-//        st.setScene(sc);
-//    }
-//    
-//    public static Stage getStage(){
-//        return st;
-//    }
-//
-//    public static FXMLLoader loadFXML(String fxml) throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-//        return fxmlLoader;
-//    }
-//
-//    public static void main(String[] args) {
-//        launch();
-//    }
-//
-//}
