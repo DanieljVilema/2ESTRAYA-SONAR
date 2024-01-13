@@ -49,18 +49,6 @@ public class ModeloController implements Initializable {
     @FXML
     private Button btnCancelar;
     @FXML
-    private RadioButton hvpc;
-    @FXML
-    private RadioButton pcvpc;
-    @FXML
-    private RadioButton hvsh;
-    @FXML
-    private Label img1;
-    @FXML
-    private Label img2;
-    @FXML
-    private Label img3;
-    @FXML
     private RadioButton inip1;
     @FXML
     private RadioButton inipc1;
@@ -88,9 +76,17 @@ public class ModeloController implements Initializable {
 //    @FXML
 //    private Button CONFICHA;
     
+    ModosController modo = ModosController.getInstancia();
+    boolean modoPVP = modo.isPvp();
+    boolean modoPVI = modo.isPvi();
+    boolean modoIVI = modo.isIvi();
+    
     /** Crea un nuevo Modelo */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         System.out.println(modoPVP);
+         System.out.println(modoPVI);
+         System.out.println(modoIVI);
          initComponents();
     }  
     
@@ -106,30 +102,27 @@ public class ModeloController implements Initializable {
     public boolean recojer(){
 
         /*Comprobamos que los campos estén llenos.*/
-        if( this.pcvpc.isSelected() ){
-            return true;   
-        }
-        if( this.txtJugador1.getText().equals("")&& this.hvpc.isSelected() ){
+        if( this.txtJugador1.getText().equals("")){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setContentText("Llene el nombre del jugador 1 por favor.");
             alert.show();
             return false;   
         }
-        if( this.txtJugador1.getText().equals("") && this.txtJugador2.getText().equals("") && this.hvsh.isSelected() ){
+        if( this.txtJugador1.getText().equals("") && this.txtJugador2.getText().equals("")){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setContentText("Llene el nombre de los jugadores por favor.");
             alert.show();
             return false;   
            
         }
-        if( this.txtJugador2.getText().equals("") && this.hvsh.isSelected() ){
+        if( this.txtJugador2.getText().equals("")){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setContentText("Llene el nombre del jugador 2 por favor.");
             alert.show();
             return false;   
            
         }
-        if( this.txtJugador1.getText().equals("") && this.hvsh.isSelected() ){
+        if( this.txtJugador1.getText().equals("")){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setContentText("Llene el nombre del jugador 1 por favor.");
             alert.show();
@@ -143,15 +136,15 @@ public class ModeloController implements Initializable {
             return false; 
             
         }
-        
+      
         /*Recojemos los valores.*/
-        this.tipo_juego = (this.hvsh.isSelected()) ? HOMBREvsHOMBRE :
-                  (this.pcvpc.isSelected()) ? COMPUTADORAvsCOMPUTADORA :
+        this.tipo_juego = (modoPVP = true) ? HOMBREvsHOMBRE :
+                  (modoIVI = true) ? COMPUTADORAvsCOMPUTADORA :
                   HOMBREvsCOMPUTADORA;
         this.nombre1 = this.txtJugador1.getText();
         this.nombre2 = this.txtJugador2.getText();
-        this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
-        this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png")));
+        //this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
+        //this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png")));
         return true;
     }
     
@@ -159,19 +152,19 @@ public class ModeloController implements Initializable {
     public boolean quienempieza(){
 
         /*Comprobamos que los campos estén llenos.*/
-        if( (!this.inip1.isSelected() && !this.inipc1.isSelected() )&&  this.hvpc.isSelected() ){
+        if( (!this.inip1.isSelected() && !this.inipc1.isSelected() )){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setContentText("Selecione quien inicia primero por favor.");
             alert.show();
             return false;   
         }
-        if( (!this.inip1.isSelected() && !this.inip2.isSelected() )&&  this.hvsh.isSelected() ){
+        if( (!this.inip1.isSelected() && !this.inip2.isSelected() )){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setContentText("Selecione quien inicia primero por favor.");
             alert.show();
             return false;   
         }
-        if( (!this.inipc1.isSelected() && !this.inipc2.isSelected() )&&  this.pcvpc.isSelected() ){
+        if( (!this.inipc1.isSelected() && !this.inipc2.isSelected() )){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setContentText("Selecione quien inicia primero por favor.");
             alert.show();
@@ -183,24 +176,21 @@ public class ModeloController implements Initializable {
     
     private void initComponents() {
  
-          hvsh.setOnAction(event -> {
-            if (hvsh.isSelected()) {
+            if (modoPVP == true) {
                  hvshActionPerformed();  
                System.out.println("PERSONAVSPERSONA");
             }
-        });
-           pcvpc.setOnAction(event -> {
-            if (pcvpc.isSelected()) {
-                pcvpcActionPerformed();  
+          
+            if (modoPVI == true) {
+                hvpcActionPerformed();  
                 System.out.println("PCVSPC");
             }
-        });
-           hvpc.setOnAction(event -> {
-            if (hvpc.isSelected()) {
-                hvpcActionPerformed();  
+         
+            if (modoIVI == true) {
+                pcvpcActionPerformed();  
                 System.out.println("PERSONAVSPC");
             }
-        });
+       
           btnAceptar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -235,12 +225,7 @@ public class ModeloController implements Initializable {
 //                System.out.println("configurar ficha");
 //            }
         //});
-         img1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/persona.png"))));
-         img2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/pvsp.png")))); 
-         img3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/pvspc.png")))); 
-         opcionUno.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/rating_star.png")))); 
-         opciondos.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/rating_star.png")))); 
-         opcionTres.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/rating_star.png")))); 
+
     }
     private void btnCancelarActionPerformed() {                                            
        Stage stage = (Stage) btnCancelar.getScene().getWindow();
@@ -300,8 +285,7 @@ public class ModeloController implements Initializable {
         inip1.setDisable(true);
         inipc1.setDisable(false);
     }  
-      
-    /*Método que envía los datos ( modelo ) a Tabla.*/
+
    public void enviarModelo() {
     // Crear una instancia de TablaController y establecer el modelo
     TablaController tablaController = new TablaController();

@@ -4,6 +4,9 @@
  */
 package ec.edu.espol.juego1;
 
+import ec.edu.espol.juego1.ModeloController;
+import ec.edu.espol.juego1.ComputadoraIA;
+import ec.edu.espol.juego1.Jugador;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;

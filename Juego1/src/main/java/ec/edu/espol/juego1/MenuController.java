@@ -13,8 +13,8 @@ import javafx.fxml.FXML;
 public class MenuController {
     
     @FXML
-    private void switchToJugar(ActionEvent event) throws IOException {
-        App.redimentionScenes(event, "Modelo", 600, 500);
+    private void switchToModos(ActionEvent event) throws IOException {
+        App.redimentionScenes(event, "Modos", 615, 348);
     }
     
 }
