@@ -72,6 +72,8 @@ public class ModeloController implements Initializable {
     private Label opcionTres;
     @FXML
     private Label opciondos;
+    public ImageView imagen11;
+    public ImageView imagen22;
 
     /**
      * Initializes the controller class.
@@ -83,6 +85,8 @@ public class ModeloController implements Initializable {
     public final int COMPUTADORAvsCOMPUTADORA = 3;
     public String nombre1, nombre2;
     public int tipo_juego = 0;
+    @FXML
+    private Button CONFICHA;
     
     /** Crea un nuevo Modelo */
     @Override
@@ -146,6 +150,8 @@ public class ModeloController implements Initializable {
                   HOMBREvsCOMPUTADORA;
         this.nombre1 = this.txtJugador1.getText();
         this.nombre2 = this.txtJugador2.getText();
+        this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
+        this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png")));
         return true;
     }
     
@@ -215,6 +221,20 @@ public class ModeloController implements Initializable {
                 System.out.println("5");
             }
         });
+          
+           CONFICHA.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    // Lógica a ejecutar cuando se hace clic en el botón
+                    confichaActionPerformed();
+                    System.out.println("funciona bton conf");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                System.out.println("configurar ficha");
+            }
+        });
          img1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/persona.png"))));
          img2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/pvsp.png")))); 
          img3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/pvspc.png")))); 
@@ -226,6 +246,15 @@ public class ModeloController implements Initializable {
        Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
     } 
+    private void confichaActionPerformed() throws IOException{
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("Configurar.fxml"));
+        Parent root = loader.load();
+
+        Stage stageConfiguracion = new Stage();
+        stageConfiguracion.setScene(new Scene(root));
+        stageConfiguracion.show();
+        
+    }
     private void btnAceptarActionPerformed() throws IOException {                                           
         /*Recojemos los datos de los campos.*/
         System.out.println("4");
@@ -233,14 +262,8 @@ public class ModeloController implements Initializable {
           System.out.println("funciona bien");
 //            /*Los enviamos al gato.*/
          enviarModelo();
-//            /*Cerramos esta ventana.*/
-
  }
-//      Stage stage = (Stage) btnAceptar.getScene().getWindow();
-//        stage.close();
-//        FXMLLoader loader = App.loadFXML("Tabla");
-//            Scene sc = new Scene(loader.load(),700,500);
-//            App.setScene(sc);
+
  System.out.println("BUTON ENVIAR MODELO");
     }  
    
@@ -278,7 +301,7 @@ public class ModeloController implements Initializable {
         inipc1.setDisable(false);
     }  
       
-    /*Método que envía los datos ( modelo ) al gato.*/
+    /*Método que envía los datos ( modelo ) a Tabla.*/
    public void enviarModelo() {
     // Crear una instancia de TablaController y establecer el modelo
     TablaController tablaController = new TablaController();

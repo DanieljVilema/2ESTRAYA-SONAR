@@ -6,8 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" fx:id="opcionDos" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="ec.edu.espol.juego1.ModeloController">
+<AnchorPane id="AnchorPane" fx:id="opcionDos" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.ModeloController">
    <children>
       <Label fx:id="opcionUno" layoutX="69.0" layoutY="47.0" text="Estilo de juego:" />
       <TextField fx:id="txtJugador1" layoutX="124.0" layoutY="320.0" prefHeight="25.0" prefWidth="139.0" />
@@ -28,5 +27,6 @@
       <RadioButton fx:id="inipc2" layoutX="408.0" layoutY="250.0" mnemonicParsing="false" text="Computadora2" />
       <Label fx:id="opcionTres" layoutX="71.0" layoutY="215.0" text="Inicia el juego:" />
       <Label fx:id="opciondos" layoutX="69.0" layoutY="291.0" text="Nombre(s) de jugador(es):" />
+      <Button fx:id="CONFICHA" layoutX="425.0" layoutY="52.0" mnemonicParsing="false" text="Configurar ficha" />
    </children>
 </AnchorPane>

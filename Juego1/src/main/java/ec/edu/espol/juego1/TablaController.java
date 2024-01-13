@@ -144,8 +144,10 @@ public class TablaController implements Initializable,Runnable{
             int tipo_juego = modelo.tipo_juego;
             String nombre1 = modelo.nombre1;         
             String nombre2 = modelo.nombre2;
-            ImageView imagen=config.fichas[0];
-            ImageView imagen2=config.fichas[1];
+            
+//            ImageView imagen=config.fichas[0];
+//            ImageView imagen2=config.fichas[1];}
+           
 
             // Realiza acciones con los datos
             System.out.println("Datos de ModeloController en TablaController: " + tipo_juego + ", " + nombre1 + ", " + nombre2);
@@ -358,20 +360,20 @@ public class TablaController implements Initializable,Runnable{
         System.out.println(HOMBREvsHOMBRE);
         if ( modelo.tipo_juego == HOMBREvsHOMBRE ){
             System.out.println(" pasa el primer filtro");
-           this.jugador1 = new Jugador( modelo.nombre1,new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png"))) );  
+          // this.jugador1 = new Jugador( modelo.nombre1,new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png"))) );  
             
-//    this.jugador1 = new Jugador( modelo.nombre1,imagen1 );  PARA CAMBIAR LAS FICHAS
-//    this.jugador2 = new Jugador( modelo.nombre1,imagen2 );  PARA CAMBIAR LAS FICGAS
+    this.jugador1 = new Jugador( modelo.nombre1,modelo.imagen11 ); // PARA CAMBIAR LAS FICHAS
+    this.jugador2 = new Jugador( modelo.nombre1,modelo.imagen22 );  //PARA CAMBIAR LAS FICGAS
            
-            this.jugador2 = new Jugador( modelo.nombre2, new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png"))) ); 
+            //this.jugador2 = new Jugador( modelo.nombre2, new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png"))) ); 
             
             /*Mostramos su información, asignamos los nombres de jugador al panel.*/
            
             mostrarInformacion();
         } else {
             /*Jugadores*/
-            this.jugador1 = new Jugador( modelo.nombre1, new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png"))));
-            this.jugador2 = new Jugador ( "Computadora", new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png"))) );
+            this.jugador1 = new Jugador( modelo.nombre1, modelo.imagen11);
+            this.jugador2 = new Jugador ( "Computadora", modelo.imagen22);
             this.lblPlayer2.setVisible(true);//verificar
             
             /*Creamos la instancia para la computadora.*/
@@ -557,6 +559,7 @@ public class TablaController implements Initializable,Runnable{
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            
         });
          
          mnuSuspender.setOnAction(event -> mnuSuspenderActionPerformed());
@@ -607,6 +610,7 @@ public class TablaController implements Initializable,Runnable{
 
     // Mostrar la nueva ventana
     modeloStage.show();
+    
 }
      
        
