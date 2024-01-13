@@ -143,8 +143,8 @@ public class ModeloController implements Initializable {
                   HOMBREvsCOMPUTADORA;
         this.nombre1 = this.txtJugador1.getText();
         this.nombre2 = this.txtJugador2.getText();
-        //this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
-        //this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png")));
+        this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
+        this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png")));
         return true;
     }
     
