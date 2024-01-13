@@ -85,8 +85,8 @@ public class ModeloController implements Initializable {
     public final int COMPUTADORAvsCOMPUTADORA = 3;
     public String nombre1, nombre2;
     public int tipo_juego = 0;
-    @FXML
-    private Button CONFICHA;
+//    @FXML
+//    private Button CONFICHA;
     
     /** Crea un nuevo Modelo */
     @Override
@@ -222,19 +222,19 @@ public class ModeloController implements Initializable {
             }
         });
           
-           CONFICHA.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    // Lógica a ejecutar cuando se hace clic en el botón
-                    confichaActionPerformed();
-                    System.out.println("funciona bton conf");
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                System.out.println("configurar ficha");
-            }
-        });
+//           CONFICHA.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                try {
+//                    // Lógica a ejecutar cuando se hace clic en el botón
+//                    confichaActionPerformed();
+//                    System.out.println("funciona bton conf");
+//                } catch (IOException ex) {
+//                    ex.printStackTrace();
+//                }
+//                System.out.println("configurar ficha");
+//            }
+        //});
          img1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/persona.png"))));
          img2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/pvsp.png")))); 
          img3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/pvspc.png")))); 

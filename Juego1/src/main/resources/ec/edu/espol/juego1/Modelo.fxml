@@ -27,6 +27,5 @@
       <RadioButton fx:id="inipc2" layoutX="408.0" layoutY="250.0" mnemonicParsing="false" text="Computadora2" />
       <Label fx:id="opcionTres" layoutX="71.0" layoutY="215.0" text="Inicia el juego:" />
       <Label fx:id="opciondos" layoutX="69.0" layoutY="291.0" text="Nombre(s) de jugador(es):" />
-      <Button fx:id="CONFICHA" layoutX="425.0" layoutY="52.0" mnemonicParsing="false" text="Configurar ficha" />
    </children>
 </AnchorPane>
