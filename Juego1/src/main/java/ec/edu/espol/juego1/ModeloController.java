@@ -303,6 +303,7 @@ private void abrirVentana(TablaController tablaController) {
         // Configurar el controlador de la tabla
         TablaController controller = loader.getController();
         controller.setModeloController(tablaController.getModeloController());
+        
         controller.someMethod(); // O cualquier otra lógica que necesites
         controller.iniciarJuego();
 

@@ -42,11 +42,11 @@ public class ConfigurarController implements Initializable {
     /*Creamos los vectores con las rutas a las imagenes.*/
     
     /*Predeterminado.*/
-    public Image[] fichas = new Image[2];
-    public Image[] fichas1 = new Image[2];
-    public Image[] fichas2 = new Image[2];
-    public Image[] fichas3 = new Image[2];
-    public Image[] fichas4 = new Image[2];
+    public ImageView[] fichas = new ImageView[2];
+    public ImageView[] fichas1 = new ImageView[2];
+    public ImageView[] fichas2 = new ImageView[2];
+    public ImageView[] fichas3 = new ImageView[2];
+    public ImageView[] fichas4 = new ImageView[2];
     
     
      private void initComponents() {
@@ -96,8 +96,8 @@ public class ConfigurarController implements Initializable {
             fichas[1] = fichas4[1];
         }
         
-        lblFicha1.setGraphic(new ImageView(fichas[0] ));
-        lblFicha2.setGraphic(new ImageView( fichas[1] ));
+        lblFicha1.setGraphic((fichas[0] ));
+        lblFicha2.setGraphic(( fichas[1] ));
     }    
      
     
@@ -105,17 +105,17 @@ public class ConfigurarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initComponents();
-        fichas1[0] = new Image(getClass().getResourceAsStream("/images/circulo3.png"));
-        fichas1[1] = new Image(getClass().getResourceAsStream("/images/cruz.png"));
+        fichas1[0] = new ImageView (new Image(getClass().getResourceAsStream("/images/circulo3.png")));
+        fichas1[1] = new ImageView (new Image(getClass().getResourceAsStream("/images/cruz.png")));
         
-        fichas2[0] =new Image(getClass().getResourceAsStream("/images/radio1.png"));
-        fichas2[1] = new Image(getClass().getResourceAsStream("/images/radio2.png"));
+        fichas2[0] =new ImageView (new Image(getClass().getResourceAsStream("/images/radio1.png")));
+        fichas2[1] = new ImageView (new Image(getClass().getResourceAsStream("/images/radio2.png")));
 
-        fichas3[0] = new Image(getClass().getResourceAsStream("/images/disco1.png"));
-        fichas3[1] =new Image(getClass().getResourceAsStream("/images/disco2.png"));
+        fichas3[0] =new ImageView ( new Image(getClass().getResourceAsStream("/images/disco1.png")));
+        fichas3[1] =new ImageView (new Image(getClass().getResourceAsStream("/images/disco2.png")));
 
-        fichas4[0] = new Image(getClass().getResourceAsStream("/images/cielo1.png"));
-        fichas4[1] = new Image(getClass().getResourceAsStream("/images/cielo2.png"));
+        fichas4[0] =new ImageView ( new Image(getClass().getResourceAsStream("/images/cielo1.png")));
+        fichas4[1] = new ImageView (new Image(getClass().getResourceAsStream("/images/cielo2.png")));
         
         fichas[0] = fichas1[0];
         fichas[1] = fichas1[1];

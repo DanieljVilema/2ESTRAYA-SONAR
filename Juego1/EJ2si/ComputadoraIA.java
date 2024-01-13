@@ -1,17 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package ec.edu.espol.juego1;
-
-/**
+/**********************************************************************/
+/* Autor: Francisco I. Leyva
+ * P·gina web: http://www.panchosoft.com
+ * Correo electrÛnico: yagami_2@hotmail.com
  *
- * @author naomi
- */
-public class ComputadoraIA { //CHECK 
+ * Programa que permite jugar al tres en raya, gato, o tic tac toe contra otra
+ * persona o contra la m·quina. Implementando el algoritmo minimax, ·rboles,
+ * recursiÛn, etc.
+ *
+/**********************************************************************/
+
+package gato;
+import java.lang.Runnable;
+import java.util.Arrays;
+
+public class ComputadoraIA{
+    
     public static int tiradas = 0;
     
-    /*√Årboles para los movimientos del Gato.*/
+    /*¡rboles para los movimientos del Gato.*/
     class NodoG{
         
         
@@ -37,7 +43,7 @@ public class ComputadoraIA { //CHECK
         }
     }
     
-    /*Ra√≠z del √°rbol*/
+    /*RaÌz del ·rbol*/
     NodoG arbol = new NodoG();
     
     /*Atributos.*/
@@ -46,7 +52,7 @@ public class ComputadoraIA { //CHECK
     /*Mi ficha.*/
     public final int miFICHA = 2;
     
-    /*M√©todo que nos devuelve los espacios disponibles.*/
+    /*MÈtodo que nos devuelve los espacios disponibles.*/
     public int movDisponibles( int[] tablero ){
         int mov = 0;
         
@@ -57,9 +63,9 @@ public class ComputadoraIA { //CHECK
         return mov;
     }
     
-    /*M√©todo que nos devuelve los indices del tablero de las pocisiones vac√≠as.*/
+    /*MÈtodo que nos devuelve los indices del tablero de las pocisiones vacÌas.*/
     public int[] posVacias( int[] tablero ){
-        /*Creamos el vector con los √≠ndices.*/
+        /*Creamos el vector con los Ìndices.*/
         int[] indices = new int[movDisponibles(tablero)];
         int indice = 0;
         
@@ -79,21 +85,21 @@ public class ComputadoraIA { //CHECK
         this.tablero = tablero;
         tiradas ++;
         
-        /*Copiamos el tablero a nuestro nodo ra√≠z.*/
+        /*Copiamos el tablero a nuestro nodo raÌz.*/
         for ( int i = 0; i < 9; i ++ )
             this.arbol.tablero[i] = this.tablero[i];
         
-        /*Calculamos el mejor movimiento del √°rbol, desde las hojas hasta la raiz.*/
+        /*Calculamos el mejor movimiento del ·rbol, desde las hojas hasta la raiz.*/
         movComputadora( arbol );
         
         /*Devolvemos el mejor movimiento.*/
         return arbol.mejorMovimiento;
     }
 
-    /*M√©todo recursivo, que genera los nodos con los movimientos.*/
+    /*MÈtodo recursivo, que genera los nodos con los movimientos.*/
     public void movComputadora( NodoG raiz ){
         
-        /*N√∫mero de movimientos disponibles y sus indices en el tablero.*/
+        /*N˙mero de movimientos disponibles y sus indices en el tablero.*/
         int movimientos = movDisponibles(raiz.tablero);
         int indices[] = posVacias(raiz.tablero);
         int Max, Min;
@@ -113,7 +119,7 @@ public class ComputadoraIA { //CHECK
             /*Creamos los datos de cada hijo.*/
             for( int i = 0; i < movimientos; i ++ ){
                 
-                /*Inicializamos los nodos hijos del √°rbol.*/
+                /*Inicializamos los nodos hijos del ·rbol.*/
                 raiz.nodos[i] = new NodoG();
                 
                 /*Les pasamos su tablero.*/
@@ -147,14 +153,14 @@ public class ComputadoraIA { //CHECK
 
     }
    
-    /*M√©todo que calcula el M√ÅXIMO de los nodos hijos de MIN*/
+    /*MÈtodo que calcula el M¡XIMO de los nodos hijos de MIN*/
     public int Max( NodoG raiz ){
         int Max = -111;
-        /*M√°ximo para la computadora, buscamos el valor donde gane.*/
+        /*M·ximo para la computadora, buscamos el valor donde gane.*/
         for (int i = 0; i < raiz.nodos.length; i++){
           /*Preguntamos por un nodo con un valor alto MAX*/
             if (raiz.nodos[i].ganador > Max){
-                /*Lo asignamos y pasamos el mejor movimiento a la ra√≠z.*/
+                /*Lo asignamos y pasamos el mejor movimiento a la raÌz.*/
                 Max = raiz.nodos[i].ganador;
                 raiz.mejorMovimiento = raiz.nodos[i].indice;
                 /*Terminamos de buscar.*/
@@ -168,10 +174,10 @@ public class ComputadoraIA { //CHECK
         return Max;
     }
     
-    /*M√©todo que calcula el M√çNIMO de los nodos hijos de MAX.*/
+    /*MÈtodo que calcula el MÕNIMO de los nodos hijos de MAX.*/
     public int Min( NodoG raiz ){
         int Min = 111;
-        /*M√≠nimo para el jugador*/
+        /*MÌnimo para el jugador*/
         for (int i = 0; i < raiz.nodos.length; i++)
           if (raiz.nodos[i].ganador < Min ){
             Min = raiz.nodos[i].ganador;
@@ -185,10 +191,10 @@ public class ComputadoraIA { //CHECK
         return Min;
     }
                 
-    /*M√©todo que dice si el juego est√° terminado.*/
+    /*MÈtodo que dice si el juego est· terminado.*/
     /*Regresa 0 si nadie gana, 1 si gana jugador 1 y 2 si gana jugador 2*/
     public int terminado( int[] tablero ){
-        /*Comprobamos si el juego termin√≥.*/
+        /*Comprobamos si el juego terminÛ.*/
         /*Filas*/
         if ( tablero[0] == tablero[1] && tablero[0] == tablero[2] && tablero[0] != 0 )
             return tablero[0];
@@ -213,17 +219,17 @@ public class ComputadoraIA { //CHECK
         
     }
     
-    /*M√©todo que nos dice si gana la computadora.*/
+    /*MÈtodo que nos dice si gana la computadora.*/
     public boolean puedoGanar(int[] tablero){
         return terminado(tablero) == 2;
     }
     
-    /*M√©todo que nos dice si pierde la computadora.*/
+    /*MÈtodo que nos dice si pierde la computadora.*/
     public boolean puedoPerder(int[] tablero){
         return terminado(tablero) == 1;
     }
     
-    /*M√´todo que imprime un vector como un enraya*/
+    /*MÎtodo que imprime un vector como un gato. xD*/
     public void imprime(int[] gato){
         for ( int i = 0; i < 9; i ++ ){
             System.out.print(gato[i]+"");
@@ -233,5 +239,4 @@ public class ComputadoraIA { //CHECK
         
         System.out.println("\r\n");
     }
-    
 }
