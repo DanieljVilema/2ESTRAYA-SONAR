@@ -101,6 +101,8 @@ public class TablaController implements Initializable,Runnable{
      */
      /*Turno de jugador.*/
     ConfigurarController config = new ConfigurarController();
+
+    //Estadisticas estadisticas = new Estadisticas();
     
     ImageView[] fichas = new ImageView[9];
     int turno = 0;
