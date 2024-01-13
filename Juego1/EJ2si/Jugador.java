@@ -1,24 +1,22 @@
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package ec.edu.espol.juego1;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-/**
+/**********************************************************************/
+/* Autor: Francisco I. Leyva
+ * Página web: http://www.panchosoft.com
+ * Correo electrónico: yagami_2@hotmail.com
  *
- * @author naomi
- */
+ *
+/**********************************************************************/
+package gato;
+import javax.swing.*;
+import java.awt.*;
+
 public class Jugador {
+    
     /*Atributos del jugador.*/
     String nombre;
     public int GANADOS, PERDIDOS, EMPATADOS;
     
     /*Imagen de la ficha del jugador.*/
-    private ImageView ficha; //la orginal tiene ImagenIcon esta aun no se si es image o imageview
+    private ImageIcon ficha;
     
     /** Crea un nuevo Jugador. */
     public Jugador(String nombre, String ruta) {
@@ -30,12 +28,12 @@ public class Jugador {
         EMPATADOS = 0;
         
         /*Imagen por defecto.*/
-        miFicha( ruta ); 
+        miFicha( ruta );
     }
     
         
     /** Crea un nuevo Jugador. */
-    public Jugador(String nombre, ImageView imagen ) {
+    public Jugador(String nombre, ImageIcon imagen ) {
         
         /*Nombre del jugador.*/
         this.nombre = nombre;
@@ -46,8 +44,8 @@ public class Jugador {
         /*Imagen por defecto.*/
         this.ficha = imagen;
     }
-    
-    /*MÃ©todo que incrementa los juegos ganados.*/
+
+    /*Método que incrementa los juegos ganados.*/
     public void gano(){
         GANADOS ++;
     }
@@ -58,12 +56,14 @@ public class Jugador {
         EMPATADOS ++;
     }
     
-    /*MÃ©todo que devuelve la imagen de la ficha.*/
-    public ImageView obtenFicha(){
+    /*Método que devuelve la imagen de la ficha.*/
+    public ImageIcon obtenFicha(){
         return ficha;
     }
-    /*MÃ©todo que establace la ficha.*/
+    
+    /*Método que establace la ficha.*/
     public void miFicha(String ruta){
-       this.ficha=new ImageView(new Image(getClass().getResourceAsStream(ruta)));
+        this.ficha = new ImageIcon ( this.getClass().getResource(ruta) );
     }
+    
 }
