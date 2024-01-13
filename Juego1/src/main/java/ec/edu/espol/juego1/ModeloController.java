@@ -102,45 +102,30 @@ public class ModeloController implements Initializable {
     public boolean recojer(){
 
         /*Comprobamos que los campos estén llenos.*/
-        if( this.txtJugador1.getText().equals("")){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setContentText("Llene el nombre del jugador 1 por favor.");
-            alert.show();
-            return false;   
+        
+        if(modoPVP = true){
+            if( this.txtJugador1.getText().equals("") && this.txtJugador2.getText().equals("")){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setContentText("Llene el nombre de los jugadores por favor.");
+                alert.show();
+                return false;   
+            }
         }
-        if( this.txtJugador1.getText().equals("") && this.txtJugador2.getText().equals("")){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setContentText("Llene el nombre de los jugadores por favor.");
-            alert.show();
-            return false;   
-           
+        
+        if(modoPVI = true){
+            if( this.txtJugador1.getText().equals("")){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setContentText("Llene el nombre del jugador 1 por favor.");
+                alert.show();
+                return false;   
+            } 
         }
-        if( this.txtJugador2.getText().equals("")){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setContentText("Llene el nombre del jugador 2 por favor.");
-            alert.show();
-            return false;   
-           
-        }
-        if( this.txtJugador1.getText().equals("")){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setContentText("Llene el nombre del jugador 1 por favor.");
-            alert.show();
-            return false;   
-           
-        }
-        if( this.txtJugador1.getText().equals( this.txtJugador2.getText() )){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setContentText("Escriba nombres diferentes para los jugadores.");
-            alert.show();
-            return false; 
-            
-        }
-      
+  
         /*Recojemos los valores.*/
         this.tipo_juego = (modoPVP = true) ? HOMBREvsHOMBRE :
-                  (modoIVI = true) ? COMPUTADORAvsCOMPUTADORA :
-                  HOMBREvsCOMPUTADORA;
+                  (modoPVI = true) ? HOMBREvsCOMPUTADORA :
+                  COMPUTADORAvsCOMPUTADORA;
+        
         this.nombre1 = this.txtJugador1.getText();
         this.nombre2 = this.txtJugador2.getText();
         this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
@@ -228,20 +213,14 @@ public class ModeloController implements Initializable {
 
     }
     private void btnCancelarActionPerformed() {                                            
-       Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
     } 
     
     private void btnAceptarActionPerformed() throws IOException {                                           
-        /*Recojemos los datos de los campos.*/
-        System.out.println("4");
-      if( recojer() ){
-          System.out.println("funciona bien");
-//            /*Los enviamos al gato.*/
+        if( recojer() ){
          enviarModelo();
- }
-
- System.out.println("BUTON ENVIAR MODELO");
+        }
     }  
    
     private void hvshActionPerformed() {   
