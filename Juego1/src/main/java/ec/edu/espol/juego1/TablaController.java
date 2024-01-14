@@ -66,8 +66,6 @@ public class TablaController implements Initializable,Runnable{
     @FXML
     private ImageView f9;
     @FXML
-    private Label Tablero;
-    @FXML
     private Label lblGanados;
     @FXML
     private Label lblEmpatados;
@@ -91,8 +89,6 @@ public class TablaController implements Initializable,Runnable{
     private MenuItem mnuSuspender;
     @FXML
     private MenuItem mnuEstadisticas;
-    @FXML
-    private Label Fondo;
     @FXML
     private Label blPerdidos;
     
@@ -123,6 +119,7 @@ public class TablaController implements Initializable,Runnable{
     private MenuButton mnuJuego;
     @FXML
     private Button btnconfigurar;
+    private ImageView f17;
     
     
     
@@ -372,16 +369,16 @@ public class TablaController implements Initializable,Runnable{
             this.jugador2 = new Jugador( modelo.nombre2,modelo.imagen22 ); 
             System.out.println("El turno seleccionado es: "  + primerTurno);
             
-            switch (primerTurno) {
-                case 1:
-                    this.turno = 1;
-                    this.turnoGeneral = JUGADOR1;
-                    break;
-                case 2:
-                    this.turno = 2;
-                    this.turnoGeneral = JUGADOR1;
-                    break;
-            }
+//            switch (primerTurno) {
+//                case 1:
+//                    this.turno = 1;
+//                    this.turnoGeneral = JUGADOR1;
+//                    break;
+//                case 2:
+//                    this.turno = 2;
+//                    this.turnoGeneral = JUGADOR2;
+//                    break;
+//            }
               
                  
             //this.jugador2 = new Jugador( modelo.nombre2, new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png"))) ); 
@@ -397,26 +394,33 @@ public class TablaController implements Initializable,Runnable{
             
             /*Creamos la instancia para la computadora.*/
             computadora = new ComputadoraIA();
-            
-            switch (primerTurno) {
-                case 1:
-                    this.turno = 1;
-                    this.turnoGeneral = JUGADOR1;
-                    break;
-                default:
-                    this.turno = 2;
-                    this.turnoGeneral = JUGADOR1;
-                    break;
-                /*case 2:
-                    this.turno = 2;
-                    this.turnoGeneral = JUGADOR1;
-                    break;*/
-            }
+                 
+//            switch (primerTurno) {
+//                case 1:
+//                    this.turno = 1;
+//                    this.turnoGeneral = JUGADOR1;
+//                    System.out.println("avance");
+//                    break;
+//                    
+//                default:
+//                    this.turno = 2;
+//                    this.turnoGeneral = JUGADOR2;
+//                    break;
+//                /*case 2:
+//                    this.turno = 2;
+//                    this.turnoGeneral = JUGADOR1;
+//                    break;*/
+//            }
             /*Mostramos su información, asignamos los nombres de jugador al panel.*/
             mostrarInformacion();
         }
-        
-        /*Variables de juego.*/
+        if (primerTurno==1){
+                this.turno = 1;
+                    this.turnoGeneral = JUGADOR1;
+                    System.out.println("avance");
+            }
+//         this.turno = 1;
+//         this.turnoGeneral = JUGADOR1;
         jugando = true;
         terminado = false;
         
@@ -569,7 +573,14 @@ public class TablaController implements Initializable,Runnable{
             public void handle(MouseEvent event) {
                 f9MouseClicked(); 
             }
-        });        
+        });  
+        lblEstado.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                f8MouseClicked(); 
+            }
+        });
+         
         lblEmpatados2.setText("Empatados: 0");
 
         lblPerdidos2.setText("Perdidos: 0");
@@ -686,6 +697,7 @@ public class TablaController implements Initializable,Runnable{
     /*Iniciamos los componentes de nuestra ventana*/
     iniciarComponentes();
     initComponents();
+        System.out.println("QUE ME NADA DE TABLA CONTROLLEER"+modelo.primerTurno);
 }
     
 }
