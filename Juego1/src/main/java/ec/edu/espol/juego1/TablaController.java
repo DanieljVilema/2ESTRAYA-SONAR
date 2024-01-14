@@ -543,11 +543,11 @@ public class TablaController implements Initializable,Runnable{
    private void mnuIniciarActionPerformed() throws IOException {                                           
     ModeloController n = new ModeloController();
     n.setTablaController(this);
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("Modelo.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("Modos.fxml"));
     Parent root = loader.load();
     this.setModeloController(modelo);
     Stage modeloStage = new Stage();
-    Scene scene = new Scene(root, 700, 500);
+    Scene scene = new Scene(root, 615, 348);
     modeloStage.setScene(scene);
     modeloStage.show();   
 }
