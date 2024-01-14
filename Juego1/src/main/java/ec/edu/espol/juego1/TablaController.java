@@ -523,6 +523,7 @@ public class TablaController implements Initializable,Runnable{
          mnuIniciar.setOnAction(event -> {
             try {
                 mnuIniciarActionPerformed();
+                
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -550,6 +551,7 @@ public class TablaController implements Initializable,Runnable{
     Scene scene = new Scene(root, 615, 348);
     modeloStage.setScene(scene);
     modeloStage.show();   
+    
 }
      
 
