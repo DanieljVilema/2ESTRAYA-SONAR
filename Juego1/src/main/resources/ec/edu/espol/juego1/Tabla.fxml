@@ -97,10 +97,10 @@
       <ImageView fx:id="f5" fitHeight="62.0" fitWidth="73.0" layoutX="345.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="f2" fitHeight="62.0" fitWidth="73.0" layoutX="345.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="f9" fitHeight="62.0" fitWidth="73.0" layoutX="418.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
-      <Line endX="171.0" layoutX="326.0" layoutY="227.0" startX="-55.0" startY="-1.0" stroke="WHITE" />
-      <Line endX="171.0" layoutX="327.0" layoutY="164.0" startX="-56.0" stroke="WHITE" />
-      <Line endX="-100.0" endY="208.0" layoutX="445.0" layoutY="81.0" startX="-101.0" startY="21.0" stroke="WHITE" />
-      <Line endX="-100.0" endY="208.0" layoutX="518.0" layoutY="81.0" startX="-100.0" startY="21.0" stroke="WHITE" />
+      <Line endX="171.0" layoutX="312.0" layoutY="227.0" startX="-55.0" startY="-1.0" stroke="WHITE" />
+      <Line endX="171.0" layoutX="312.0" layoutY="164.0" startX="-56.0" stroke="WHITE" />
+      <Line endX="-100.0" endY="208.0" layoutX="441.0" layoutY="81.0" startX="-101.0" startY="21.0" stroke="WHITE" />
+      <Line endX="-100.0" endY="208.0" layoutX="510.0" layoutY="81.0" startX="-100.0" startY="21.0" stroke="WHITE" />
      
    </children>
 </AnchorPane>
