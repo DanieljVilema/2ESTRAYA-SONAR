@@ -92,41 +92,26 @@ public class TablaController implements Initializable,Runnable{
     private MenuItem mnuEstadisticas;
     @FXML
     private Label blPerdidos;
-    
-    private ImageView imagen1;
-    private ImageView imagen2;
-    /**
-     * Initializes the controller class.
-     */
-     /*Turno de jugador.*/
-    ConfigurarController config = new ConfigurarController();
-
-    //Estadisticas estadisticas = new Estadisticas();
-    
+   
     ImageView[] fichas = new ImageView[9];
     int turno = 0;
     int turnoGeneral = 0;
-    
     ModeloController modelo = ModeloController.getInstancia();
     int primerTurno = modelo.primerTurno;
-    
-    
+
     /*Matriz que representa el juego.*/
     int[] tablero = new int[9];
 
     /*Tablero en componentes.*/
-   // Label fichas[]; //PREGUNTAR ESTO
     @FXML
     private MenuButton mnuJuego;
     @FXML
     private Button btnconfigurar;
-    private ImageView f17;
-    
-    
-    
+        
+
    public TablaController() {
     
-}
+   }
    
    public ModeloController getModeloController() {
         return modelo;
@@ -136,50 +121,32 @@ public class TablaController implements Initializable,Runnable{
         this.modelo = modeloController;
         System.out.println("ModeloController recibido en TablaController");
     }
-    
-//    public ConfigurarController getConfigurarController() {
-//        return config;
-//    }
-//    
-//    public void setModeloController(ConfigurarController confiController) {
-//        this.config = confiController;
-//        System.out.println("ModeloController recibido en TablaController");
-//    }
+ 
     public void someMethod() {
         if (modelo != null) {
             int tipo_juego = modelo.tipo_juego;
             String nombre1 = modelo.nombre1;         
             String nombre2 = modelo.nombre2;
-            
-//            ImageView imagen=config.fichas[0];
-//            ImageView imagen2=config.fichas[1];}
-           
-
-            // Realiza acciones con los datos
             System.out.println("Datos de ModeloController en TablaController: " + tipo_juego + ", " + nombre1 + ", " + nombre2);
         } else {
             System.out.println("ModeloController no ha sido establecido en TablaController");
         }
     }
+    
     public void run(){
         
     }
+    
      public void movimiento( ImageView ficha ){
         /*Colocamos la ficha.*/
-        if ( jugando ){
-            
-           
+        if ( jugando ){    
             if( !PENSANDO )
-                ponerFicha( ficha );//TRABAJAR
-            
-            
+                ponerFicha( ficha );
             if ( this.modelo.tipo_juego == HOMBREvsCOMPUTADORA && this.turno == JUGADOR2 ){
                 PENSANDO = true;
                 ponerFichaCPU(computadora.movimiento( this.tablero )); //TRABAJAR
-                PENSANDO = false;
-                
+                PENSANDO = false;                
             }
-
         }
         /*Si se va a comenzar un juego nuevo*/
         if( terminado ){
@@ -196,8 +163,8 @@ public class TablaController implements Initializable,Runnable{
                 jugador2.perdio();   
                 mensaje(jugador1.nombre + " ganó!");  
             }else{
-                jugador2.gano(); //TRABAJAR
-                jugador1.perdio();  //TRABAJAR
+                jugador2.gano(); 
+                jugador1.perdio();  
                 mensaje(jugador2.nombre + " ganó!");  
             }
             
@@ -232,7 +199,7 @@ public class TablaController implements Initializable,Runnable{
         
         if( indice == -1 ) return;
         
-        switch ( indice ){//editado el seticon por el setgrafic
+        switch ( indice ){
             case 0: this.f1.setImage(jugador2.obtenFicha().getImage()); break;
             case 1: this.f2.setImage(jugador2.obtenFicha().getImage()); break;
             case 2: this.f3.setImage(jugador2.obtenFicha().getImage()); break;
@@ -252,19 +219,16 @@ public class TablaController implements Initializable,Runnable{
      
     /*Método que "pone una ficha" en el tablero.*/
     public void ponerFicha( ImageView ficha ){
-
         /*Obtenemos la casilla.*/
-        int casilla = Integer.parseInt(""+ficha.getId().charAt(1)) - 1;// VERIFICAR ESE CAMBIO
-        
+        int casilla = Integer.parseInt(""+ficha.getId().charAt(1)) - 1;
         /*Comprobamos si la casilla no estaba ocupada.*/
         if ( estaOcupada(casilla ) )
-            return;
-        
+            return;       
         /*Elegimos la ficha según el turno*/
         if ( turno == JUGADOR1 )
-            ficha.setImage(jugador1.obtenFicha().getImage());//editado el seticon
+            ficha.setImage(jugador1.obtenFicha().getImage());
         else
-            ficha.setImage(jugador2.obtenFicha().getImage());//editado el seticon
+            ficha.setImage(jugador2.obtenFicha().getImage());
         
         /*Guardamos la representación en el tablero*/
         tablero[casilla] = turno;
@@ -316,9 +280,8 @@ public class TablaController implements Initializable,Runnable{
     public boolean estaOcupada( int casilla ){
         return ( tablero[casilla] != 0 );
     }
-    
-    
-    /*Método que inicia los componentes del Gato.*/
+       
+    /*Método que inicia los componentes */
     private void iniciarComponentes(){  
         /*Referenciamos todas las etiquetas.*/
         fichas = new ImageView[9];
@@ -331,13 +294,6 @@ public class TablaController implements Initializable,Runnable{
         for ( int i = 0; i < 9; i ++ )
        
         fichas[i].setCursor(Cursor.HAND);
-    }
-    
-    
-    
-    
-    public void mostrarEstadisticas(){ //TRABAJARLOCAL!!
-        
     }
     
     public void mensaje(String mensaje){
@@ -356,19 +312,14 @@ public class TablaController implements Initializable,Runnable{
            mensaje("Turno de " + jugador2.nombre );
         }       
     }
-  
-   
-    
+
     /*Método que inicia el juego una vez obtenido el modelo.*/
-    public void iniciarJuego(){  // ------------ FICHA PREDETERMINADA-------------
+    public void iniciarJuego(){  
         /*Creamos los jugadores según el tipo de juego.*/
+        System.out.println("El turno seleccionado es: "  + primerTurno);
         if ( modelo.tipo_juego == HOMBREvsHOMBRE ){
-            System.out.println(" pasa el primer filtro");
-            
             this.jugador1 = new Jugador( modelo.nombre1,modelo.imagen11 );
-            this.jugador2 = new Jugador( modelo.nombre2,modelo.imagen22 ); 
-            System.out.println("El turno seleccionado es: "  + primerTurno);
-            
+            this.jugador2 = new Jugador( modelo.nombre2,modelo.imagen22 );          
             switch (primerTurno) {
                 case 1:
                     this.turno = 1;
@@ -378,45 +329,35 @@ public class TablaController implements Initializable,Runnable{
                     this.turno = 2;
                     this.turnoGeneral = JUGADOR2;
                     break;
-            }
-              
-                 
-            
+            }      
             mostrarInformacion();
         } else {
-            /*Jugadores*/
             this.jugador1 = new Jugador( modelo.nombre1, modelo.imagen11);
             this.jugador2 = new Jugador ( "Computadora", modelo.imagen22);
-            this.lblPlayer2.setVisible(true);//verificar
-            
+            this.lblPlayer2.setVisible(true);           
             /*Creamos la instancia para la computadora.*/
             computadora = new ComputadoraIA();
                  
             switch (primerTurno) {
                 case 1:
                     this.turno = 1;
-                    this.turnoGeneral = JUGADOR1;
-                    System.out.println("avance");
-                    break;
-                    
+                    this.turnoGeneral = JUGADOR1;                    
+                    break;                   
                 default:
                     this.turno = 2;
                     this.turnoGeneral = JUGADOR2;
                     lanzaPc1();
-                    break;
-                
-            }
-            
+                    break;                
+            }          
             mostrarInformacion();
         }
-       
         jugando = true;
         terminado = false;
         
         /*Deshabilitamos el menú nuevo juego.*/
         this.mnuIniciar.setDisable(false);
         this.mnuSuspender.setDisable(false);
-       // this.panelEstadisticas.setVisible(false);
+       
         
         /*Movemos el foco.*/
         cambiarFoco();
@@ -424,12 +365,9 @@ public class TablaController implements Initializable,Runnable{
     }
     
     public void mostrarInformacion(){ 
-        
-        /*Establecemos el título.*/
         lblPlayer.setText(jugador1.nombre );
         lblPlayer2.setText( jugador2.nombre );
         
-        /*Establecemos las estadísticas del jugador.*/
         this.lblGanados.setText("" + jugador1.GANADOS );
         this.blPerdidos.setText("" + jugador1.PERDIDOS );
         this.lblEmpatados.setText("" + jugador1.EMPATADOS );
@@ -440,11 +378,11 @@ public class TablaController implements Initializable,Runnable{
         this.lblEmpatados2.setText("" + jugador2.EMPATADOS );
         this.lblIcono2.setGraphic(jugador2.obtenFicha() );
         
-        this.lblPlayer.setVisible(true); //es la ventada del jugaddor pero por ahora solo vamos a ocultara o mostrarel nombre
+        this.lblPlayer.setVisible(true); 
         this.lblPlayer.setVisible(true);
-       // if( this.modelo.tipo_juego != HOMBREvsCOMPUTADORA)
-           // this.lblPlayer2.setVisible(true);// ververver
+      
     }
+    
     /*Método que inicia un nuevo juego.*/
     public void reiniciarJuego(){  //NO SE VE MUY IMPORTANTE PERO HAY QUE TRABAJARLO SI ES QUE SIRVE
         
@@ -601,49 +539,31 @@ public class TablaController implements Initializable,Runnable{
     private void configurarActionPerformed() {   /// POSIBLE OPCIONAL 
         System.out.println("Configurar");
     } 
-    private void mnuEstadisticasActionPerformed() {       //POSIBLE OPCIONAL                                          
-        this.mostrarEstadisticas();
+    private void mnuEstadisticasActionPerformed() {                                                
+       
         System.out.println("Estadisticas");
     } 
     
     private void mnuSuspenderActionPerformed() {       //TRABAJAR                                       
-        /*Guardamos records.*/
-//        estadisticas.guardarJugador(jugador2);
-//        estadisticas.refrescar();
-//        estadisticas.guardarJugador(jugador1);
         
-        /*Suspendemos.*/
         suspenderJuego();
         System.out.println("susoender");
-         //poner codigo para cerrar esta ventana
+         
     } 
     
    private void mnuIniciarActionPerformed() throws IOException {                                           
-    // Crear el ModeloController y configurar bidireccionalmente la relación
     ModeloController n = new ModeloController();
     n.setTablaController(this);
-
-    // Cargar el FXML y obtener el controlador asociado
     FXMLLoader loader = new FXMLLoader(getClass().getResource("Modelo.fxml"));
     Parent root = loader.load();
-
-    // Configurar bidireccionalmente
     this.setModeloController(modelo);
-
-    // Crear un nuevo Stage para la ventana del ModeloController
     Stage modeloStage = new Stage();
     Scene scene = new Scene(root, 700, 500);
-
-    // Configurar el Stage con la nueva Scene
     modeloStage.setScene(scene);
-
-    // Mostrar la nueva ventana
-    modeloStage.show();
-    
+    modeloStage.show();   
 }
      
-       
-    
+
     private void f9MouseClicked() {                                
         movimiento(f9);
     }                               
@@ -717,15 +637,12 @@ public class TablaController implements Initializable,Runnable{
                     break;
     }
     }
+    
     public void initialize(URL url, ResourceBundle rb) {
-    /*LLenamos nuestro tablero de 0, vacío.*/
     Arrays.fill(tablero, 0);
-
-    /*Iniciamos los componentes de nuestra ventana*/
     iniciarComponentes();
-        System.out.println(aleatoriopc());
     initComponents();
-        System.out.println("QUE ME NADA DE TABLA CONTROLLEER"+modelo.primerTurno);
+        
 }
     
 }
