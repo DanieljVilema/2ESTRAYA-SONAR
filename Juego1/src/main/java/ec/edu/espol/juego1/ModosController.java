@@ -18,7 +18,7 @@ public class ModosController {
     private boolean pvi;
     private boolean ivi;
     
-     public static ModosController getInstancia() {
+    public static ModosController getInstancia() {
         if (instancia == null) {
             instancia = new ModosController();
         }

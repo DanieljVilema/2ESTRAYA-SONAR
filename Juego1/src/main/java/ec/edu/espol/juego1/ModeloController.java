@@ -68,11 +68,13 @@ public class ModeloController implements Initializable {
      */
     private TablaController tabla;
     
+    private static ModeloController instanciaModelo;
     public final int HOMBREvsHOMBRE = 1;
     public final int HOMBREvsCOMPUTADORA = 2;
     public final int COMPUTADORAvsCOMPUTADORA = 3;
     public String nombre1, nombre2;
     public int tipo_juego = 0;
+    public int primerTurno = 0;
 //    @FXML
 //    private Button CONFICHA;
     
@@ -80,6 +82,14 @@ public class ModeloController implements Initializable {
     boolean modoPVP = modo.isPvp();
     boolean modoPVI = modo.isPvi();
     boolean modoIVI = modo.isIvi();
+    
+    public static ModeloController getInstancia() {
+        if (instanciaModelo == null) {
+            instanciaModelo = new ModeloController();
+        }
+        return instanciaModelo;
+    }
+    
     
     /** Crea un nuevo Modelo */
     @Override
@@ -138,23 +148,41 @@ public class ModeloController implements Initializable {
     public boolean quienempieza(){
 
         /*Comprobamos que los campos estén llenos.*/
-        if( (!this.inip1.isSelected() && !this.inipc1.isSelected() )){
+        
+        /*if( (!this.inipc1.isSelected() && !this.inipc2.isSelected() )){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setContentText("Selecione quien inicia primero por favor.");
             alert.show();
-            return false;   
+            return true;
+        }*/
+        ModeloController modelo = ModeloController.getInstancia();
+        System.out.println("El tipo de juego es: " + tipo_juego);
+        if(tipo_juego == 1){ //HOMBREvsHOMBRE
+            if( (!this.inip1.isSelected() && !this.inip2.isSelected() )){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setContentText("Selecione quien inicia primero por favor.");
+                alert.show(); 
+                return false;
+            }
+            if(this.inip1.isSelected()){
+                modelo.primerTurno = 1; //player1
+            }else{
+                modelo.primerTurno = 2; //player2
+            }
         }
-        if( (!this.inip1.isSelected() && !this.inip2.isSelected() )){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setContentText("Selecione quien inicia primero por favor.");
-            alert.show();
-            return false;   
-        }
-        if( (!this.inipc1.isSelected() && !this.inipc2.isSelected() )){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setContentText("Selecione quien inicia primero por favor.");
-            alert.show();
-            return false;   
+        
+        if(tipo_juego == 2){ //HOMBREvsCOMPUTADORA
+            if( (!this.inip1.isSelected() && !this.inipc1.isSelected() )){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setContentText("Selecione quien inicia primero por favor.");
+                alert.show();
+                return false;
+            }
+            if(this.inip1.isSelected()){
+                modelo.primerTurno = 1; //player1
+            }else{
+                modelo.primerTurno = 3; //IA
+            }
         }
         return true;
     }
@@ -176,7 +204,7 @@ public class ModeloController implements Initializable {
                 pcvpcActionPerformed();  
                 System.out.println("PERSONAVSPC");
             }
-       
+          
           btnAceptar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -206,6 +234,7 @@ public class ModeloController implements Initializable {
     
     private void btnAceptarActionPerformed() throws IOException {                                           
         if( recojer() ){
+         quienempieza();
          enviarModelo();
         }
     }  

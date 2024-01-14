@@ -34,7 +34,6 @@ import javafx.stage.Stage;
  * @author naomi
  */
 public class TablaController implements Initializable,Runnable{
-    ModeloController modelo;
     Jugador jugador1,jugador2;
     ComputadoraIA computadora;
     boolean jugando, terminado;
@@ -111,6 +110,10 @@ public class TablaController implements Initializable,Runnable{
     int turno = 0;
     int turnoGeneral = 0;
     
+    ModeloController modelo = ModeloController.getInstancia();
+    int primerTurno = modelo.primerTurno;
+    
+    
     /*Matriz que representa el juego.*/
     int[] tablero = new int[9];
 
@@ -129,7 +132,7 @@ public class TablaController implements Initializable,Runnable{
    
    public ModeloController getModeloController() {
         return modelo;
-    }
+   }
     
     public void setModeloController(ModeloController modeloController) {
         this.modelo = modeloController;
@@ -361,15 +364,26 @@ public class TablaController implements Initializable,Runnable{
     /*Método que inicia el juego una vez obtenido el modelo.*/
     public void iniciarJuego(){  // ------------ FICHA PREDETERMINADA-------------
         /*Creamos los jugadores según el tipo de juego.*/
-        System.out.println("estoo sale "+modelo.tipo_juego);
-        System.out.println(HOMBREvsHOMBRE);
         if ( modelo.tipo_juego == HOMBREvsHOMBRE ){
             System.out.println(" pasa el primer filtro");
           // this.jugador1 = new Jugador( modelo.nombre1,new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png"))) );  
             
-    this.jugador1 = new Jugador( modelo.nombre1,modelo.imagen11 ); // PARA CAMBIAR LAS FICHAS
-    this.jugador2 = new Jugador( modelo.nombre1,modelo.imagen22 );  //PARA CAMBIAR LAS FICGAS
-           
+            this.jugador1 = new Jugador( modelo.nombre1,modelo.imagen11 );
+            this.jugador2 = new Jugador( modelo.nombre2,modelo.imagen22 ); 
+            System.out.println("El turno seleccionado es: "  + primerTurno);
+            
+            switch (primerTurno) {
+                case 1:
+                    this.turno = 1;
+                    this.turnoGeneral = JUGADOR1;
+                    break;
+                case 2:
+                    this.turno = 2;
+                    this.turnoGeneral = JUGADOR1;
+                    break;
+            }
+              
+                 
             //this.jugador2 = new Jugador( modelo.nombre2, new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png"))) ); 
             
             /*Mostramos su información, asignamos los nombres de jugador al panel.*/
@@ -384,13 +398,23 @@ public class TablaController implements Initializable,Runnable{
             /*Creamos la instancia para la computadora.*/
             computadora = new ComputadoraIA();
             
+            switch (primerTurno) {
+                case 1:
+                    this.turno = 1;
+                    this.turnoGeneral = JUGADOR1;
+                    break;
+                default:
+                    this.turno = 2;
+                    this.turnoGeneral = JUGADOR1;
+                    break;
+                /*case 2:
+                    this.turno = 2;
+                    this.turnoGeneral = JUGADOR1;
+                    break;*/
+            }
             /*Mostramos su información, asignamos los nombres de jugador al panel.*/
             mostrarInformacion();
         }
-        
-        /*Iniciamos el turno en jugador 1*/
-        this.turno = 1;
-        this.turnoGeneral = JUGADOR1;
         
         /*Variables de juego.*/
         jugando = true;
