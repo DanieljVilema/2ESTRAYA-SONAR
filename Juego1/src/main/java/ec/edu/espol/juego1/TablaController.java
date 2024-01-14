@@ -437,14 +437,14 @@ public class TablaController implements Initializable,Runnable{
         lblPlayer2.setText( jugador2.nombre );
         
         /*Establecemos las estadísticas del jugador.*/
-        this.lblGanados.setText("Ganados: " + jugador1.GANADOS );
-        this.blPerdidos.setText("Perdidos: " + jugador1.PERDIDOS );
-        this.lblEmpatados.setText("Empatados: " + jugador1.EMPATADOS );
+        this.lblGanados.setText("" + jugador1.GANADOS );
+        this.blPerdidos.setText("" + jugador1.PERDIDOS );
+        this.lblEmpatados.setText("" + jugador1.EMPATADOS );
         this.lblIcono.setGraphic(jugador1.obtenFicha() );
         
-        this.lblGanados2.setText("Ganados: " + jugador2.GANADOS );
-        this.lblPerdidos2.setText("Perdidos: " + jugador2.PERDIDOS );
-        this.lblEmpatados2.setText("Empatados: " + jugador2.EMPATADOS );
+        this.lblGanados2.setText("" + jugador2.GANADOS );
+        this.lblPerdidos2.setText("" + jugador2.PERDIDOS );
+        this.lblEmpatados2.setText("" + jugador2.EMPATADOS );
         this.lblIcono2.setGraphic(jugador2.obtenFicha() );
         
         this.lblPlayer.setVisible(true); //es la ventada del jugaddor pero por ahora solo vamos a ocultara o mostrarel nombre

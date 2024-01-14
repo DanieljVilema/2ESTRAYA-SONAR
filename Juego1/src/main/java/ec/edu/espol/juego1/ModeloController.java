@@ -292,7 +292,7 @@ public class ModeloController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Tabla.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(root, 761, 499));
 
             // Configurar el controlador de la tabla
             TablaController controller = loader.getController();

@@ -9,39 +9,88 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="lblPerdidos" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.TablaController">
+<AnchorPane id="AnchorPane" fx:id="lblPerdidos" prefHeight="499.0" prefWidth="761.0" style="-fx-background-color: #012465;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.TablaController">
    <children>
-      <Label fx:id="lblEstado" layoutX="339.0" layoutY="33.0" prefHeight="17.0" prefWidth="161.0" text="3 EN RAYA" />
-      <Label fx:id="Tablero" layoutX="213.0" layoutY="73.0" text="Label" />
-      <Label fx:id="lblGanados" layoutX="133.0" layoutY="335.0" text="G" />
+      <Label fx:id="lblEstado" alignment="CENTER" layoutX="212.0" layoutY="49.0" prefHeight="26.0" prefWidth="330.0" text="3 EN RAYA" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="21.0" />
+         </font></Label>
+      <Label fx:id="lblGanados" layoutX="276.0" layoutY="336.0" text="G" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
      
-      <Label fx:id="lblEmpatados" layoutX="419.0" layoutY="335.0" text="E" />
-      <Label layoutX="62.0" layoutY="335.0" prefHeight="17.0" prefWidth="71.0" text="GANADOS:" />
-      <Label layoutX="200.0" layoutY="335.0" prefHeight="17.0" prefWidth="65.0" text="PERDIDOS:" />
-      <Label layoutX="316.0" layoutY="335.0" prefHeight="17.0" prefWidth="84.0" text="EMPATADOS:" />
-      <Label fx:id="lblIcono" layoutX="496.0" layoutY="335.0" text="ICONO" />
-      <Label layoutX="62.0" layoutY="359.0" prefHeight="17.0" prefWidth="71.0" text="GANADOS:" />
-      <Label fx:id="lblGanados2" layoutX="133.0" layoutY="359.0" text="G" />
-      <Label layoutX="200.0" layoutY="359.0" prefHeight="17.0" prefWidth="65.0" text="PERDIDOS:" />
-      <Label fx:id="lblPerdidos2" layoutX="270.0" layoutY="359.0" text="P" />
-      <Label layoutX="316.0" layoutY="359.0" prefHeight="17.0" prefWidth="84.0" text="EMPATADOS:" />
-      <Label fx:id="lblEmpatados2" layoutX="419.0" layoutY="359.0" text="E" />
-      <Label fx:id="lblIcono2" layoutX="496.0" layoutY="359.0" text="ICONO" />
-      <Label fx:id="lblPlayer" layoutX="22.0" layoutY="335.0" text="P1" />
-      <Label fx:id="lblPlayer2" layoutX="22.0" layoutY="359.0" text="P2" />
-      <MenuButton fx:id="mnuJuego" layoutX="23.0" layoutY="29.0" mnemonicParsing="false" text="Menu">
+      <Label fx:id="lblEmpatados" layoutX="568.0" layoutY="336.0" text="E" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label layoutX="186.0" layoutY="336.0" prefHeight="18.0" prefWidth="84.0" text="GANADOS:" textFill="#fcbf07">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label layoutX="319.0" layoutY="336.0" prefHeight="18.0" prefWidth="84.0" text="PERDIDOS:" textFill="#fcbf07">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label layoutX="460.0" layoutY="336.0" prefHeight="18.0" prefWidth="108.0" text="EMPATADOS:" textFill="#fcbf07">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblIcono" layoutX="640.0" layoutY="304.0" text="ICONO" textFill="#012465">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label layoutX="186.0" layoutY="416.0" prefHeight="18.0" prefWidth="84.0" text="GANADOS:" textFill="#fcbf07">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblGanados2" layoutX="276.0" layoutY="416.0" text="G" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label layoutX="319.0" layoutY="416.0" prefHeight="18.0" prefWidth="84.0" text="PERDIDOS:" textFill="#fcbf07">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblPerdidos2" layoutX="410.0" layoutY="416.0" text="P" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label layoutX="460.0" layoutY="416.0" prefHeight="18.0" prefWidth="108.0" text="EMPATADOS:" textFill="#fcbf07">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblEmpatados2" layoutX="568.0" layoutY="416.0" text="E" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblIcono2" layoutX="640.0" layoutY="386.0" text="ICONO" textFill="#012465">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblPlayer" layoutX="46.0" layoutY="336.0" text="P1" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblPlayer2" layoutX="46.0" layoutY="416.0" text="P2" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <MenuButton fx:id="mnuJuego" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Menu">
         <items>
           <MenuItem fx:id="mnuIniciar" mnemonicParsing="false" text="Iniciar nuevo juego" />
           <MenuItem fx:id="mnuSuspender" mnemonicParsing="false" text="Suspender juego" />
             <MenuItem fx:id="mnuEstadisticas" mnemonicParsing="false" text="Ver estadistica" />
         </items>
       </MenuButton>
-      <Button fx:id="btnconfigurar" layoutX="106.0" layoutY="29.0" mnemonicParsing="false" text="Configurar" />
-      
-      <Label fx:id="Fondo" layoutX="482.0" layoutY="134.0" text="Label" />
-      <Label fx:id="blPerdidos" layoutX="270.0" layoutY="335.0" text="P" />
-      <GridPane gridLinesVisible="true" layoutX="165.0" layoutY="151.0">
+      <Button fx:id="btnconfigurar" layoutX="88.0" layoutY="14.0" mnemonicParsing="false" text="Configurar" />
+      <Label fx:id="blPerdidos" layoutX="410.0" layoutY="336.0" text="P" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <GridPane gridLinesVisible="true" layoutX="212.0" layoutY="107.0" prefHeight="191.0" prefWidth="330.0" style="-fx-border-color: #0068c6; -fx-border-width: 10; -fx-border-radius: 7;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -53,15 +102,15 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fx:id="f1" fitHeight="27.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="f2" fitHeight="27.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-            <ImageView fx:id="f3" fitHeight="25.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-            <ImageView fx:id="f4" fitHeight="28.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-            <ImageView fx:id="f5" fitHeight="27.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ImageView fx:id="f6" fitHeight="28.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <ImageView fx:id="f7" fitHeight="26.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
-            <ImageView fx:id="f8" fitHeight="28.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ImageView fx:id="f9" fitHeight="28.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <ImageView fx:id="f1" pickOnBounds="true" preserveRatio="true" style="-fx-border-width: 10;" />
+            <ImageView fx:id="f2" pickOnBounds="true" preserveRatio="true" style="-fx-border-width: 10;" GridPane.columnIndex="1" />
+            <ImageView fx:id="f3" pickOnBounds="true" preserveRatio="true" style="-fx-border-width: 10;" GridPane.columnIndex="2" />
+            <ImageView fx:id="f4" pickOnBounds="true" preserveRatio="true" style="-fx-border-width: 10;" GridPane.rowIndex="1" />
+            <ImageView fx:id="f5" pickOnBounds="true" preserveRatio="true" style="-fx-border-width: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ImageView fx:id="f6" pickOnBounds="true" preserveRatio="true" style="-fx-border-width: 10;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ImageView fx:id="f7" pickOnBounds="true" preserveRatio="true" style="-fx-border-width: 10;" GridPane.rowIndex="2" />
+            <ImageView fx:id="f8" pickOnBounds="true" preserveRatio="true" style="-fx-border-width: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ImageView fx:id="f9" pickOnBounds="true" preserveRatio="true" style="-fx-border-width: 10;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
      
