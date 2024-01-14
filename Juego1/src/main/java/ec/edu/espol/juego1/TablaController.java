@@ -10,6 +10,7 @@ import ec.edu.espol.juego1.Jugador;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -363,28 +364,24 @@ public class TablaController implements Initializable,Runnable{
         /*Creamos los jugadores según el tipo de juego.*/
         if ( modelo.tipo_juego == HOMBREvsHOMBRE ){
             System.out.println(" pasa el primer filtro");
-          // this.jugador1 = new Jugador( modelo.nombre1,new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png"))) );  
             
             this.jugador1 = new Jugador( modelo.nombre1,modelo.imagen11 );
             this.jugador2 = new Jugador( modelo.nombre2,modelo.imagen22 ); 
             System.out.println("El turno seleccionado es: "  + primerTurno);
             
-//            switch (primerTurno) {
-//                case 1:
-//                    this.turno = 1;
-//                    this.turnoGeneral = JUGADOR1;
-//                    break;
-//                case 2:
-//                    this.turno = 2;
-//                    this.turnoGeneral = JUGADOR2;
-//                    break;
-//            }
+            switch (primerTurno) {
+                case 1:
+                    this.turno = 1;
+                    this.turnoGeneral = JUGADOR1;
+                    break;
+                case 2:
+                    this.turno = 2;
+                    this.turnoGeneral = JUGADOR2;
+                    break;
+            }
               
                  
-            //this.jugador2 = new Jugador( modelo.nombre2, new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png"))) ); 
             
-            /*Mostramos su información, asignamos los nombres de jugador al panel.*/
-           
             mostrarInformacion();
         } else {
             /*Jugadores*/
@@ -395,32 +392,24 @@ public class TablaController implements Initializable,Runnable{
             /*Creamos la instancia para la computadora.*/
             computadora = new ComputadoraIA();
                  
-//            switch (primerTurno) {
-//                case 1:
-//                    this.turno = 1;
-//                    this.turnoGeneral = JUGADOR1;
-//                    System.out.println("avance");
-//                    break;
-//                    
-//                default:
-//                    this.turno = 2;
-//                    this.turnoGeneral = JUGADOR2;
-//                    break;
-//                /*case 2:
-//                    this.turno = 2;
-//                    this.turnoGeneral = JUGADOR1;
-//                    break;*/
-//            }
-            /*Mostramos su información, asignamos los nombres de jugador al panel.*/
-            mostrarInformacion();
-        }
-        if (primerTurno==1){
-                this.turno = 1;
+            switch (primerTurno) {
+                case 1:
+                    this.turno = 1;
                     this.turnoGeneral = JUGADOR1;
                     System.out.println("avance");
+                    break;
+                    
+                default:
+                    this.turno = 2;
+                    this.turnoGeneral = JUGADOR2;
+                    lanzaPc1();
+                    break;
+                
             }
-//         this.turno = 1;
-//         this.turnoGeneral = JUGADOR1;
+            
+            mostrarInformacion();
+        }
+       
         jugando = true;
         terminado = false;
         
@@ -690,12 +679,51 @@ public class TablaController implements Initializable,Runnable{
     private void f1MouseClicked() {                                
         movimiento(f1);
     }   
+     
+    private int aleatoriopc(){
+        Random random = new Random();
+        int NR = random.nextInt(8) + 1;
+        return NR;
+    }
+    
+    private void lanzaPc1(){
+        switch (aleatoriopc()) {
+                case 1:
+                    ponerFichaCPU(1 );
+                    break;
+                    case 2:
+                    ponerFichaCPU(2);
+                    break;
+                    case 3:
+                    ponerFichaCPU(3 );
+                    break;
+                    case 4:
+                    ponerFichaCPU(4 );
+                    break;
+                    case 5:
+                    ponerFichaCPU(5 );
+                    break;
+                    case 6:
+                    ponerFichaCPU(6);
+                    break;
+                    case 7:
+                    ponerFichaCPU(7 );
+                    break;
+                    case 8:
+                    ponerFichaCPU(8 );
+                    break;
+                    case 9:
+                    ponerFichaCPU(9 );
+                    break;
+    }
+    }
     public void initialize(URL url, ResourceBundle rb) {
     /*LLenamos nuestro tablero de 0, vacío.*/
     Arrays.fill(tablero, 0);
 
     /*Iniciamos los componentes de nuestra ventana*/
     iniciarComponentes();
+        System.out.println(aleatoriopc());
     initComponents();
         System.out.println("QUE ME NADA DE TABLA CONTROLLEER"+modelo.primerTurno);
 }
