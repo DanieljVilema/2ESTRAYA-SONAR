@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="lblPerdidos" prefHeight="499.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.TablaController">
+<AnchorPane id="AnchorPane" fx:id="lblPerdidos" prefHeight="499.0" prefWidth="761.0" style="-fx-background-color: #012465;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.TablaController">
    <children>
       <Label fx:id="lblEstado" alignment="CENTER" layoutX="212.0" layoutY="49.0" prefHeight="26.0" prefWidth="330.0" text="3 EN RAYA" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -87,15 +87,15 @@
          <font>
             <Font name="Eras Bold ITC" size="14.0" />
          </font></Label>
-      <ImageView fx:id="f1" fitHeight="150.0" fitWidth="200.0" layoutX="141.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="f2" fitHeight="150.0" fitWidth="200.0" layoutX="277.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="f3" fitHeight="150.0" fitWidth="200.0" layoutX="393.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="f4" fitHeight="150.0" fitWidth="200.0" layoutX="135.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="f5" fitHeight="150.0" fitWidth="200.0" layoutX="281.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="f6" fitHeight="150.0" fitWidth="200.0" layoutX="390.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="f7" fitHeight="150.0" fitWidth="200.0" layoutX="161.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="f8" fitHeight="150.0" fitWidth="200.0" layoutX="277.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="f9" fitHeight="150.0" fitWidth="200.0" layoutX="410.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f3" fitHeight="62.0" fitWidth="73.0" layoutX="418.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f1" fitHeight="62.0" fitWidth="73.0" layoutX="271.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f4" fitHeight="62.0" fitWidth="73.0" layoutX="271.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f7" fitHeight="62.0" fitWidth="73.0" layoutX="272.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f6" fitHeight="62.0" fitWidth="73.0" layoutX="418.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f8" fitHeight="62.0" fitWidth="73.0" layoutX="345.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f5" fitHeight="62.0" fitWidth="73.0" layoutX="345.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f2" fitHeight="62.0" fitWidth="73.0" layoutX="345.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f9" fitHeight="62.0" fitWidth="73.0" layoutX="418.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
      
    </children>
 </AnchorPane>
