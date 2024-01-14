@@ -102,7 +102,6 @@ public class TablaController implements Initializable,Runnable{
     /*Matriz que representa el juego.*/
     int[] tablero = new int[9];
 
-    /*Tablero en componentes.*/
     @FXML
     private MenuButton mnuJuego;
     @FXML
@@ -417,33 +416,34 @@ public class TablaController implements Initializable,Runnable{
     
     /*Método que suspende un juego.*/
     public void suspenderJuego(){ 
-                
-        //Llenamos el tablero con 0s*/
-        Arrays.fill(tablero,0);
-        
-        /*Borramos los iconos.*/
-        for ( int i = 0; i < 9; i ++ )
-            fichas[i].setImage(null);
-        
-        /*Reinciamos el turno.*/
-        turno = 1;
-        jugando = false;
-        terminado = false;
-        
-        /*Borramos jugadores.*/
-        jugador1 = null;
-        jugador2 = null;
-        
-        /*Habilitamos los menús.*/
-        this.mnuIniciar.setDisable(false); 
-        this.mnuSuspender.setDisable(false);
-        this.lblEstado.setText("Juega al gato!");
-        
-        /*Quitamos los paneles.*/
-        this.lblPlayer.setVisible(false);
-        this.lblPlayer2.setVisible(false);
-        
-        
+        System.out.println("Cerrando juego");
+//                
+//        //Llenamos el tablero con 0s*/
+//        Arrays.fill(tablero,0);
+//        
+//        /*Borramos los iconos.*/
+//        for ( int i = 0; i < 9; i ++ )
+//            fichas[i].setImage(null);
+//        
+//        /*Reinciamos el turno.*/
+//        turno = 1;
+//        jugando = false;
+//        terminado = false;
+//        
+//        /*Borramos jugadores.*/
+//        jugador1 = null;
+//        jugador2 = null;
+//        
+//        /*Habilitamos los menús.*/
+//        this.mnuIniciar.setDisable(false); 
+//        this.mnuSuspender.setDisable(false);
+//        this.lblEstado.setText("Juega al gato!");
+//        
+//        /*Quitamos los paneles.*/
+//        this.lblPlayer.setVisible(false);
+//        this.lblPlayer2.setVisible(false);
+//        
+//        
         
     }
     
@@ -529,26 +529,15 @@ public class TablaController implements Initializable,Runnable{
             
         });
          
-         mnuSuspender.setOnAction(event -> mnuSuspenderActionPerformed());
+         mnuSuspender.setOnAction(event -> suspenderJuego());
          
-         mnuEstadisticas.setOnAction(event -> mnuEstadisticasActionPerformed());
+         
          
          btnconfigurar.setOnAction(event -> configurarActionPerformed());
     }
     
-    private void configurarActionPerformed() {   /// POSIBLE OPCIONAL 
+    private void configurarActionPerformed() {   
         System.out.println("Configurar");
-    } 
-    private void mnuEstadisticasActionPerformed() {                                                
-       
-        System.out.println("Estadisticas");
-    } 
-    
-    private void mnuSuspenderActionPerformed() {       //TRABAJAR                                       
-        
-        suspenderJuego();
-        System.out.println("susoender");
-         
     } 
     
    private void mnuIniciarActionPerformed() throws IOException {                                           

@@ -146,15 +146,6 @@ public class ModeloController implements Initializable {
     
     
     public boolean quienempieza(){
-
-        /*Comprobamos que los campos estén llenos.*/
-        
-        /*if( (!this.inipc1.isSelected() && !this.inipc2.isSelected() )){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setContentText("Selecione quien inicia primero por favor.");
-            alert.show();
-            return true;
-        }*/
         ModeloController modelo = ModeloController.getInstancia();
         System.out.println("El tipo de juego es: " + tipo_juego);
         if(tipo_juego == 1){ //HOMBREvsHOMBRE
@@ -165,9 +156,9 @@ public class ModeloController implements Initializable {
                 return false;
             }
             if(this.inip1.isSelected()){
-                modelo.primerTurno = 1; //player1
+                modelo.primerTurno = 1; 
             }else{
-                modelo.primerTurno = 2; //player2
+                modelo.primerTurno = 2; 
             }
         }
         
@@ -179,9 +170,9 @@ public class ModeloController implements Initializable {
                 return false;
             }
             if(this.inip1.isSelected()){
-                modelo.primerTurno = 1; //player1
+                modelo.primerTurno = 1; 
             }else{
-                modelo.primerTurno = 3; //IA
+                modelo.primerTurno = 2; 
             }
         }
         return true;
@@ -197,19 +188,18 @@ public class ModeloController implements Initializable {
           
             if (modoPVI == true) {
                 hvpcActionPerformed();  
-                System.out.println("PCVSPC");
+                System.out.println("PERSONAVSPC");
             }
          
             if (modoIVI == true) {
                 pcvpcActionPerformed();  
-                System.out.println("PERSONAVSPC");
+                System.out.println("PCVSPC");
             }
           
           btnAceptar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    // Lógica a ejecutar cuando se hace clic en el botón
                     btnAceptarActionPerformed();
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -220,9 +210,7 @@ public class ModeloController implements Initializable {
           btnCancelar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                // Lógica a ejecutar cuando se hace clic en el botón
                 btnCancelarActionPerformed();  
-                System.out.println("5");
             }
         });
     
@@ -274,14 +262,9 @@ public class ModeloController implements Initializable {
     }  
 
    public void enviarModelo() {
-    // Crear una instancia de TablaController y establecer el modelo
     TablaController tablaController = new TablaController();
     tablaController.setModeloController(this);
-
-    // Abrir la ventana de TablaController
     abrirVentana(tablaController);
-
-    // Cierra la ventana (Stage) asociada a este controlador
     Stage stage = (Stage) btnAceptar.getScene().getWindow();
     stage.close();
 }
@@ -293,15 +276,10 @@ public class ModeloController implements Initializable {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root, 761, 499));
-
-            // Configurar el controlador de la tabla
             TablaController controller = loader.getController();
             controller.setModeloController(tablaController.getModeloController());
-
-            controller.someMethod(); // O cualquier otra lógica que necesites
+            controller.someMethod(); 
             controller.iniciarJuego();
-
-            // Mostrar la ventana
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
