@@ -2,15 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="lblPerdidos" prefHeight="499.0" prefWidth="761.0" style="-fx-background-color: #012465;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.TablaController">
    <children>
-      <Label fx:id="lblEstado" alignment="CENTER" layoutX="212.0" layoutY="49.0" prefHeight="26.0" prefWidth="330.0" text="3 EN RAYA" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="lblEstado" alignment="CENTER" layoutX="344.0" layoutY="36.0" prefHeight="26.0" prefWidth="330.0" text="3 EN RAYA" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Eras Bold ITC" size="21.0" />
          </font></Label>
@@ -75,14 +73,6 @@
          <font>
             <Font name="Eras Bold ITC" size="14.0" />
          </font></Label>
-      <MenuButton fx:id="mnuJuego" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Menu">
-        <items>
-          <MenuItem fx:id="mnuIniciar" mnemonicParsing="false" text="Iniciar nuevo juego" />
-          <MenuItem fx:id="mnuSuspender" mnemonicParsing="false" text="Suspender juego" />
-            <MenuItem fx:id="mnuEstadisticas" mnemonicParsing="false" text="Ver estadistica" />
-        </items>
-      </MenuButton>
-      <Button fx:id="btnconfigurar" layoutX="91.0" layoutY="14.0" mnemonicParsing="false" text="Configurar" />
       <Label fx:id="blPerdidos" layoutX="410.0" layoutY="336.0" text="P" textFill="WHITE">
          <font>
             <Font name="Eras Bold ITC" size="14.0" />
@@ -96,6 +86,16 @@
       <ImageView fx:id="f5" fitHeight="62.0" fitWidth="73.0" layoutX="345.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="f2" fitHeight="62.0" fitWidth="73.0" layoutX="345.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="f9" fitHeight="62.0" fitWidth="73.0" layoutX="418.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="nuevoModo" layoutX="176.0" layoutY="31.0" mnemonicParsing="false" onAction="#nuevoModo" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #13359e; -fx-border-color: #000000; -fx-border-radius: 3;" text="Nuevo Modo" textFill="#faba0a">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="nuevoJuego" layoutX="29.0" layoutY="30.0" mnemonicParsing="false" onAction="#nuevoJuego" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #13359e; -fx-border-color: #000000; -fx-border-radius: 3;" text="Nuevo Juego" textFill="#faba0a">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font>
+      </Button>
      
    </children>
 </AnchorPane>
