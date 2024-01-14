@@ -485,9 +485,7 @@ public class TablaController implements Initializable,Runnable{
         blPerdidos.setText("Perdidos: 0");
 
         lblEmpatados.setText("Empatados: 0");
-
     }
-    
      @FXML
      private void nuevoJuego(ActionEvent event) throws IOException {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("Modelo.fxml"));
@@ -498,6 +496,7 @@ public class TablaController implements Initializable,Runnable{
          stage.show();
      }
     
+
      @FXML
      private void nuevoModo(ActionEvent event) throws IOException {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("Modos.fxml"));
@@ -508,6 +507,18 @@ public class TablaController implements Initializable,Runnable{
          stage.show();
      }
 
+   private void mnuIniciarActionPerformed() throws IOException {                                           
+    ModeloController n = new ModeloController();
+    n.setTablaController(this);
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("Modos.fxml"));
+    Parent root = loader.load();
+    this.setModeloController(modelo);
+    Stage modeloStage = new Stage();
+    Scene scene = new Scene(root, 615, 348);
+    modeloStage.setScene(scene);
+    modeloStage.show();   
+    
+}
     private void f9MouseClicked() {                                
         movimiento(f9);
     }                               
