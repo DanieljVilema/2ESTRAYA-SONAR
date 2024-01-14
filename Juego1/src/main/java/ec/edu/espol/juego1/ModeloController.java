@@ -103,33 +103,34 @@ public class ModeloController implements Initializable {
 
         /*Comprobamos que los campos estén llenos.*/
         
-        if(modoPVP = true){
-            if( this.txtJugador1.getText().equals("") && this.txtJugador2.getText().equals("")){
+        //if(modoPVP = true){
+            if( this.txtJugador1.getText().equals("") && this.txtJugador2.getText().equals("")&&modoPVP == true){
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setContentText("Llene el nombre de los jugadores por favor.");
                 alert.show();
                 return false;   
             }
-        }
+        //}
         
-        if(modoPVI = true){
-            if( this.txtJugador1.getText().equals("")){
+       // if(modoPVI = true){
+            if( this.txtJugador1.getText().equals("")&& modoPVP == true){
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setContentText("Llene el nombre del jugador 1 por favor.");
                 alert.show();
                 return false;   
             } 
-        }
+        //}
   
         /*Recojemos los valores.*/
-        this.tipo_juego = (modoPVP = true) ? HOMBREvsHOMBRE :
-                  (modoPVI = true) ? HOMBREvsCOMPUTADORA :
-                  COMPUTADORAvsCOMPUTADORA;
+        this.tipo_juego = (modoPVP == true) ? HOMBREvsHOMBRE :
+                  (modoIVI == true) ? COMPUTADORAvsCOMPUTADORA:
+                  HOMBREvsCOMPUTADORA;
         
         this.nombre1 = this.txtJugador1.getText();
         this.nombre2 = this.txtJugador2.getText();
         this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
         this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png")));
+        System.out.println("modifcaa"+this.tipo_juego);
         return true;
     }
     
@@ -196,21 +197,7 @@ public class ModeloController implements Initializable {
                 System.out.println("5");
             }
         });
-          
-//           CONFICHA.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                try {
-//                    // Lógica a ejecutar cuando se hace clic en el botón
-//                    confichaActionPerformed();
-//                    System.out.println("funciona bton conf");
-//                } catch (IOException ex) {
-//                    ex.printStackTrace();
-//                }
-//                System.out.println("configurar ficha");
-//            }
-        //});
-
+    
     }
     private void btnCancelarActionPerformed() {                                            
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
