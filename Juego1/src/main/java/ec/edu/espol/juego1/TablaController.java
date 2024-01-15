@@ -12,11 +12,13 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -87,9 +89,9 @@ public class TablaController implements Initializable,Runnable{
     @FXML
     private Label lblPlayer2;
     @FXML
-    private MenuItem mnuIniciar;
+    private Button nuevoJuego;
     @FXML
-    private MenuItem mnuSuspender;
+    private Button nuevoModo;
     @FXML
     private MenuItem mnuEstadisticas;
     @FXML
@@ -419,10 +421,6 @@ public class TablaController implements Initializable,Runnable{
         }
         jugando = true;
         terminado = false;
-        
-        /*Deshabilitamos el menú nuevo juego.*/
-        this.mnuIniciar.setDisable(false);
-        this.mnuSuspender.setDisable(false);
        
         
         /*Movemos el foco.*/
@@ -480,40 +478,7 @@ public class TablaController implements Initializable,Runnable{
         jugando = true;
         terminado = false;
     }
-    
-    /*Método que suspende un juego.*/
-    public void suspenderJuego(){ 
-        System.out.println("Cerrando juego");
-        
-//                
-//        //Llenamos el tablero con 0s*/
-//        Arrays.fill(tablero,0);
-//        
-//        /*Borramos los iconos.*/
-//        for ( int i = 0; i < 9; i ++ )
-//            fichas[i].setImage(null);
-//        
-//        /*Reinciamos el turno.*/
-//        turno = 1;
-//        jugando = false;
-//        terminado = false;
-//        
-//        /*Borramos jugadores.*/
-//        jugador1 = null;
-//        jugador2 = null;
-//        
-//        /*Habilitamos los menús.*/
-//        this.mnuIniciar.setDisable(false); 
-//        this.mnuSuspender.setDisable(false);
-//        this.lblEstado.setText("Juega al gato!");
-//        
-//        /*Quitamos los paneles.*/
-//        this.lblPlayer.setVisible(false);
-//        this.lblPlayer2.setVisible(false);
-//        
-//        
-        
-    }
+   
     
     private void initComponents() {
         f1.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -587,28 +552,28 @@ public class TablaController implements Initializable,Runnable{
         blPerdidos.setText("Perdidos: 0");
 
         lblEmpatados.setText("Empatados: 0");
-        
-         mnuIniciar.setOnAction(event -> {
-            try {
-                mnuIniciarActionPerformed();
-                
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            
-        });
-         
-         mnuSuspender.setOnAction(event -> suspenderJuego());
-         
-         
-         
-         btnconfigurar.setOnAction(event -> configurarActionPerformed());
     }
+     @FXML
+     private void nuevoJuego(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("Modelo.fxml"));
+         Parent root = loader.load();
+         Scene scene = new Scene(root, 600, 417);
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+         stage.setScene(scene);
+         stage.show();
+     }
     
-    private void configurarActionPerformed() {   
-        System.out.println("Configurar");
-    } 
-    
+
+     @FXML
+     private void nuevoModo(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("Modos.fxml"));
+         Parent root = loader.load();
+         Scene scene = new Scene(root, 615, 348);
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+         stage.setScene(scene);
+         stage.show();
+     }
+
    private void mnuIniciarActionPerformed() throws IOException {                                           
     ModeloController n = new ModeloController();
     n.setTablaController(this);
@@ -621,8 +586,6 @@ public class TablaController implements Initializable,Runnable{
     modeloStage.show();   
     
 }
-     
-
     private void f9MouseClicked() {                                
         movimiento(f9);
     }                               
