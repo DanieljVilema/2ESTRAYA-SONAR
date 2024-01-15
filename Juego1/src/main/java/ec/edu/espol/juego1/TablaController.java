@@ -4,9 +4,6 @@
  */
 package ec.edu.espol.juego1;
 
-import ec.edu.espol.juego1.ModeloController;
-import ec.edu.espol.juego1.ComputadoraIA;
-import ec.edu.espol.juego1.Jugador;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
@@ -21,15 +18,9 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 /**
  * FXML Controller class
@@ -48,8 +39,6 @@ public class TablaController implements Initializable,Runnable{
     public final int JUGADOR1 = 1;
     public final int JUGADOR2 = 2;
     public boolean PENSANDO = false;
-    @FXML
-    private AnchorPane lblPerdidos;
     @FXML
     private Label lblEstado;
     @FXML
@@ -89,17 +78,7 @@ public class TablaController implements Initializable,Runnable{
     @FXML
     private Label lblPlayer2;
     @FXML
-    private Button nuevoJuego;
-    @FXML
-    private Button nuevoModo;
-    @FXML
-    private MenuItem mnuEstadisticas;
-    @FXML
     private Label blPerdidos;
-    @FXML
-    private MenuButton mnuJuego;
-    @FXML
-    private Button btnconfigurar;
     
     ImageView[] fichas = new ImageView[9];
     int turno = 0;
