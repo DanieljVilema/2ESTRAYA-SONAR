@@ -58,15 +58,15 @@ public class ModeloController implements Initializable {
     private Label opcionTres;
     @FXML
     private Label opciondos;
+    @FXML
+    private ImageView imgp1;
+    @FXML
+    private ImageView imgp2;
+    @FXML
+    private Button btnCambiarficha;
     public ImageView imagen11;
     public ImageView imagen22;
-    boolean Secambia=false;
-
-    /**
-     * Initializes the controller class.
-     */
-    private TablaController tabla;
-    
+    private TablaController tabla;  
     private static ModeloController instanciaModelo;
     public final int HOMBREvsHOMBRE = 1;
     public final int HOMBREvsCOMPUTADORA = 2;
@@ -74,9 +74,8 @@ public class ModeloController implements Initializable {
     public String nombre1, nombre2;
     public int tipo_juego = 0;
     public int primerTurno = 0;
-//    @FXML
-//    private Button CONFICHA;
-    
+    boolean estadoActual = false; 
+  
     ModosController modo = ModosController.getInstancia();
     boolean modoPVP = modo.isPvp();
     boolean modoPVI = modo.isPvi();
@@ -88,15 +87,7 @@ public class ModeloController implements Initializable {
         }
         return instanciaModelo;
     }
-    @FXML
-    private ImageView imgp1;
-    @FXML
-    private ImageView imgp2;
-    @FXML
-    private Button btnCambiarficha;
     
-    
-    /** Crea un nuevo Modelo */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          System.out.println(modoPVP);
@@ -108,8 +99,8 @@ public class ModeloController implements Initializable {
     }  
     
     public ModeloController() {
-        // Inicializaciones o lógica del constructor, si es necesario
     }
+    
     public void setTablaController(TablaController TablaController) {
         this.tabla = TablaController;
         System.out.println("TABLAController recibido en MODELOController");
@@ -117,47 +108,36 @@ public class ModeloController implements Initializable {
   
     /*Método que recoje los datos.*/
     public boolean recojer(){
-
-        /*Comprobamos que los campos estén llenos.*/
-        
-        //if(modoPVP = true){
             if( (this.txtJugador1.getText().equals("")&& this.txtJugador2.getText().equals(""))&&modoPVP == true){
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setContentText("Llene el nombre de los jugadores por favor.");
                 alert.show();
                 return false;   
             }
-        //}
-        
-       // if(modoPVI = true){
             if( this.txtJugador1.getText().equals("")&& modoPVI == true){
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setContentText("Llene el nombre del jugador 1 por favor.");
                 alert.show();
                 return false;   
             } 
-        // if(modoIVI==true)
-            
-  
-        /*Recojemos los valores.*/
+        
         this.tipo_juego = (modoPVP == true) ? HOMBREvsHOMBRE :
                   (modoIVI == true) ? COMPUTADORAvsCOMPUTADORA:
                   HOMBREvsCOMPUTADORA;
         
         this.nombre1 = this.txtJugador1.getText();
         this.nombre2 = this.txtJugador2.getText();
-        this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
-        this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png")));
-        if (Secambia==true){
-            System.out.println("listo para la ficha");
-            this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png")));
-        this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
-        }
+        if (estadoActual) {
+         this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png")));
+         this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
+    } else {
+       this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
+       this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png"))); 
+    }
         System.out.println("modifcaa"+this.tipo_juego);
         return true;
     }
-    
-    
+      
     public boolean quienempieza(){
         ModeloController modelo = ModeloController.getInstancia();
         System.out.println("El tipo de juego es: " + tipo_juego);
@@ -247,10 +227,14 @@ public class ModeloController implements Initializable {
     
     }
     private void btnCambiarfichaPerformed(){
+        estadoActual = !estadoActual;
+        if (estadoActual) {
         imgp1.setImage(new Image(getClass().getResourceAsStream("/images/cruz.png")));
         imgp2.setImage(new Image(getClass().getResourceAsStream("/images/circulo3.png")));
-        System.out.println("cambiaaaaaa");
-        Secambia=true;
+    } else {
+        imgp1.setImage(new Image(getClass().getResourceAsStream("/images/circulo3.png"))); 
+        imgp2.setImage(new Image(getClass().getResourceAsStream("/images/cruz.png"))); 
+    }
     }
     private void btnCancelarActionPerformed() {                                            
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
@@ -306,7 +290,6 @@ public class ModeloController implements Initializable {
     stage.close();
 }
 
-// Método para abrir la ventana de TablaController
     private void abrirVentana(TablaController tablaController) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Tabla.fxml"));
