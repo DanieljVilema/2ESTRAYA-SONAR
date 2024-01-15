@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="opcionDos" prefHeight="417.0" prefWidth="600.0" style="-fx-background-color: #3964b3;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.ModeloController">
+<AnchorPane id="AnchorPane" prefHeight="417.0" prefWidth="600.0" style="-fx-background-color: #3964b3;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.ModeloController">
    <children>
 
       <TextField fx:id="txtJugador1" layoutX="133.0" layoutY="205.0" prefHeight="25.0" prefWidth="157.0" />
@@ -45,11 +45,11 @@
          <font>
             <Font name="Eras Bold ITC" size="14.0" />
          </font></RadioButton>
-      <Label fx:id="opcionTres" layoutX="52.0" layoutY="53.0" text="Inicia el juego:" textFill="#fcbf07">
+      <Label layoutX="52.0" layoutY="53.0" text="Inicia el juego:" textFill="#fcbf07">
          <font>
             <Font name="Eras Bold ITC" size="17.0" />
          </font></Label>
-      <Label fx:id="opciondos" layoutX="52.0" layoutY="155.0" text="Nombre(s) de jugador(es):" textFill="#fcbf07">
+      <Label layoutX="52.0" layoutY="155.0" text="Nombre(s) de jugador(es):" textFill="#fcbf07">
          <font>
             <Font name="Eras Bold ITC" size="17.0" />
          </font></Label>

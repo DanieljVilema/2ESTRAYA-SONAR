@@ -22,18 +22,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author naomi
- */
 public class ModeloController implements Initializable {
 
-    @FXML
-    private AnchorPane opcionDos;
     @FXML
     private TextField txtJugador1;
     @FXML
@@ -54,10 +46,6 @@ public class ModeloController implements Initializable {
     private RadioButton inip2;
     @FXML
     private RadioButton inipc2;
-    @FXML
-    private Label opcionTres;
-    @FXML
-    private Label opciondos;
     @FXML
     private ImageView imgp1;
     @FXML
@@ -94,8 +82,8 @@ public class ModeloController implements Initializable {
          System.out.println(modoPVI);
          System.out.println(modoIVI);
          initComponents();
-         imgp1.setImage(new Image(getClass().getResourceAsStream("/images/circulo3.png")));
-         imgp2.setImage(new Image(getClass().getResourceAsStream("/images/cruz.png")));
+         cargarImg();
+         
     }  
     
     public ModeloController() {
@@ -105,8 +93,10 @@ public class ModeloController implements Initializable {
         this.tabla = TablaController;
         System.out.println("TABLAController recibido en MODELOController");
     }
-  
-    /*Método que recoje los datos.*/
+    public void cargarImg(){
+        imgp1.setImage(new Image(getClass().getResourceAsStream("/images/circulo3.png")));
+        imgp2.setImage(new Image(getClass().getResourceAsStream("/images/cruz.png")));
+    }
     public boolean recojer(){
             if( (this.txtJugador1.getText().equals("")&& this.txtJugador2.getText().equals(""))&&modoPVP == true){
                 Alert alert = new Alert(AlertType.ERROR);
@@ -141,7 +131,7 @@ public class ModeloController implements Initializable {
     public boolean quienempieza(){
         ModeloController modelo = ModeloController.getInstancia();
         System.out.println("El tipo de juego es: " + tipo_juego);
-        if(tipo_juego == 1){ //HOMBREvsHOMBRE
+        if(tipo_juego == 1){ 
             if( (!this.inip1.isSelected() && !this.inip2.isSelected() )){
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setContentText("Selecione quien inicia primero por favor.");
@@ -155,7 +145,7 @@ public class ModeloController implements Initializable {
             }
         }
         
-        else if(tipo_juego == 2){ //HOMBREvsCOMPUTADORA
+        else if(tipo_juego == 2){ 
             if( (!this.inip1.isSelected() && !this.inipc1.isSelected() )){
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setContentText("Selecione quien inicia primero por favor.");
@@ -182,8 +172,7 @@ public class ModeloController implements Initializable {
         }
         return true;
     }
-    
-    
+       
     private void initComponents() {
  
             if (modoPVP == true) {

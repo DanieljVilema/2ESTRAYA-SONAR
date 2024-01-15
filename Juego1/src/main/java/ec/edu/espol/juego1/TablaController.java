@@ -96,21 +96,17 @@ public class TablaController implements Initializable,Runnable{
     private MenuItem mnuEstadisticas;
     @FXML
     private Label blPerdidos;
-   
+    @FXML
+    private MenuButton mnuJuego;
+    @FXML
+    private Button btnconfigurar;
+    
     ImageView[] fichas = new ImageView[9];
     int turno = 0;
     int turnoGeneral = 0;
     ModeloController modelo = ModeloController.getInstancia();
     int primerTurno = modelo.primerTurno;
-
-    /*Matriz que representa el juego.*/
     int[] tablero = new int[9];
-
-    @FXML
-    private MenuButton mnuJuego;
-    @FXML
-    private Button btnconfigurar;
-        
 
    public TablaController() {
     
@@ -136,12 +132,10 @@ public class TablaController implements Initializable,Runnable{
         }
     }
     
-    public void run(){
-        
+    public void run(){      
     }
     
-     public void movimiento( ImageView ficha ){
-        /*Colocamos la ficha.*/
+    public void movimiento( ImageView ficha ){
         if ( jugando ){    
             if(this.modelo.tipo_juego == HOMBREvsCOMPUTADORA){
                 if(this.turno==JUGADOR1&&!PENSANDO&&this.modelo.tipo_juego!=COMPUTADORAvsCOMPUTADORA){
@@ -159,14 +153,6 @@ public class TablaController implements Initializable,Runnable{
                 }
             }
             
-//            if( !PENSANDO&&this.modelo.tipo_juego!=COMPUTADORAvsCOMPUTADORA){
-//                ponerFicha( ficha );
-//            }
-//            if ( this.modelo.tipo_juego == HOMBREvsCOMPUTADORA && this.turno == JUGADOR2 ){
-//                
-//                ponerFichaCPU(computadora.movimiento( this.tablero )); //TRABAJAR
-//                PENSANDO = false;                
-//            }
             if (this.modelo.tipo_juego == COMPUTADORAvsCOMPUTADORA) {
                 if (this.turno == JUGADOR1) {
                     
@@ -179,16 +165,15 @@ public class TablaController implements Initializable,Runnable{
                 }
             }
         }
-        /*Si se va a comenzar un juego nuevo*/
+        
         if( terminado ){
-            reiniciarJuego(); //TRABAJAR
+            reiniciarJuego(); 
             return;
         }
-        
-        /*Preguntamos si el juego termino o alguien ganó.*/
+       
         if ( terminado() != 0){  
             
-            /*Asignamos resultados.*/
+            
             if ( terminado() == 1 ){
                 jugador1.gano();    
                 jugador2.perdio();   
@@ -198,35 +183,28 @@ public class TablaController implements Initializable,Runnable{
                 jugador1.perdio();  
                 mensaje(jugador2.nombre + " ganó!");  
             }
-            
-            /*Mostramos la información.*/
+
             mostrarInformacion();  
             
-            /*Detenemos el juego actual.*/
             jugando = false;
             terminado = true;
             
             
-        } else if ( lleno() ){   //TRABAJAR
-            /*Asignamos resultados.*/
+        } else if ( lleno() ){  
             jugador1.empato();
             jugador2.empato();
-            mensaje("Empate!");  //TRABAJAR
+            mensaje("Empate!");  
             
-            /*Mostramos la información.*/
-            mostrarInformacion();   //TRABAJAR
+            mostrarInformacion();   
             
-            /*Detenemos el juego actual.*/
             jugando = false;
             terminado = true;
         }
         
-        /*Movemos el foco al otro jugador.*/
-        cambiarFoco();  //TRABAJAR
+        cambiarFoco();  
     }
      
-     /*Método que pone una ficha por la computadora.*/
-     public void ponerFichaCPU( int indice ){
+    public void ponerFichaCPU( int indice ){
         
         if( indice == -1 ) return;
             if(this.turno == JUGADOR2){
@@ -258,16 +236,10 @@ public class TablaController implements Initializable,Runnable{
             }
                 this.tablero[indice] = 1;
                 turno = ( turno == JUGADOR1 ) ? JUGADOR2 : JUGADOR1;
-        }
-        
-      computadora.imprime(tablero);
-        
-        
-     
-                    
+        }       
+      computadora.imprime(tablero);           
     } 
-     
-    /*Método que "pone una ficha" en el tablero.*/
+    
     public void ponerFicha( ImageView ficha ){
         /*Obtenemos la casilla.*/
         int casilla = Integer.parseInt(""+ficha.getId().charAt(1)) - 1;
@@ -288,25 +260,22 @@ public class TablaController implements Initializable,Runnable{
         
     }
     
-     /*Método que dice si el juego está terminado.*/
-    /*Regresa 0 si nadie gana, 1 si gana jugador 1 y 2 si gana jugador 2*/
     public int terminado(){
-        /*Comprobamos si el juego terminó.*/
-        /*Filas*/
+        //FILAS
         if ( tablero[0] == tablero[1] && tablero[0] == tablero[2] && tablero[0] != 0 )
             return tablero[0];
         else if ( tablero[3] == tablero[4] && tablero[3] == tablero[5]  && tablero[3] != 0  )
             return tablero[3];
         else if ( tablero[6] == tablero[7] && tablero[6]== tablero[8]  && tablero[6] != 0 )
             return tablero[6];
-        /*Columnas*/
+        //COLUMNAS
         else if( tablero[0] == tablero[3] && tablero[0] == tablero[6]  && tablero[0] != 0 )
             return tablero[0];
         else if ( tablero[1] == tablero[4] && tablero[1] == tablero[7]  && tablero[1] != 0  )
             return tablero[1];
         else if ( tablero[2] == tablero[5] && tablero[2] == tablero[8]  && tablero[2] != 0 )
             return tablero[2];
-        /*Diagonales*/
+        //DIAGONALES
         else if ( tablero[0] == tablero[4] && tablero[0] == tablero[8] && tablero[0] !=0 )
             return tablero[0];
         else if ( tablero[2] == tablero[4] && tablero[2] == tablero[6] && tablero[2] != 0 )
@@ -315,8 +284,7 @@ public class TablaController implements Initializable,Runnable{
         return 0;
         
     }
-    
-     /*Método que nos dice si el tablero se llenó.*/
+ 
     public boolean lleno(){
         boolean res = true;
         for ( int i = 0; i < tablero.length; i ++ )
@@ -325,37 +293,30 @@ public class TablaController implements Initializable,Runnable{
         
         return res;
     }
-    
-    /*Método que nos dice si una casilla está ocupada.*/
+
     public boolean estaOcupada( int casilla ){
         return ( tablero[casilla] != 0 );
     }
        
-    /*Método que inicia los componentes */
     private void iniciarComponentes(){  
-        /*Referenciamos todas las etiquetas.*/
         fichas = new ImageView[9];
         fichas[0] = f1; fichas[1] = f2; fichas[2] = f3;
         fichas[3] = f4; fichas[4] = f5; fichas[5] = f6;
         fichas[6] = f7; fichas[7] = f8; fichas[8] = f9;
         
-        
-        /*Cursor para los componentes.*/
-        for ( int i = 0; i < 9; i ++ )
-       
+        for ( int i = 0; i < 9; i ++ ){      
         fichas[i].setCursor(Cursor.HAND);
+        }
     }
     
     public void mensaje(String mensaje){
         this.lblEstado.setText(mensaje);
     }
     
-    public void cambiarFoco(){       
-        /*Si estamos jugando.*/
+    public void cambiarFoco(){
         if ( !jugando )
             return;
-    
-        /*Si es turno del primer jugador..*/
+        
         if ( turno == JUGADOR1 ){
             mensaje("Turno de " + jugador1.nombre );           
         } else {
@@ -363,9 +324,7 @@ public class TablaController implements Initializable,Runnable{
         }       
     }
 
-    /*Método que inicia el juego una vez obtenido el modelo.*/
     public void iniciarJuego(){  
-        /*Creamos los jugadores según el tipo de juego.*/
         System.out.println("El turno seleccionado es: "  + primerTurno);
         if ( modelo.tipo_juego == HOMBREvsHOMBRE ){
             this.jugador1 = new Jugador( modelo.nombre1,modelo.imagen11 );
@@ -393,8 +352,8 @@ public class TablaController implements Initializable,Runnable{
                     this.turno = 1;
                     this.turnoGeneral = JUGADOR1;                    
                     break;                   
-                //default:
-                    case 2:
+               
+                case 2:
                     this.turno = 2;
                     this.turnoGeneral = JUGADOR2;
                     lanzaPc1();
@@ -422,9 +381,6 @@ public class TablaController implements Initializable,Runnable{
         }
         jugando = true;
         terminado = false;
-       
-        
-        /*Movemos el foco.*/
         cambiarFoco();
         
     }
@@ -444,39 +400,30 @@ public class TablaController implements Initializable,Runnable{
         this.lblIcono2.setGraphic(jugador2.obtenFicha() );
     }
     
-    /*Método que inicia un nuevo juego.*/
-    public void reiniciarJuego(){  //NO SE VE MUY IMPORTANTE PERO HAY QUE TRABAJARLO SI ES QUE SIRVE
-        
-        //Llenamos el tablero con 0s*/
+    public void reiniciarJuego(){  //trabajar para cuando le toque a la pc lance automaticamente
         Arrays.fill(tablero,0);
-        
-        /*Borramos los iconos.*/
-        for ( int i = 0; i < 9; i ++ )
+        for ( int i = 0; i < 9; i ++ ){
             fichas[i].setImage(null);
-        
-       
-        /*Cambiamos el turno General.*/
-        if ( this.modelo.tipo_juego == HOMBREvsCOMPUTADORA )
+        }
+        if ( this.modelo.tipo_juego == HOMBREvsCOMPUTADORA ){
             turnoGeneral = JUGADOR1;
-        else
+        }else{
             turnoGeneral = ( turnoGeneral == JUGADOR1 ) ? JUGADOR2 : JUGADOR1;
         
         turno = turnoGeneral;
-        
-        /*Jugando.*/
-        if ( turno == JUGADOR1 )
+        } 
+       
+        if ( turno == JUGADOR1 ){
             mensaje( "Turno de " +jugador1.nombre);
-        else
+        }else{
             mensaje( "Turno de " +jugador2.nombre);
+        }
         
-        /*Mostramos su información, asignamos los nombres de jugador al panel.*/
-        mostrarInformacion();
-        
+        mostrarInformacion();  
         jugando = true;
         terminado = false;
     }
    
-    
     private void initComponents() {
         f1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -545,8 +492,9 @@ public class TablaController implements Initializable,Runnable{
 
         lblEmpatados.setText("Empatados: 0");
     }
-     @FXML
-     private void nuevoJuego(ActionEvent event) throws IOException {
+    
+    @FXML
+    private void nuevoJuego(ActionEvent event) throws IOException {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("Modelo.fxml"));
          Parent root = loader.load();
          Scene scene = new Scene(root, 600, 417);
@@ -554,10 +502,9 @@ public class TablaController implements Initializable,Runnable{
          stage.setScene(scene);
          stage.show();
      }
-    
 
-     @FXML
-     private void nuevoModo(ActionEvent event) throws IOException {
+    @FXML
+    private void nuevoModo(ActionEvent event) throws IOException {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("Modos.fxml"));
          Parent root = loader.load();
          Scene scene = new Scene(root, 615, 348);
@@ -566,7 +513,7 @@ public class TablaController implements Initializable,Runnable{
          stage.show();
      }
 
-   private void mnuIniciarActionPerformed() throws IOException {                                           
+    private void mnuIniciarActionPerformed() throws IOException {                                           
     ModeloController n = new ModeloController();
     n.setTablaController(this);
     FXMLLoader loader = new FXMLLoader(getClass().getResource("Modos.fxml"));
@@ -575,9 +522,9 @@ public class TablaController implements Initializable,Runnable{
     Stage modeloStage = new Stage();
     Scene scene = new Scene(root, 615, 348);
     modeloStage.setScene(scene);
-    modeloStage.show();   
-    
+    modeloStage.show();    
 }
+   
     private void f9MouseClicked() {                                
         movimiento(f9);
     }                               
