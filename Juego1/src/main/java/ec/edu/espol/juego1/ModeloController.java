@@ -156,14 +156,14 @@ public class ModeloController implements Initializable {
                 alert.show(); 
                 return false;
             }
-            if(this.inip1.isSelected()){
-                modelo.primerTurno = 1; 
-            }else{
+            if(this.inip2.isSelected()){
                 modelo.primerTurno = 2; 
+            }else{
+                modelo.primerTurno = 1; 
             }
         }
         
-        if(tipo_juego == 2){ //HOMBREvsCOMPUTADORA
+        else if(tipo_juego == 2){ //HOMBREvsCOMPUTADORA
             if( (!this.inip1.isSelected() && !this.inipc1.isSelected() )){
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setContentText("Selecione quien inicia primero por favor.");

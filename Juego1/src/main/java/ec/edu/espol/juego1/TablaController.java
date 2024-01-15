@@ -260,7 +260,7 @@ public class TablaController implements Initializable,Runnable{
                 turno = ( turno == JUGADOR1 ) ? JUGADOR2 : JUGADOR1;
         }
         
-        
+      computadora.imprime(tablero);
         
         
      
@@ -387,13 +387,14 @@ public class TablaController implements Initializable,Runnable{
             this.lblPlayer2.setVisible(true);           
             /*Creamos la instancia para la computadora.*/
             computadora = new ComputadoraIA();
-                 
+                 computadora.imprime(tablero);
             switch (primerTurno) {
                 case 1:
                     this.turno = 1;
                     this.turnoGeneral = JUGADOR1;                    
                     break;                   
-                default:
+                //default:
+                    case 2:
                     this.turno = 2;
                     this.turnoGeneral = JUGADOR2;
                     lanzaPc1();
@@ -667,7 +668,7 @@ public class TablaController implements Initializable,Runnable{
     Arrays.fill(tablero, 0);
     iniciarComponentes();
     initComponents();
-        
+       
 }
     
 }
