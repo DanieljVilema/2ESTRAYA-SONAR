@@ -408,12 +408,12 @@ public class TablaController implements Initializable,Runnable{
             computadora2 = new ComputadoraIA();
             switch(primerTurno){
                 case 1:
-                    this.turno = 1;
+                    this.turno = 2;
                     this.turnoGeneral = JUGADOR1;
                     lanzaPc1();
                     break;
-                default: 
-                    this.turno = 2;
+                case 2: 
+                    this.turno = 1;
                     this.turnoGeneral = JUGADOR2;
                     lanzaPc1();
                     break;
@@ -442,10 +442,6 @@ public class TablaController implements Initializable,Runnable{
         this.lblPerdidos2.setText("" + jugador2.PERDIDOS );
         this.lblEmpatados2.setText("" + jugador2.EMPATADOS );
         this.lblIcono2.setGraphic(jugador2.obtenFicha() );
-        
-        this.lblPlayer.setVisible(true); 
-        this.lblPlayer.setVisible(true);
-      
     }
     
     /*Método que inicia un nuevo juego.*/
@@ -535,12 +531,7 @@ public class TablaController implements Initializable,Runnable{
                 f9MouseClicked(); 
             }
         });  
-        lblEstado.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                f8MouseClicked(); 
-            }
-        });
+        
          
         lblEmpatados2.setText("Empatados: 0");
 
@@ -630,7 +621,6 @@ public class TablaController implements Initializable,Runnable{
     }
     
     private void lanzaPc1(){
-//        if(this.modelo.tipo_juego==HOMBREvsHOMBRE||this.modelo.tipo_juego==COMPUTADORAvsCOMPUTADORA){
             switch (aleatoriopc()) {
                 case 1:
                     ponerFichaCPU(1 );
@@ -660,7 +650,7 @@ public class TablaController implements Initializable,Runnable{
                     ponerFichaCPU(9 );
                     break;
             }
-//        }
+
     }
     
     @Override

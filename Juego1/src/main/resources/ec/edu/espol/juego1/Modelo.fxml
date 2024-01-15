@@ -4,10 +4,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="opcionDos" prefHeight="417.0" prefWidth="600.0" style="-fx-background-color: #3964b3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.ModeloController">
+<AnchorPane id="AnchorPane" fx:id="opcionDos" prefHeight="417.0" prefWidth="600.0" style="-fx-background-color: #3964b3;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.ModeloController">
    <children>
 
       <TextField fx:id="txtJugador1" layoutX="133.0" layoutY="205.0" prefHeight="25.0" prefWidth="157.0" />
@@ -52,6 +53,13 @@
          <font>
             <Font name="Eras Bold ITC" size="17.0" />
          </font></Label>
+      <ImageView fx:id="imgp1" fitHeight="56.0" fitWidth="65.0" layoutX="403.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgp2" fitHeight="56.0" fitWidth="65.0" layoutX="403.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnCambiarficha" layoutX="500.0" layoutY="231.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" style="-fx-background-color: #10359c;" text="Cambiar" textFill="#fffefd">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
 
    </children>
 </AnchorPane>

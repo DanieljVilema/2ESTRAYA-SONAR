@@ -35,8 +35,6 @@ public class ModeloController implements Initializable {
     @FXML
     private AnchorPane opcionDos;
     @FXML
-    private Label opcionUno;
-    @FXML
     private TextField txtJugador1;
     @FXML
     private TextField txtJugador2;
@@ -62,6 +60,7 @@ public class ModeloController implements Initializable {
     private Label opciondos;
     public ImageView imagen11;
     public ImageView imagen22;
+    boolean Secambia=false;
 
     /**
      * Initializes the controller class.
@@ -89,6 +88,12 @@ public class ModeloController implements Initializable {
         }
         return instanciaModelo;
     }
+    @FXML
+    private ImageView imgp1;
+    @FXML
+    private ImageView imgp2;
+    @FXML
+    private Button btnCambiarficha;
     
     
     /** Crea un nuevo Modelo */
@@ -98,6 +103,8 @@ public class ModeloController implements Initializable {
          System.out.println(modoPVI);
          System.out.println(modoIVI);
          initComponents();
+         imgp1.setImage(new Image(getClass().getResourceAsStream("/images/circulo3.png")));
+         imgp2.setImage(new Image(getClass().getResourceAsStream("/images/cruz.png")));
     }  
     
     public ModeloController() {
@@ -141,6 +148,11 @@ public class ModeloController implements Initializable {
         this.nombre2 = this.txtJugador2.getText();
         this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
         this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png")));
+        if (Secambia==true){
+            System.out.println("listo para la ficha");
+            this.imagen11=new ImageView( new Image(getClass().getResourceAsStream("/images/cruz.png")));
+        this.imagen22=new ImageView( new Image(getClass().getResourceAsStream("/images/circulo3.png")));
+        }
         System.out.println("modifcaa"+this.tipo_juego);
         return true;
     }
@@ -226,7 +238,19 @@ public class ModeloController implements Initializable {
                 btnCancelarActionPerformed();  
             }
         });
+          btnCambiarficha.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                btnCambiarfichaPerformed();  
+            }
+        });
     
+    }
+    private void btnCambiarfichaPerformed(){
+        imgp1.setImage(new Image(getClass().getResourceAsStream("/images/cruz.png")));
+        imgp2.setImage(new Image(getClass().getResourceAsStream("/images/circulo3.png")));
+        System.out.println("cambiaaaaaa");
+        Secambia=true;
     }
     private void btnCancelarActionPerformed() {                                            
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
