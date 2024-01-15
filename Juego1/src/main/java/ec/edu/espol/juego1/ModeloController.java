@@ -114,7 +114,7 @@ public class ModeloController implements Initializable {
         /*Comprobamos que los campos estén llenos.*/
         
         //if(modoPVP = true){
-            if( this.txtJugador1.getText().equals("") && this.txtJugador2.getText().equals("")&&modoPVP == true){
+            if( (this.txtJugador1.getText().equals("")&& this.txtJugador2.getText().equals(""))&&modoPVP == true){
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setContentText("Llene el nombre de los jugadores por favor.");
                 alert.show();
@@ -123,13 +123,14 @@ public class ModeloController implements Initializable {
         //}
         
        // if(modoPVI = true){
-            if( this.txtJugador1.getText().equals("")&& modoPVP == true){
+            if( this.txtJugador1.getText().equals("")&& modoPVI == true){
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setContentText("Llene el nombre del jugador 1 por favor.");
                 alert.show();
                 return false;   
             } 
-        //}
+        // if(modoIVI==true)
+            
   
         /*Recojemos los valores.*/
         this.tipo_juego = (modoPVP == true) ? HOMBREvsHOMBRE :
@@ -170,6 +171,18 @@ public class ModeloController implements Initializable {
                 return false;
             }
             if(this.inip1.isSelected()){
+                modelo.primerTurno = 1; 
+            }else{
+                modelo.primerTurno = 2; 
+            }
+        }else{
+            if( (tipo_juego==3&&!this.inipc1.isSelected() && !this.inipc2.isSelected() )){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setContentText("Selecione quien inicia primero por favor.");
+                alert.show();
+                return false;
+            }
+            if(this.inipc1.isSelected()){
                 modelo.primerTurno = 1; 
             }else{
                 modelo.primerTurno = 2; 

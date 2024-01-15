@@ -37,6 +37,8 @@ import javafx.stage.Stage;
 public class TablaController implements Initializable,Runnable{
     Jugador jugador1,jugador2;
     ComputadoraIA computadora;
+    ComputadoraIA computadora2;
+    
     boolean jugando, terminado;
     public final int HOMBREvsHOMBRE = 1;
     public final int HOMBREvsCOMPUTADORA = 2;
@@ -139,12 +141,40 @@ public class TablaController implements Initializable,Runnable{
      public void movimiento( ImageView ficha ){
         /*Colocamos la ficha.*/
         if ( jugando ){    
-            if( !PENSANDO )
-                ponerFicha( ficha );
-            if ( this.modelo.tipo_juego == HOMBREvsCOMPUTADORA && this.turno == JUGADOR2 ){
-                PENSANDO = true;
-                ponerFichaCPU(computadora.movimiento( this.tablero )); //TRABAJAR
-                PENSANDO = false;                
+            if(this.modelo.tipo_juego == HOMBREvsCOMPUTADORA){
+                if(this.turno==JUGADOR1&&!PENSANDO&&this.modelo.tipo_juego!=COMPUTADORAvsCOMPUTADORA){
+                    ponerFicha(ficha);
+                }else if(this.turno==JUGADOR2){
+                    PENSANDO = true;
+                    ponerFichaCPU(computadora.movimiento(this.tablero));
+                    PENSANDO = false;
+                }
+            }
+            
+            if(this.modelo.tipo_juego==HOMBREvsHOMBRE){
+                if(!PENSANDO){
+                    ponerFicha(ficha);
+                }
+            }
+            
+//            if( !PENSANDO&&this.modelo.tipo_juego!=COMPUTADORAvsCOMPUTADORA){
+//                ponerFicha( ficha );
+//            }
+//            if ( this.modelo.tipo_juego == HOMBREvsCOMPUTADORA && this.turno == JUGADOR2 ){
+//                
+//                ponerFichaCPU(computadora.movimiento( this.tablero )); //TRABAJAR
+//                PENSANDO = false;                
+//            }
+            if (this.modelo.tipo_juego == COMPUTADORAvsCOMPUTADORA) {
+                if (this.turno == JUGADOR1) {
+                    
+                    ponerFichaCPU(computadora.movimiento(this.tablero));
+                    
+                } else if (this.turno == JUGADOR2) {
+                   
+                    ponerFichaCPU(computadora2.movimiento(this.tablero));
+                    
+                }
             }
         }
         /*Si se va a comenzar un juego nuevo*/
@@ -197,23 +227,42 @@ public class TablaController implements Initializable,Runnable{
      public void ponerFichaCPU( int indice ){
         
         if( indice == -1 ) return;
-        
-        switch ( indice ){
-            case 0: this.f1.setImage(jugador2.obtenFicha().getImage()); break;
-            case 1: this.f2.setImage(jugador2.obtenFicha().getImage()); break;
-            case 2: this.f3.setImage(jugador2.obtenFicha().getImage()); break;
-            case 3: this.f4.setImage(jugador2.obtenFicha().getImage()); break;
-            case 4: this.f5.setImage(jugador2.obtenFicha().getImage()); break;
-            case 5: this.f6.setImage(jugador2.obtenFicha().getImage()); break;
-            case 6: this.f7.setImage(jugador2.obtenFicha().getImage()); break;
-            case 7: this.f8.setImage(jugador2.obtenFicha().getImage()); break;
-            case 8: this.f9.setImage(jugador2.obtenFicha().getImage()); break;       
+            if(this.turno == JUGADOR2){
+                
+                switch ( indice ){
+                case 0: this.f1.setImage(jugador2.obtenFicha().getImage()); break;
+                case 1: this.f2.setImage(jugador2.obtenFicha().getImage()); break;
+                case 2: this.f3.setImage(jugador2.obtenFicha().getImage()); break;
+                case 3: this.f4.setImage(jugador2.obtenFicha().getImage()); break;
+                case 4: this.f5.setImage(jugador2.obtenFicha().getImage()); break;
+                case 5: this.f6.setImage(jugador2.obtenFicha().getImage()); break;
+                case 6: this.f7.setImage(jugador2.obtenFicha().getImage()); break;
+                case 7: this.f8.setImage(jugador2.obtenFicha().getImage()); break;
+                case 8: this.f9.setImage(jugador2.obtenFicha().getImage()); break;       
+            }
+                this.tablero[indice] = 2;
+                turno = ( turno == JUGADOR2 ) ? JUGADOR1 : JUGADOR2;
+        }else if(this.turno==JUGADOR1){
+                switch ( indice ){
+            case 0: this.f1.setImage(jugador1.obtenFicha().getImage()); break;
+            case 1: this.f2.setImage(jugador1.obtenFicha().getImage()); break;
+            case 2: this.f3.setImage(jugador1.obtenFicha().getImage()); break;
+            case 3: this.f4.setImage(jugador1.obtenFicha().getImage()); break;
+            case 4: this.f5.setImage(jugador1.obtenFicha().getImage()); break;
+            case 5: this.f6.setImage(jugador1.obtenFicha().getImage()); break;
+            case 6: this.f7.setImage(jugador1.obtenFicha().getImage()); break;
+            case 7: this.f8.setImage(jugador1.obtenFicha().getImage()); break;
+            case 8: this.f9.setImage(jugador1.obtenFicha().getImage()); break;       
+            }
+                this.tablero[indice] = 1;
+                turno = ( turno == JUGADOR1 ) ? JUGADOR2 : JUGADOR1;
         }
         
-        this.tablero[indice] = 2;
         
-        /*Cambiamos el turno.*/
-        turno = ( turno == JUGADOR1 ) ? JUGADOR2 : JUGADOR1;            
+        
+        
+     
+                    
     } 
      
     /*Método que "pone una ficha" en el tablero.*/
@@ -330,7 +379,7 @@ public class TablaController implements Initializable,Runnable{
                     break;
             }      
             mostrarInformacion();
-        } else {
+        } else if(modelo.tipo_juego == HOMBREvsCOMPUTADORA) {
             this.jugador1 = new Jugador( modelo.nombre1, modelo.imagen11);
             this.jugador2 = new Jugador ( "Computadora", modelo.imagen22);
             this.lblPlayer2.setVisible(true);           
@@ -348,6 +397,24 @@ public class TablaController implements Initializable,Runnable{
                     lanzaPc1();
                     break;                
             }          
+            mostrarInformacion();
+        } else if(modelo.tipo_juego==COMPUTADORAvsCOMPUTADORA){
+            this.jugador1 = new Jugador( "Computadora1", modelo.imagen11);
+            this.jugador2 = new Jugador ( "Computadora2", modelo.imagen22);
+            computadora = new ComputadoraIA();
+            computadora2 = new ComputadoraIA();
+            switch(primerTurno){
+                case 1:
+                    this.turno = 1;
+                    this.turnoGeneral = JUGADOR1;
+                    lanzaPc1();
+                    break;
+                default: 
+                    this.turno = 2;
+                    this.turnoGeneral = JUGADOR2;
+                    lanzaPc1();
+                    break;
+            }
             mostrarInformacion();
         }
         jugando = true;
@@ -417,6 +484,7 @@ public class TablaController implements Initializable,Runnable{
     /*Método que suspende un juego.*/
     public void suspenderJuego(){ 
         System.out.println("Cerrando juego");
+        
 //                
 //        //Llenamos el tablero con 0s*/
 //        Arrays.fill(tablero,0);
@@ -598,7 +666,8 @@ public class TablaController implements Initializable,Runnable{
     }
     
     private void lanzaPc1(){
-        switch (aleatoriopc()) {
+//        if(this.modelo.tipo_juego==HOMBREvsHOMBRE||this.modelo.tipo_juego==COMPUTADORAvsCOMPUTADORA){
+            switch (aleatoriopc()) {
                 case 1:
                     ponerFichaCPU(1 );
                     break;
@@ -626,9 +695,11 @@ public class TablaController implements Initializable,Runnable{
                     case 9:
                     ponerFichaCPU(9 );
                     break;
-    }
+            }
+//        }
     }
     
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
     Arrays.fill(tablero, 0);
     iniciarComponentes();
