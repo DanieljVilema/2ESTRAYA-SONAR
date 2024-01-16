@@ -11,7 +11,7 @@ package ec.edu.espol.juego1;
 public class ComputadoraIA { //CHECK 
     public static int tiradas = 0;
     
-    /*Árboles para los movimientos del Gato.*/
+    /*Árboles para los movimientos.*/
     class NodoG{
         
         
@@ -224,9 +224,9 @@ public class ComputadoraIA { //CHECK
     }
     
     /*Mëtodo que imprime un vector como un enraya*/
-    public void imprime(int[] gato){
+    public void imprime(int[] vector){
         for ( int i = 0; i < 9; i ++ ){
-            System.out.print(gato[i]+"");
+            System.out.print(vector[i]+"");
             if ( i == 2 || i == 5 )
                 System.out.println();
         }

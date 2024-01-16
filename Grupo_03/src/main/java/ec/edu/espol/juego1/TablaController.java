@@ -18,6 +18,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -112,6 +113,23 @@ public class TablaController implements Initializable,Runnable{
     }
     
     public void run(){      
+    }
+    
+    @FXML
+    public void ayuda() {
+        if (jugando && modelo.tipo_juego == HOMBREvsCOMPUTADORA && turno == JUGADOR1 && !PENSANDO) {
+            int movimientoRecomendado = computadora.movimiento(this.tablero);
+            ponerFichaCPU(movimientoRecomendado);
+            System.out.println(("Movimiento recomendado: " + movimientoRecomendado));
+        }else if (modelo.tipo_juego != HOMBREvsCOMPUTADORA){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("La ayuda solo está habilitada en contra a la IA");
+            alert.show();
+        }else if (turno == JUGADOR2){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("La ayuda no está habilitada para la IA ");
+            alert.show();
+        }
     }
     
     public void movimiento( ImageView ficha ){
