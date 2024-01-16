@@ -120,6 +120,7 @@ public class TablaController implements Initializable,Runnable{
         if (jugando && modelo.tipo_juego == HOMBREvsCOMPUTADORA && turno == JUGADOR1 && !PENSANDO) {
             int movimientoRecomendado = computadora.movimiento(this.tablero);
             ponerFichaCPU(movimientoRecomendado);
+            cambiarFoco();
             System.out.println(("Movimiento recomendado: " + movimientoRecomendado));
         }else if (modelo.tipo_juego != HOMBREvsCOMPUTADORA){
             Alert alert = new Alert(Alert.AlertType.ERROR);
