@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="499.0" prefWidth="761.0" style="-fx-background-color: #012465;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.TablaController">
+   <children>
+
+      <Label fx:id="lblEstado" alignment="CENTER" layoutX="344.0" layoutY="36.0" prefHeight="26.0" prefWidth="330.0" text="3 EN RAYA" textAlignment="CENTER" textFill="WHITE">
+
+
+         <font>
+            <Font name="Eras Bold ITC" size="21.0" />
+         </font></Label>
+      <Label fx:id="lblGanados" layoutX="276.0" layoutY="336.0" text="G" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+     
+      <Label fx:id="lblEmpatados" layoutX="568.0" layoutY="336.0" text="E" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label layoutX="186.0" layoutY="336.0" prefHeight="18.0" prefWidth="84.0" text="GANADOS:" textFill="#fcbf07">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label layoutX="319.0" layoutY="336.0" prefHeight="18.0" prefWidth="84.0" text="PERDIDOS:" textFill="#fcbf07">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label layoutX="460.0" layoutY="336.0" prefHeight="18.0" prefWidth="108.0" text="EMPATADOS:" textFill="#fcbf07">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblIcono" layoutX="640.0" layoutY="304.0" text="ICONO" textFill="#012465">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label layoutX="186.0" layoutY="416.0" prefHeight="18.0" prefWidth="84.0" text="GANADOS:" textFill="#fcbf07">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblGanados2" layoutX="276.0" layoutY="416.0" text="G" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label layoutX="319.0" layoutY="416.0" prefHeight="18.0" prefWidth="84.0" text="PERDIDOS:" textFill="#fcbf07">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblPerdidos2" layoutX="410.0" layoutY="416.0" text="P" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label layoutX="460.0" layoutY="416.0" prefHeight="18.0" prefWidth="108.0" text="EMPATADOS:" textFill="#fcbf07">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblEmpatados2" layoutX="568.0" layoutY="416.0" text="E" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblIcono2" layoutX="640.0" layoutY="386.0" text="ICONO" textFill="#012465">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblPlayer" layoutX="46.0" layoutY="336.0" text="P1" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="lblPlayer2" layoutX="46.0" layoutY="416.0" text="P2" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <Label fx:id="blPerdidos" layoutX="410.0" layoutY="336.0" text="P" textFill="WHITE">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font></Label>
+      <ImageView fx:id="f3" fitHeight="62.0" fitWidth="73.0" layoutX="418.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f1" fitHeight="62.0" fitWidth="73.0" layoutX="271.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f4" fitHeight="62.0" fitWidth="73.0" layoutX="271.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f7" fitHeight="62.0" fitWidth="73.0" layoutX="272.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f6" fitHeight="62.0" fitWidth="73.0" layoutX="418.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f8" fitHeight="62.0" fitWidth="73.0" layoutX="345.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f5" fitHeight="62.0" fitWidth="73.0" layoutX="345.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f2" fitHeight="62.0" fitWidth="73.0" layoutX="345.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="f9" fitHeight="62.0" fitWidth="73.0" layoutX="418.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
+
+      <Button layoutX="176.0" layoutY="31.0" mnemonicParsing="false" onAction="#nuevoModo" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #13359e; -fx-border-color: #000000; -fx-border-radius: 3;" text="Nuevo Modo" textFill="#faba0a">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" onAction="#nuevoJuego" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #13359e; -fx-border-color: #000000; -fx-border-radius: 3;" text="Nuevo Juego" textFill="#faba0a">
+         <font>
+            <Font name="Eras Bold ITC" size="14.0" />
+         </font>
+      </Button>
+
+      <Line endX="171.0" layoutX="312.0" layoutY="227.0" startX="-55.0" startY="-1.0" stroke="WHITE" />
+      <Line endX="171.0" layoutX="312.0" layoutY="164.0" startX="-56.0" stroke="WHITE" />
+      <Line endX="-100.0" endY="208.0" layoutX="441.0" layoutY="81.0" startX="-101.0" startY="21.0" stroke="WHITE" />
+      <Line endX="-100.0" endY="208.0" layoutX="510.0" layoutY="81.0" startX="-100.0" startY="21.0" stroke="WHITE" />
+
+     
+   </children>
+</AnchorPane>

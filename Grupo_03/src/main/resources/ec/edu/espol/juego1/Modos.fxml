@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.ModosController">
+  <children>
+    <ImageView fitHeight="348.0" fitWidth="625.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../images/fondoMenu.PNG" />
+         </image>
+    </ImageView>
+    <Button fx:id="pvp" layoutX="347.0" layoutY="116.0" mnemonicParsing="false" onAction="#btnPVP" prefHeight="45.0" prefWidth="218.0" style="-fx-background-color: #13359e; -fx-border-color: #000000; -fx-border-radius: 3;" text="Player vs Player" textFill="#faba0a">
+      <font>
+        <Font name="Eras Bold ITC" size="19.0" />
+      </font>
+    </Button>
+      <Button fx:id="iavia" layoutX="347.0" layoutY="174.0" mnemonicParsing="false" onAction="#btnIAvsIA" prefHeight="45.0" prefWidth="218.0" style="-fx-background-color: #13359e; -fx-border-color: #000000; -fx-border-radius: 3;" text="IA vs IA" textFill="#faba0a">
+         <font>
+            <Font name="Eras Bold ITC" size="19.0" />
+         </font>
+      </Button>
+      <Button fx:id="pvi" layoutX="347.0" layoutY="234.0" mnemonicParsing="false" onAction="#btnPVI" prefHeight="45.0" prefWidth="218.0" style="-fx-background-color: #13359e; -fx-border-color: #000000; -fx-border-radius: 3;" text="Player vs IA" textFill="#faba0a">
+         <font>
+            <Font name="Eras Bold ITC" size="19.0" />
+         </font>
+      </Button>
+  </children>
+
+</AnchorPane>
