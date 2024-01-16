@@ -7,6 +7,8 @@ package ec.edu.espol.juego1;
 /**
  *
  * @author danie
+ * @author Dalay20
+ * @author RaulLeon
  */
 
 import java.io.IOException;
