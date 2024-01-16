@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espol.juego1;
 
 public class ComputadoraIA {
@@ -72,9 +68,9 @@ public class ComputadoraIA {
             ganador = 1;
         }
 
-        if (ganador != 0 || movimientos == 0 || profundidad >= 2) { // Considera la profundidad máxima
+        if (ganador != 0 || movimientos == 0 || profundidad >= 2) {
             raiz.ganador = ganador;
-            raiz.utilidad = ganador; // La utilidad es igual al ganador en este caso
+            raiz.utilidad = calcularUtilidad(raiz.tablero);
         } else {
             for (int i = 0; i < movimientos; i++) {
                 raiz.nodos[i] = new NodoG();
@@ -86,7 +82,7 @@ public class ComputadoraIA {
                 raiz.nodos[i].miTurno = !raiz.miTurno;
                 raiz.nodos[i].indice = indices[i];
 
-                movComputadora(raiz.nodos[i], profundidad + 1); // Aumenta la profundidad
+                movComputadora(raiz.nodos[i], profundidad + 1);
             }
 
             if (!raiz.miTurno) {
@@ -97,7 +93,6 @@ public class ComputadoraIA {
         }
 
         if (profundidad == 0) {
-            // Asociar el mejor movimiento al tablero raíz
             raiz.mejorMovimiento = raiz.nodos[obtenerIndiceMejorMovimiento(raiz)].indice;
         }
     }
@@ -139,29 +134,63 @@ public class ComputadoraIA {
         return indiceMejorMovimiento;
     }
 
-     public int terminado(int[] tablero) {
-        /*Comprobamos si el juego terminó.*/
- /*Filas*/
+    public int terminado(int[] tablero) {
+        // Comprobamos si el juego terminó.
+        // Filas
         if (tablero[0] == tablero[1] && tablero[0] == tablero[2] && tablero[0] != 0) {
             return tablero[0];
         } else if (tablero[3] == tablero[4] && tablero[3] == tablero[5] && tablero[3] != 0) {
             return tablero[3];
         } else if (tablero[6] == tablero[7] && tablero[6] == tablero[8] && tablero[6] != 0) {
             return tablero[6];
-        } /*Columnas*/ else if (tablero[0] == tablero[3] && tablero[0] == tablero[6] && tablero[0] != 0) {
+        } // Columnas
+        else if (tablero[0] == tablero[3] && tablero[0] == tablero[6] && tablero[0] != 0) {
             return tablero[0];
         } else if (tablero[1] == tablero[4] && tablero[1] == tablero[7] && tablero[1] != 0) {
             return tablero[1];
         } else if (tablero[2] == tablero[5] && tablero[2] == tablero[8] && tablero[2] != 0) {
             return tablero[2];
-        } /*Diagonales*/ else if (tablero[0] == tablero[4] && tablero[0] == tablero[8] && tablero[0] != 0) {
+        } // Diagonales
+        else if (tablero[0] == tablero[4] && tablero[0] == tablero[8] && tablero[0] != 0) {
             return tablero[0];
         } else if (tablero[2] == tablero[4] && tablero[2] == tablero[6] && tablero[2] != 0) {
             return tablero[2];
         }
 
-        return 0;
+        // Comprobamos si hay empate
+        if (movDisponibles(tablero) == 0) {
+            return -1; // Representa empate
+        }
 
+        return 0; // El juego no ha terminado
+    }
+
+    // Nueva función para calcular la utilidad según la función ujugador
+    private int calcularUtilidad(int[] tablero) {
+        int Pjugador = contarJugadasGanadoras(tablero, miFICHA);
+        int Poponente = contarJugadasGanadoras(tablero, miFICHA == 1 ? 2 : 1);
+        return Pjugador - Poponente;
+    }
+
+    // Función auxiliar para contar jugadas ganadoras
+    private int contarJugadasGanadoras(int[] tablero, int jugador) {
+        int count = 0;
+
+        // Filas
+        count += (tablero[0] == jugador && tablero[1] == jugador && tablero[2] == jugador) ? 1 : 0;
+        count += (tablero[3] == jugador && tablero[4] == jugador && tablero[5] == jugador) ? 1 : 0;
+        count += (tablero[6] == jugador && tablero[7] == jugador && tablero[8] == jugador) ? 1 : 0;
+
+        // Columnas
+        count += (tablero[0] == jugador && tablero[3] == jugador && tablero[6] == jugador) ? 1 : 0;
+        count += (tablero[1] == jugador && tablero[4] == jugador && tablero[7] == jugador) ? 1 : 0;
+        count += (tablero[2] == jugador && tablero[5] == jugador && tablero[8] == jugador) ? 1 : 0;
+
+        // Diagonales
+        count += (tablero[0] == jugador && tablero[4] == jugador && tablero[8] == jugador) ? 1 : 0;
+        count += (tablero[2] == jugador && tablero[4] == jugador && tablero[6] == jugador) ? 1 : 0;
+
+        return count;
     }
 
     public boolean puedoGanar(int[] tablero) {
@@ -172,7 +201,7 @@ public class ComputadoraIA {
         return terminado(tablero) == 1;
     }
 
-     public void imprime(int[] vector) {
+    public void imprime(int[] vector) {
         for (int i = 0; i < 9; i++) {
             System.out.print(vector[i] + " ");
             if (i == 2 || i == 5) {
