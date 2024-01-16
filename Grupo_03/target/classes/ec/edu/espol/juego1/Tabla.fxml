@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="499.0" prefWidth="761.0" style="-fx-background-color: #012465;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.TablaController">
+<AnchorPane id="AnchorPane" prefHeight="499.0" prefWidth="761.0" style="-fx-background-color: #012465;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.TablaController">
    <children>
 
       <Label fx:id="lblEstado" alignment="CENTER" layoutX="344.0" layoutY="36.0" prefHeight="26.0" prefWidth="330.0" text="3 EN RAYA" textAlignment="CENTER" textFill="WHITE">
@@ -96,7 +96,7 @@
             <Font name="Eras Bold ITC" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" onAction="#nuevoJuego" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #13359e; -fx-border-color: #000000; -fx-border-radius: 3;" text="Nuevo Juego" textFill="#faba0a">
+      <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" onAction="#nuevoJuego" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: #13359e; -fx-border-color: #000000; -fx-border-radius: 3;" text="Nuevo Juego" textFill="#faba0a">
          <font>
             <Font name="Eras Bold ITC" size="14.0" />
          </font>

@@ -157,8 +157,8 @@ public class ModeloController implements Initializable {
             }else{
                 modelo.primerTurno = 2; 
             }
-        }else{
-            if( (tipo_juego==3&&!this.inipc1.isSelected() && !this.inipc2.isSelected() )){
+        }else if(tipo_juego == 3){
+            if( (!this.inipc1.isSelected() && !this.inipc2.isSelected() )){
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setContentText("Selecione quien inicia primero por favor.");
                 alert.show();
@@ -231,8 +231,7 @@ public class ModeloController implements Initializable {
     } 
     
     private void btnAceptarActionPerformed() throws IOException {                                           
-        if( recojer() ){
-         quienempieza();
+        if( recojer() && quienempieza()){
          enviarModelo();
         }
     }  

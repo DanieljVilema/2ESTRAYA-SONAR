@@ -491,19 +491,7 @@ public class TablaController implements Initializable,Runnable{
          stage.setScene(scene);
          stage.show();
      }
-
-    private void mnuIniciarActionPerformed() throws IOException {                                           
-    ModeloController n = new ModeloController();
-    n.setTablaController(this);
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("Modos.fxml"));
-    Parent root = loader.load();
-    this.setModeloController(modelo);
-    Stage modeloStage = new Stage();
-    Scene scene = new Scene(root, 615, 348);
-    modeloStage.setScene(scene);
-    modeloStage.show();    
-}
-   
+    
     private void f9MouseClicked() {                                
         movimiento(f9);
     }                               
