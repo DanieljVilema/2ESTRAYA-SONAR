@@ -1,10 +1,19 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package ec.edu.espol.juego1;
 
+/**
+ *
+ * @author danie
+ */
 public class ComputadoraIA {
 
     public static int tiradas = 0;
 
     class NodoG {
+
         int mejorMovimiento;
         NodoG nodos[];
         int tablero[];
@@ -51,7 +60,7 @@ public class ComputadoraIA {
         for (int i = 0; i < 9; i++) {
             this.arbol.tablero[i] = this.tablero[i];
         }
-        movComputadora(arbol, 0); // Inicia la búsqueda desde la raíz con profundidad 0
+        movComputadora(arbol, 0); 
         return arbol.mejorMovimiento;
     }
 
@@ -135,44 +144,40 @@ public class ComputadoraIA {
     }
 
     public int terminado(int[] tablero) {
-        // Comprobamos si el juego terminó.
-        // Filas
+        // para las filas
         if (tablero[0] == tablero[1] && tablero[0] == tablero[2] && tablero[0] != 0) {
             return tablero[0];
         } else if (tablero[3] == tablero[4] && tablero[3] == tablero[5] && tablero[3] != 0) {
             return tablero[3];
         } else if (tablero[6] == tablero[7] && tablero[6] == tablero[8] && tablero[6] != 0) {
             return tablero[6];
-        } // Columnas
+        } //columnas
         else if (tablero[0] == tablero[3] && tablero[0] == tablero[6] && tablero[0] != 0) {
             return tablero[0];
         } else if (tablero[1] == tablero[4] && tablero[1] == tablero[7] && tablero[1] != 0) {
             return tablero[1];
         } else if (tablero[2] == tablero[5] && tablero[2] == tablero[8] && tablero[2] != 0) {
             return tablero[2];
-        } // Diagonales
+        } //diagonales
         else if (tablero[0] == tablero[4] && tablero[0] == tablero[8] && tablero[0] != 0) {
             return tablero[0];
         } else if (tablero[2] == tablero[4] && tablero[2] == tablero[6] && tablero[2] != 0) {
             return tablero[2];
         }
 
-        // Comprobamos si hay empate
         if (movDisponibles(tablero) == 0) {
-            return -1; // Representa empate
+            return -1; // empate
         }
 
-        return 0; // El juego no ha terminado
+        return 0; // el juego no termina
     }
 
-    // Nueva función para calcular la utilidad según la función ujugador
     private int calcularUtilidad(int[] tablero) {
         int Pjugador = contarJugadasGanadoras(tablero, miFICHA);
         int Poponente = contarJugadasGanadoras(tablero, miFICHA == 1 ? 2 : 1);
         return Pjugador - Poponente;
     }
 
-    // Función auxiliar para contar jugadas ganadoras
     private int contarJugadasGanadoras(int[] tablero, int jugador) {
         int count = 0;
 

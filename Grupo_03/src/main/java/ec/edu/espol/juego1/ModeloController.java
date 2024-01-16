@@ -1,8 +1,13 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ec.edu.espol.juego1;
+
+/**
+ *
+ * @author danie
+ */
 
 import java.io.IOException;
 import java.net.URL;
@@ -132,44 +137,42 @@ public class ModeloController implements Initializable {
     public boolean quienempieza(){
         ModeloController modelo = ModeloController.getInstancia();
         System.out.println("El tipo de juego es: " + tipo_juego);
-        if(tipo_juego == 1){ 
-            if( (!this.inip1.isSelected() && !this.inip2.isSelected() )){
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setContentText("Selecione quien inicia primero por favor.");
-                alert.show(); 
-                return false;
-            }
-            if(this.inip2.isSelected()){
-                modelo.primerTurno = 2; 
-            }else{
-                modelo.primerTurno = 1; 
-            }
-        }
-        
-        else if(tipo_juego == 2){ 
-            if( (!this.inip1.isSelected() && !this.inipc1.isSelected() )){
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setContentText("Selecione quien inicia primero por favor.");
-                alert.show();
-                return false;
-            }
-            if(this.inip1.isSelected()){
-                modelo.primerTurno = 1; 
-            }else{
-                modelo.primerTurno = 2; 
-            }
-        }else if(tipo_juego == 3){
-            if( (!this.inipc1.isSelected() && !this.inipc2.isSelected() )){
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setContentText("Selecione quien inicia primero por favor.");
-                alert.show();
-                return false;
-            }
-            if(this.inipc1.isSelected()){
-                modelo.primerTurno = 1; 
-            }else{
-                modelo.primerTurno = 2; 
-            }
+        switch (tipo_juego) {
+            case 1:
+                if( (!this.inip1.isSelected() && !this.inip2.isSelected() )){
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setContentText("Selecione quien inicia primero por favor.");
+                    alert.show();
+                    return false;
+                }   if(this.inip2.isSelected()){
+                    modelo.primerTurno = 2;
+                }else{
+                    modelo.primerTurno = 1;
+                }   break;
+            case 2:
+                if( (!this.inip1.isSelected() && !this.inipc1.isSelected() )){
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setContentText("Selecione quien inicia primero por favor.");
+                    alert.show();
+                    return false;
+                }   if(this.inip1.isSelected()){
+                    modelo.primerTurno = 1;
+                }else{
+                    modelo.primerTurno = 2;
+                }   break;
+            case 3:
+                if( (!this.inipc1.isSelected() && !this.inipc2.isSelected() )){
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setContentText("Selecione quien inicia primero por favor.");
+                    alert.show();
+                    return false;
+                }   if(this.inipc1.isSelected()){
+                    modelo.primerTurno = 1;
+                }else{
+                    modelo.primerTurno = 2;
+                }   break;
+            default:
+                break;
         }
         return true;
     }
