@@ -484,6 +484,10 @@ public class TablaController implements Initializable,Runnable{
 
     @FXML
     private void nuevoModo(ActionEvent event) throws IOException {
+         ModosController modo = ModosController.getInstancia();
+         modo.setPvp(false);
+         modo.setPvi(false);
+         modo.setIvi(false);
          FXMLLoader loader = new FXMLLoader(getClass().getResource("Modos.fxml"));
          Parent root = loader.load();
          Scene scene = new Scene(root, 615, 348);

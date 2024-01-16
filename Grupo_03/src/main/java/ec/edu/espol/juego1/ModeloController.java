@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -201,12 +202,7 @@ public class ModeloController implements Initializable {
                 
             }
         });
-          btnCancelar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                btnCancelarActionPerformed();  
-            }
-        });
+          
           btnCambiarficha.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -225,10 +221,20 @@ public class ModeloController implements Initializable {
         imgp2.setImage(new Image(getClass().getResourceAsStream("/images/cruz.png"))); 
     }
     }
-    private void btnCancelarActionPerformed() {                                            
-        Stage stage = (Stage) btnCancelar.getScene().getWindow();
-        stage.close();
-    } 
+    
+    @FXML
+    private void btnCancelar(ActionEvent event) throws IOException {
+         ModosController modo = ModosController.getInstancia();
+         modo.setPvp(false);
+         modo.setPvi(false);
+         modo.setIvi(false);
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("Modos.fxml"));
+         Parent root = loader.load();
+         Scene scene = new Scene(root, 615, 348);
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+         stage.setScene(scene);
+         stage.show();
+     }
     
     private void btnAceptarActionPerformed() throws IOException {                                           
         if( recojer() && quienempieza()){

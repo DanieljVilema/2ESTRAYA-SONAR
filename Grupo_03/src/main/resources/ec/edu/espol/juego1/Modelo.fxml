@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="417.0" prefWidth="600.0" style="-fx-background-color: #3964b3;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.ModeloController">
+<AnchorPane id="AnchorPane" prefHeight="417.0" prefWidth="600.0" style="-fx-background-color: #3964b3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.juego1.ModeloController">
    <children>
 
       <TextField fx:id="txtJugador1" layoutX="133.0" layoutY="205.0" prefHeight="25.0" prefWidth="157.0" />
@@ -25,7 +25,7 @@
          <font>
             <Font name="Eras Bold ITC" size="18.0" />
          </font></Button>
-      <Button fx:id="btnCancelar" layoutX="346.0" layoutY="341.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: #10359c;" text="Cancelar" textFill="#fffefd">
+      <Button fx:id="btnCancelar" layoutX="346.0" layoutY="341.0" mnemonicParsing="false" onAction="#btnCancelar" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: #10359c;" text="Cancelar" textFill="#fffefd">
          <font>
             <Font name="Eras Bold ITC" size="19.0" />
          </font></Button>

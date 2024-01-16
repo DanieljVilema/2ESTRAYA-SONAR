@@ -13,11 +13,16 @@
             <Image url="@../../../../images/fondoMenu.PNG" />
          </image>
     </ImageView>
-    <Button fx:id="botonJugar" layoutX="390.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToModos" prefHeight="45.0" prefWidth="121.0" style="-fx-background-color: #13359e; -fx-border-color: #000000; -fx-border-radius: 3;" text="JUGAR" textFill="#faba0a">
+    <Button fx:id="botonJugar" layoutX="396.0" layoutY="152.0" mnemonicParsing="false" onAction="#switchToModos" prefHeight="45.0" prefWidth="121.0" style="-fx-background-color: #13359e; -fx-border-color: #000000; -fx-border-radius: 3;" text="JUGAR" textFill="#faba0a">
       <font>
         <Font name="Eras Bold ITC" size="19.0" />
       </font>
     </Button>
+      <Button fx:id="btnCancelar" layoutX="396.0" layoutY="226.0" mnemonicParsing="false" onAction="#btnCancelarActionPerformed" prefHeight="45.0" prefWidth="121.0" style="-fx-background-color: #13359e; -fx-border-color: #000000; -fx-border-radius: 3;" text="Cerrar" textFill="#faba0a">
+         <font>
+            <Font name="Eras Bold ITC" size="23.0" />
+         </font>
+      </Button>
   </children>
 
 </AnchorPane>
