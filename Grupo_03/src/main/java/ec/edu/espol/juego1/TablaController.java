@@ -138,7 +138,6 @@ public class TablaController implements Initializable,Runnable{
                 if(this.turno==JUGADOR1&&!PENSANDO&&this.modelo.tipo_juego!=COMPUTADORAvsCOMPUTADORA){
                     ponerFicha(ficha);
                 }else if(this.turno==JUGADOR2){
-                    PENSANDO = true;
                     ponerFichaCPU(computadora.movimiento(this.tablero));
                     PENSANDO = false;
                 }
