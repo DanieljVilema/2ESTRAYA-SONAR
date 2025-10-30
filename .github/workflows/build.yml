@@ -12,12 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-      - name: Set up JDK 21
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: 21
-          distribution: 'zulu'
+          java-version: 17
+          distribution: 'zulu' # Alternative distribution options are available.
       - name: Cache SonarCloud packages
         uses: actions/cache@v4
         with:
@@ -31,9 +31,8 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Build and analyze
+        working-directory: Grupo_03
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          cd Grupo_03
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=DanieljVilema_2ESTRAYA-SONAR -Dsonar.organization=danieljvilema -Dsonar.host.url=https://sonarcloud.io
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=DanieljVilema_2ESTRAYA-SONAR -Dsonar.host.url=https://sonarcloud.io
