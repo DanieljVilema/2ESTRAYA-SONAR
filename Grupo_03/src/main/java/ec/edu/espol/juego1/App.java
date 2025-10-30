@@ -23,9 +23,8 @@ import javafx.scene.Node;
 
 public class App extends Application {
     
-    private static Stage stage;
     private static Scene scene;
-
+    
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("Menu"), 615, 348);
@@ -51,7 +50,7 @@ public class App extends Application {
     static void redimentionScenes(ActionEvent event, String fxml, int SizeX, int SizeY){
         try {
             Parent root = App.loadFXML(fxml);
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root, SizeX, SizeY);
             stage.setScene(scene);
             stage.centerOnScreen();
