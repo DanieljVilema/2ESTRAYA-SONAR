@@ -23,17 +23,16 @@ import javafx.scene.Node;
 
 public class App extends Application {
     
-    private static Scene scene;
     
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Menu"), 615, 348);
+        Scene scene = new Scene(loadFXML("Menu"), 615, 348); // ahora local
         stage.setScene(scene);
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    static void setRoot(Stage stage, String fxml) throws IOException {
+        stage.getScene().setRoot(loadFXML(fxml)); // recibe Stage en lugar de usar campo estático
     }
 
     public static Parent loadFXML(String fxml) throws IOException {
@@ -42,7 +41,6 @@ public class App extends Application {
     }
     
     public static void main(String[] args) {
-        
         launch();
     }
 
@@ -51,7 +49,7 @@ public class App extends Application {
         try {
             Parent root = App.loadFXML(fxml);
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root, SizeX, SizeY);
+            Scene scene = new Scene(root, SizeX, SizeY); // local
             stage.setScene(scene);
             stage.centerOnScreen();
             stage.resizableProperty().setValue(Boolean.FALSE);
