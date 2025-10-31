@@ -45,11 +45,11 @@ public class App extends Application {
     }
 
     
-    static void redimentionScenes(ActionEvent event, String fxml, int SizeX, int SizeY){
+    static void redimentionScenes(ActionEvent event, String fxml, int sizeX, int sizeY){
         try {
             Parent root = App.loadFXML(fxml);
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, SizeX, SizeY); // local
+            Scene scene = new Scene(root, sizeX, sizeY); // parámetros renombrados a camelCase
             stage.setScene(scene);
             stage.centerOnScreen();
             stage.resizableProperty().setValue(Boolean.FALSE);
