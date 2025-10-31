@@ -20,9 +20,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class App extends Application {
-    
+    private static final Logger LOGGER = Logger.getLogger(App.class.getName());
     
     @Override
     public void start(Stage stage) throws IOException {
@@ -55,7 +57,7 @@ public class App extends Application {
             stage.resizableProperty().setValue(Boolean.FALSE);
             stage.show();
         } catch (IOException e){
-            System.out.println("File not found, Error al cargar pantalla");
+            LOGGER.log(Level.SEVERE, "File not found, Error al cargar pantalla", e);
         }
         
     }
