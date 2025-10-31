@@ -92,6 +92,9 @@ public class TablaController implements Initializable, Runnable {
     int primerTurno = modelo.primerTurno;
     int[] tablero = new int[9];
 
+    // Reuse a single Random instance instead of creating a new one each call
+    private final Random random = new Random();
+
     public TablaController() {
 
     }
@@ -607,9 +610,8 @@ public class TablaController implements Initializable, Runnable {
     }
 
     private int aleatoriopc() {
-        Random random = new Random();
-        int NR = random.nextInt(8) + 1;
-        return NR;
+        // nextInt(9) -> 0..8, +1 -> 1..9
+        return random.nextInt(9) + 1;
     }
 
     private void lanzaPc1() {
